@@ -30,7 +30,7 @@ $objDatos->connect();
      }
   }
 
-  gifunction getSubString($string, $length=NULL)
+  function getSubString($string, $length=NULL)
   {
     //Si no se especifica la longitud por defecto es 50
     if ($length == NULL)

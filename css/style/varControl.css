@@ -1,0 +1,227 @@
+.dropdown-menu {
+
+    background-color: #222222;
+
+}
+nav.sidebar .navbar-nav .open .dropdown-menu {
+	position: static;
+	float: none;
+	width: auto;
+	margin-top: 0;
+	background-color: rgb(38, 38, 38);;
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+    padding: 0 0px 0 0px;
+}
+
+navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+    color: #777;
+}
+
+nav.sidebar{
+	width: 200px;
+	height: 100%;
+    margin-left:-168px;
+	float: left;
+	z-index: 8000;
+	margin-bottom: 0px;
+}
+
+nav.sidebar li {
+    width: 100%;
+}
+
+nav.sidebar:hover{
+    margin-left: -20px;
+}
+
+div > nav > div > ul{
+    width:198px;
+}
+
+nav.sidebar, .main{
+    -webkit-transition: margin 300ms ease-out;
+    -moz-transition: margin 300ms ease-out;
+    -o-transition: margin 300ms ease-out;
+    transition: margin 300ms ease-out;
+}
+
+header:hover > span::before {
+    margin-right: 3px;
+    content: '<';
+}
+
+header:hover > span::after {
+    margin-left: 3px;
+    content: '>';
+}
+.bodysa{
+	margin-bottom: 20%;
+}
+body{
+background: #4e4e4e;
+color: rgb(255, 255, 255)
+}
+
+#table-box {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 126%;
+    margin: 0 auto;
+    border: 1px solid black;
+    background: #222222;
+    min-height: initial;
+    padding: 46px;
+    z-index: 1;
+    opacity: 0.9;
+    display: block;
+    box-shadow: 0 0 10px rgba(12, 221, 33, 1);
+		ord-wrap: break-word;
+		margin-top: -24%; /*-241px;*/
+}
+
+
+#contenedor{
+width: 99%;
+overflow: hidden;
+}
+#fot{
+	    margin: 21% auto;
+}
+/*Le da el color y tamaño a las letras de la tabla*/
+#datatable, #datatableStudent,#dataTableCourseTeacher,#dataTableCourse, #dataTableActivity {
+    background-color: rgb(78, 78, 78) !important;
+    font-size: 18px !important;
+    line-height: 1.42857143 !important;
+    color: #000000;
+}
+
+blockquote {
+    padding: 10.5px 21px;
+    margin: 0 0 21px;
+    font-size: 18.75px;
+    border-left: 5px solid #e6e6e6;
+    color: whitesmoke !important !important;
+}
+
+
+/*ESTO ES DE LA TABLA DE PROFESORES */
+.has-success .control-label, div.dataTables_wrapper div.dataTables_filter input{
+	color: #000000 !important;
+}
+
+
+h1[number]{
+	color: #ffffff !important;
+	font-size: 43px !important;
+	margin-top: 0px !important;
+	text-align: center !important;
+	border-bottom: 1px solid #a0a0a0 !important;
+}
+.form-control:focus {
+	border-color: #41ac1d !important;
+	outline: 4px !important;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(63, 182, 24, 0.41) !important;
+}
+.dataTables_wrapper {
+    position: relative !important;
+    clear: both !important;
+    zoom: 0.8 !important;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_filter{
+  font-size: 18px !important;
+      line-height: 1.42857143 !important;
+      color: #ffffff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled{
+        color: #fff !important;
+
+}
+.dataTables_scrollHeadInner{
+      padding-left: 0px  !important;
+}
+select{
+  color:#000000  !important;
+}
+
+.dataTables_wrapper {
+
+    transform: translateY(5%)  !important;
+}
+*, *:before, *:after {
+     box-sizing: border-box !important;
+}
+/*FIN DE CSS PROFESORES*/
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover{
+    background-color: #34be19 !important;
+
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: #208c0b !important;
+    color: #ffffff !important;
+		border-color: # !important;
+}
+.navbar-inverse {
+    background-color: #34be19 !important;
+    border-color: #208c0b !important;
+}
+
+nav.sidebar {
+
+    margin-bottom: -141% !important;
+}
+.well {
+    position: relative !important;
+    min-height: 20px !important;
+    padding: 19px !important;
+    margin-bottom: 20px !important;
+    background-color: rgba(38, 38, 38, 0.82) !important;
+    border: 1px solid rgba(50, 134, 58, 0.62) !important;
+    color: chartreuse !important;
+    border-radius: 18% !important;
+    z-index: 1 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05) !important;
+}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #ffffff !important;
+    background-color: #208c0b !important;
+}
+
+.dropdown-menu>li>a {
+    color: #ffffff;
+}
+#cap{
+  color: rgb(0, 0, 0);
+  background: #059c0b !important;
+  font-size: 150%;
+  text-align: center;
+}
+legend {
+    color: #ffffff !important;
+
+}
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 20px;
+  line-height: 1.42;
+  border-radius: 50px;
+  margin-left: 22px;
+}
+#topTitle{
+ margin-top:10%;
+}
+.btn-success {
+    color: #ffffff;
+
+}

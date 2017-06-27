@@ -1,0 +1,108 @@
+
+
+.btn-un {
+  color: #ffffff;
+  background-color: #50992e;
+  border-color:  #50992e;
+}
+/* helpers */
+
+.t {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+div#centrar{
+  margin-left: 30%;
+}
+.piepagina{
+  margin-top: 5%;
+  display: inline-block;
+}
+
+.tc {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.rel {
+    position: relative;
+}
+
+/* libroscss */
+.alinear {
+height: 150px;
+/*IMPORTANTE*/
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.librocss {
+  margin:0 auto;
+  width: 80%;  /*este permite hacer mas grande o mas pequeña la cartilla*/
+  height: 0 auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.librocss .page {
+    height: 100%;
+}
+
+.page{
+  background-color: #FFFAFA !important;
+/*modificado*/
+  border-radius: 0px;
+  box-shadow: 0 0 5px #666666 inset;
+  outline: 1 #DDD;
+
+}
+.hard {
+    background-color: #FFFAFA !important;
+    font-weight: bold;
+    box-shadow: 0 0 5px #666666 inset;
+    color: #333333;
+    outline: 1 #DDD
+
+}
+
+.imagencartilla{
+  /*modificado*/
+border-radius: 0px;
+}
+
+.librocss .page img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.error, .alert {
+    background: #fbe3e4;
+    color: #8a1f11;
+    border-color: #fbc2c4;
+}
+/*modificado*/
+.error, {
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+}
+
+.registro {
+    background: #3f8a1c;
+    border-color: #84bf05;
+    color: white;
+    font-family: "Ancizar serif", "MS Serif", "New York", serif;
+    font-size: 1.5em;
+    letter-spacing: .01em;
+    width: 100%;
+}
+
+
+.table>thead>tr>td.un, .table>tbody>tr>td.un, .table>tfoot>tr>td.un, .table>thead>tr>th.un, .table>tbody>tr>th.un, .table>tfoot>tr>th.un, .table>thead>tr.un>td, .table>tbody>tr.un>td, .table>tfoot>tr.un>td, .table>thead>tr.un>th, .table>tbody>tr.un>th, .table>tfoot>tr.un>th {
+    background-color: #50992e;
+}

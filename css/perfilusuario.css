@@ -1,0 +1,51 @@
+#info_user, #cont_profile_user{
+	margin: 0 auto;
+	width: 90%;
+	max-width: 90%;
+	border-bottom: 2px solid #50992e;
+}
+
+#info_user .info_user_cont{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 10px 0;
+}
+
+#info_user .info_user_cont#info_user_per{
+	width: 60%;
+	padding-left: 10px;
+}
+
+#info_user .info_user_cont#info_user_per #info_user_per_title{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#info_user .info_user_cont#info_user_per .info_user_per_second{
+	font-style: italic;
+	font-size: 15px;
+}
+
+#info_user .info_user_cont#info_user_multi{
+	width: 39%;
+	padding-right: 10px;
+	text-align: right;
+}
+
+#info_user .info_user_cont#info_user_multi div, #info_user .info_user_cont#info_user_multi p{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#info_user .info_user_cont#info_user_multi div p{
+	display: block;
+	padding-right: 10px;
+}
+
+#info_user .info_user_cont#info_user_multi p img{
+	width: 60px;
+}
+
+#cont_profile_user{
+	padding: 10px;
+}

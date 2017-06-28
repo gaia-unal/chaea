@@ -11,7 +11,12 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/courseSQL/courseEstudentActiv.php');
 $courses="";
 $courses= consultCoruse();
+$coursesLet = count($courses);
 ?>
+<script type="text/javascript">
+  var coursesLet = "<?php echo $coursesLet; ?>" ;
+</script>
+
 <link rel="stylesheet" type="text/css" href="/chaea/css/style/questionChaea.css" media="all">
 
 <body id="table">
@@ -72,10 +77,10 @@ $courses= consultCoruse();
                    <div class="col-md-12">
                        <h3>Selecciona un Curso</h3>
        								<div class="form-group">
-       			                <table class="table table-striped table-hover">
+       			                <table class="table table-striped table-hover coursePage" number-per-page="2" current-page="0">
        			                  <thead>
        			                    <tr>
-       			                      <th>Curso</th><th>Descripción</th><th>ID</th>
+       			                      <th>Curso</th><th>Descripción</th><th>ID</th><th>Selecciona</th>
        			                    </tr>
        			                  </thead>
        			                  <tbody>
@@ -84,16 +89,18 @@ $courses= consultCoruse();
 
        			                        for ($i=0; $i < count($courses); $i++) {  //20 primeras
                                       $description_course = getSubString($courses[$i]['dc'], null);
-       			                            echo  "<tr  id = 'pregunta".$i."' required='required' class =".$color[$c].">".
-       			                                  "<td><a href='#'>".$courses[$i]['namco'].".</a></td>".
-       			                                  "<td>".$description_course.". </td>".
-       			                                  "<td>".$courses[$i]['idco']."</td>".
-       			                                 "</tr>";
+       			                            echo  "<tr required='required' class =".$color[$c].">".
+           			                                  "<td>".$courses[$i]['namco']."</td>".
+           			                                  "<td>".$description_course.". </td>".
+           			                                  "<td id='idCourse'>".$courses[$i]['idco']."</td>".
+                                                  "<td><input class='radij'  required='required' name='courseId' type=radio><br></div></td>".
+       			                                   "</tr>";
        			                             if ($c == 0) {$c=1;} else {$c=0;}
        			                          }
        			                     ?>
        			                  </tbody>
        			                </table>
+                            <div id="erroCourse"></div>
        									</div>
                        <button class="btn btn-success nextBtn btn-lg pull-right btn-un" type="button" id="next1" >Siguiente</button>
                    </div>
@@ -228,18 +235,15 @@ $courses= consultCoruse();
 </main>
 
 <!-- Fin de la configuracion -->
-<!-- Da la funcionalidad de lo radian bouton -->
-<script src="/chaea/js/jsn/tabla.js" charset="utf-8"></script><!--este es JSN-->
 
-<!-- Carga la info de la tabla -->
-<script src="/chaea/js/jsn/courseSettings/courseTableTeacher.js" charset="utf-8"></script><!--este es JSN-->
-<!-- Carga el funcionamiento de tabla -->
+
 <!-- Este tiene las funcionalidades CRUD de la tabla -->
-<!--este es JSN-->
-<script src="/chaea/js/jsn/courseSettings/courseTableCrud.js" charset="utf-8"></script>
-<!-- FIN CRUD -->
+
 <script src="https://code.jquery.com/jquery-1.11.2.js" integrity="sha256-WMJwNbei5YnfOX5dfgVCS5C4waqvc+/0fV7W2uy3DyU=" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/chaea/js/jsn/simplepagination.js"></script>
+<script type="text/javascript" src="/chaea/js/jsn/courseSettings/actiStudentCourse.js"></script>
+
 <!--Este es JSN-->
 </body>
 

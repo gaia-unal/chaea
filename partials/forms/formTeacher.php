@@ -57,7 +57,7 @@
 									</div><br>
 									<!-- mete las cidades de Colombia de un JSON para esogerlas  -->
 									<script type="text/javascript">
-											var options = {	url: "json/municipality.json",
+											var options = {	url: "/chaea/json/municipality.json",
 																			getValue: "Municipio",
 																			list: {	match: {enabled: true} },
 																			theme: "plate-dark"

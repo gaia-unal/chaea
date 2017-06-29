@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',main);
-  var valores="";
+  var idCourse="", nameCourse="";
 //Efecto del radion bouton
 function lod(){
   try{
@@ -22,10 +22,16 @@ function getDataTableCoruse(){
         //<td> de la fila
         // seleccionada
         $(this).parents("tr").find("#idCourse").each(function(){
-        valores+=$(this).html()+"\n";
+        idCourse=$(this).html()+"\n";
         });
-        console.log(valores);
-        alert(valores);
+        $(this).parents("tr").find("#nameCourse").each(function(){
+        nameCourse=$(this).html()+"\n";
+        });
+        console.log(idCourse);
+        // alert(nameCourse);
+        // alert(idCourse);
+        $('#nameEstudentCourse').html("Agrega los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
+
   });
 }
 
@@ -51,7 +57,7 @@ function mensajePanel(info, option){
 }
 function main(){
   $('#next1').click(function(){
-    if(valores==""){
+    if(idCourse==""){
       let info='Debe selecionar un curso.';
       mensajePanel(info,1);
     }

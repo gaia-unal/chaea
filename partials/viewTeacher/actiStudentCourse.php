@@ -90,7 +90,7 @@ $coursesLet = count($courses);
        			                        for ($i=0; $i < count($courses); $i++) {  //20 primeras
                                       $description_course = getSubString($courses[$i]['dc'], null);
        			                            echo  "<tr required='required' class =".$color[$c].">".
-           			                                  "<td>".$courses[$i]['namco']."</td>".
+           			                                  "<td id='nameCourse'>".$courses[$i]['namco']."</td>".
            			                                  "<td>".$description_course.". </td>".
            			                                  "<td id='idCourse'>".$courses[$i]['idco']."</td>".
                                                   "<td><input class='radij'  required='required' name='courseId' type=radio><br></div></td>".
@@ -109,8 +109,29 @@ $coursesLet = count($courses);
            <div class="row setup-content" id="step-3">
                <div class="col-xs-12">
                    <div class="col-md-12">
-                       <h3> Paso 3</h3>
-                       <table class="table table-striped table-hover ">
+                       <h3><div id="nameEstudentCourse"></h3>
+                         <!-- mete las universidades ya creadas en un vectora html -->
+           							    <div class="form-group">
+         										<label for="native_city_admin" class=" control-label">Lugar de Nacimiento:</label>
+         										<div class="has-success">
+         											<input onKeyPress="return control1(event)" pattern=".{0}|.{4,80}" title="tiene que tener por lo menos 4 caracteres" value=""
+                               required maxlength="80" class="form-control" id="native_city_admin"  placeholder="Ej: Manizales"/></input>
+         							  		</div>
+         									 <!-- Fin del metodo -->
+         									</div><br>
+         									<!-- mete las cidades de Colombia de un JSON para esogerlas  -->
+         									<script type="text/javascript">
+         											var options = {	url: "/chaea/json/municipality.json",
+         																			getValue: "Municipio",
+         																			list: {	match: {enabled: true} },
+         																			theme: "plate-dark"
+         																	};
+         												$("#native_city_admin").easyAutocomplete(options);
+         											//Esto permite que funcione el el JSON de autocompletar
+         									</script>
+
+           								 <!-- Fin -->
+                       <!-- <table class="table table-striped table-hover ">
                          <thead>
                            <tr>
                              <th>#</th><th>Pregunta</th><th>Más<i class="fa fa-plus" aria-hidden="true"></i></th><th>Menos<i class="fa fa-minus" aria-hidden="true"></i></th>
@@ -118,21 +139,21 @@ $coursesLet = count($courses);
                          </thead>
                          <tbody>
                            <?php
-                               $color = array( 0 => "cano", 1 => "jsn",); $c = 0;
-
-                               for ($i=20; $i < 40; $i++) { //20 segundas
-                                   echo  "<tr  id = 'pregunta".$i."' required='required' class =".$color[$c].">".
-                                         "<td>".$questionChaea[$i]['idc'].". </td>".
-                                         "<td>".$questionChaea[$i]['qu']."</td>".
-                                         "<td><input class='radij'  required='required' type=radio name = 'q".$i."' value='+'><br><div style='text-indent: 0.1em; vertical-align: middle' class='fa fa-plus' aria-hidden='true'></div></td>".
-                                         "<td><input class='radij'  required='required' type=radio name = 'q".$i."' value='-'><br><div style='text-indent: 0.1em; vertical-align: middle' class='fa fa-minus' aria-hidden='true'></div></td>".
-                                        "</tr>";
-                                    if ($c == 0) {$c=1;} else {$c=0;}
-                                 }
+                              //  $color = array( 0 => "cano", 1 => "jsn",); $c = 0;
+                               //
+                              //  for ($i=20; $i < 40; $i++) { //20 segundas
+                              //      echo  "<tr  id = 'pregunta".$i."' required='required' class =".$color[$c].">".
+                              //            "<td>".$questionChaea[$i]['idc'].". </td>".
+                              //            "<td>".$questionChaea[$i]['qu']."</td>".
+                              //            "<td><input class='radij'  required='required' type=radio name = 'q".$i."' value='+'><br><div style='text-indent: 0.1em; vertical-align: middle' class='fa fa-plus' aria-hidden='true'></div></td>".
+                              //            "<td><input class='radij'  required='required' type=radio name = 'q".$i."' value='-'><br><div style='text-indent: 0.1em; vertical-align: middle' class='fa fa-minus' aria-hidden='true'></div></td>".
+                              //           "</tr>";
+                              //       if ($c == 0) {$c=1;} else {$c=0;}
+                              //    }
                             ?>
 
                          </tbody>
-                       </table>
+                       </table> -->
                        <button class="btn btn-success nextBtn btn-lg pull-right  btn-un" type="button" id="next2" >Siguiente</button>
                    </div>
                </div>

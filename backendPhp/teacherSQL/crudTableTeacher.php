@@ -64,7 +64,7 @@ switch ($action) {
              WHERE number_document='".$person[8]."';";
              $objDatos->executeQuery($sql);
              $objDatos->closeConnect();
-             echo "Se actualizo correctamente";
+             echo "3";
 
  }
 
@@ -74,7 +74,7 @@ switch ($action) {
    $consulta = "DELETE FROM teacher WHERE number_document = '$number_document'";
    $teacher = $objDatos->executeQuery($consulta);
    $objDatos->closeConnect();
-   echo "Se ha eliminado el usuario correctamente";
+   echo "4";
   }
 
 
@@ -106,9 +106,8 @@ switch ($action) {
              $crud = $objDatos->executeQuery($sql);
     $email= "21sebas12@gmail.com";//$crud[0]['e'];
     $name = $crud[0]["na"];
-    $mensage = "Su cuanta de usuario ya ha sido activada por el administrador\nzMuchas gracias:".$name;
+    $mensage = "Su cuanta de usuario ya ha sido activada por el administrador\nMuchas gracias:".$name;
     $asunto="Activado en Chaea UNAL";
-    // mail($email,$asunto, $mensage);
     mail($email,$asunto, $mensage);
 
   }

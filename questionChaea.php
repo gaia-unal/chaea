@@ -1,7 +1,7 @@
 <?php
 	include('partials/head.php');
 	include('partials/nav.php');
-  include('funcionesphp/send.php');
+  include('backendPhp/send.php');
   $questionChaea="";
 	$questionChaea= questionC();
 ?>

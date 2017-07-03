@@ -4,7 +4,7 @@ var co=0;
 function ajaxPersonTeacher() {
 			$.ajax({
 				method:"POST",
-				url: "../../funcionesphp/teacherSQL/crudTeacher.php"
+				url: "../../backendPhp/teacherSQL/crudTeacher.php"
 			}).done( function( info ){
 				var techer = eval(info);
 				 adminForm(techer);
@@ -18,12 +18,13 @@ function ajaxPersonTeacher() {
 			var person = JSON.stringify(person);
 			$.ajax({
 				method:"POST",
-				url: "../../funcionesphp/teacherSQL/crudTeacher.php",
+				url: "../../backendPhp/teacherSQL/crudTeacher.php",
 				data: {"action":action,"person":person}
 			}).done( function( info ){
+				return false;
 						// mensajeSend(info);
 						alert(info);
-					return false;
+
 			});
 		} catch (e) {
 
@@ -33,15 +34,15 @@ function ajaxPersonTeacher() {
 		}
 
 
-		// function mensajeSend(info){
-		// 	$('#InfoUser').html(`<h4>`+info+`</h4>`);
-		// 	var modalInfo = document.getElementById('id04');
-		// 	modalInfo.style.display='block';
-		// 	 $("#id04").fadeOut(9000);
-		// 	 $("#acep").click(function(){
-		// 			$("#id04").stop(true, true);
-		// 		});
-		// }
+		function mensajeSend(info){
+			$('#InfoUser').html(`<h4>`+info+`</h4>`);
+			var modalInfo = document.getElementById('id04');
+			modalInfo.style.display='block';
+			 $("#id04").fadeOut(9000);
+			 $("#acep").click(function(){
+					$("#id04").stop(true, true);
+				});
+		}
 function adminForm(techer){
 
 //esta función me permite crear un vector que son los atributos de la persona y luego llama la función ajaxpost
@@ -79,6 +80,7 @@ function adminForm(techer){
      if (bas==0){
            if(email.indexOf('.') != -1){
  						    ajaxTeacherUbdate(person, 1);
+								   loading();
            } else {
              $('#warningemail').html("<div id='oculto1' class='alert alert-dismissible alert-warning'><button type='button' class='close' onclick='cer();' data-dismiss='alert'>&times;</button><strong>No es un correo valido</strong></a></div>");
              return false;
@@ -90,14 +92,14 @@ function adminForm(techer){
  		}
  }
 
-
+//editar los datos del administrador
 function adminCrud(){
 	var 	btn_profile = document.getElementById('btn_profile');
 		btn_profile.addEventListener('click', function (){
 		 ajaxPersonTeacher();
 	});
 
-
+//Editar los datos del profesorz
 	var update_admin = document.getElementById('registratione');
 	update_admin.addEventListener('click', function (){
 		adminUpdate();

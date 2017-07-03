@@ -49,6 +49,6 @@ include('partials/nav.php');
 </main>
 <?php
 
-include('funcionesphp/sessionJS.php');
+include('backendPhp/sessionJS.php');
 	include('partials/pie.html');
 ?>

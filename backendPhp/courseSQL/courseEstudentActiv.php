@@ -9,8 +9,8 @@
   }
 ?>
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/conexion.php');
-// require_once($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/recoverInfo.php');
+require_once($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/conexion.php');
+// require_once($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/recoverInfo.php');
 $objDatos = new DB();
 $objDatos->connect();
 
@@ -19,9 +19,11 @@ $objDatos->connect();
   function consultCoruse(){
     try {
           global $objDatos;
-          $sql = $sql = "SELECT description_course as dc,
-                         id_course as idco, name_course as namco
-                         FROM course WHERE state_system_course ='Activo';";
+          $sql = $sql = "SELECT co.description_course as dc,
+                         co.id_course as idco,  co.name_course as namco
+                         FROM course as co, course_teacher as ct WHERE co.state_system_course ='Activo'
+                         AND ct.number_document = '".$_SESSION["document"]."'
+                         group by co.id_course;";
                          $crud = $objDatos->executeQuery($sql);
                          return $crud;
      } catch (Exception $e) {

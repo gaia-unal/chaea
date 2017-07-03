@@ -15,7 +15,7 @@ function loading(){
                "destroy":true, //esto es para que me refresque la tabla sin problemas
                "ajax": {
                  "method": "POST",
-                 "url": "funcionesphp/studentSQL/settingStudent.php"
+                 "url": "backendPhp/studentSQL/settingStudent.php"
                },
                "columns": [
                  { "data": "state",

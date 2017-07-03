@@ -11,7 +11,7 @@ function loading(){
                "destroy":true, //esto es para que me refresque la tabla sin problemas
                "ajax": {
                  "method": "POST",
-                 "url": "funcionesphp/activitySQL/settingActivity.php"
+                 "url": "backendPhp/activitySQL/settingActivity.php"
                },
                "columns": [
                  { "data": "state_system_activity"},

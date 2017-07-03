@@ -4,7 +4,7 @@ session_destroy();
 session_start();
 	include('partials/head.php');
 	include('partials/nav.php');
-  include('funcionesphp/send.php');
+  include('backendPhp/send.php');
 
 ?>
 
@@ -68,7 +68,7 @@ div#blanco {
 
 						 $.ajax({
 							   type: 'POST',
-							   url: 'funcionesphp/send.php',
+							   url: 'backendPhp/send.php',
 								 data:{"attributes": attributes, "action":1},
 							   success: function(answer){
 

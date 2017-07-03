@@ -3,8 +3,8 @@ $(document).ready(function() {
   loading();
 });
 $("#btn_listar").on("click", function(){
-limpiar_datos();
-loading();
+  limpiar_datos();
+  loading();
 })
 
 function loading(){
@@ -16,7 +16,7 @@ function loading(){
                "destroy":true, //esto es para que me refresque la tabla sin problemas
                "ajax": {
                  "method": "POST",
-                 "url": "funcionesphp/teacherSQL/settingTeacher.php"
+                 "url": "backendPhp/teacherSQL/settingTeacher.php"
                },
                "columns": [
                  { "data": "state",
@@ -108,9 +108,10 @@ var limpiar_datos = function(){
       $(tbody).on('click','button.delete', function(){
         document.getElementById('id01').style.display='block';
         var data = table.row($(this).parents("tr")).data();
-        $('#elements').html(`¿Seguro que desea eliminar el usuario: `+data.name+`?`);
+
 
         try {
+          $('#elements').html(`¿Seguro que desea eliminar el usuario: `+data.name+`?`);
           var number_document = $('#deletElement #id_element').val(data.number_document);
 
         } catch (e) {
@@ -124,14 +125,17 @@ var limpiar_datos = function(){
     var get_data_state =function(tbody, table){
       $(tbody).on('click','.switch', function(){
         var data = table.row($(this).parents("tr")).data();
-        let person = new Array(data.name,data.number_document);
+
         try {
+                let person = new Array(data.name,data.number_document);
             if(data.state=='Inactivo'){
 
                ajaxSetting(person,3);
+               loading();
             }
             if (data.state=='Activo') {
                ajaxSetting(person,4);
+               		loading();
             }
         } catch (e) {
 

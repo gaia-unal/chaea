@@ -10,7 +10,7 @@ do{
  ?>
 
 <?php
-require_once("/funcionesphp/conexion.php");
+require_once("/backendPhp/conexion.php");
 $objDatos = new DB();
 $objDatos->connect();
 

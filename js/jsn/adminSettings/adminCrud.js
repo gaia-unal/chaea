@@ -4,7 +4,7 @@ var co=0;
 function ajaxPersonAdmin() {
 			$.ajax({
 				method:"POST",
-				url: "funcionesphp/recoursSQL/crudAdmin.php "
+				url: "backendPhp/recoursSQL/crudAdmin.php "
 			}).done( function( info ){
 				var admin = eval(info);
 				 adminForm(admin);
@@ -17,7 +17,7 @@ function ajaxPersonAdmin() {
 				var person = JSON.stringify(person);
 				$.ajax({
 					method:"POST",
-					url: "funcionesphp/recoursSQL/crudAdmin.php",
+					url: "backendPhp/recoursSQL/crudAdmin.php",
 					data: {"action":action,"person":person}
 				}).done( function( info ){
 					co++;

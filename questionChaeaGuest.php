@@ -1,7 +1,7 @@
 <?php
 	include('partials/head.php');
 	include('partials/nav.php');
-  include('funcionesphp/send.php');
+  include('backendPhp/send.php');
   $questionChaea="";
 	$questionChaea= questionC();
 ?>
@@ -232,6 +232,6 @@ h1[number]{
 
 <?php
   include_once("analyticstracking.php");
-include('funcionesphp/sessionJS.php');
+include('backendPhp/sessionJS.php');
   include('partials/pie.html');
 ?>

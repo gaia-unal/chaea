@@ -12,7 +12,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
 
      $.ajax({
       type: 'POST',
-      url: 'funcionesphp/send.php',
+      url: 'backendPhp/send.php',
       data:{"replys": replys, "action":action, "student_style_point":student_style_point},
           success: function(answer){
             //en caso de existir una falla al registrar estudiante descomentar

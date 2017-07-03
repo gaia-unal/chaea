@@ -5,21 +5,32 @@ function ajaxSetting(person,action) {
 			var person = JSON.stringify(person);
 			$.ajax({
 				method:"POST",
-				url: "/chaea/funcionesphp/teacherSQL/crudTableTeacher.php",
+				url: "/chaea/backendPhp/teacherSQL/crudTableTeacher.php",
 				data: {"action":action,"person":person}
 			}).done( function( info ){
-				loading();
+
 
 				if(Number(info)==1){
 					 mensajeSend("Se activó correctamente el usuario "+ persons[0]);
 				}else if (Number(info)==2) {
 					 mensajeSend("Se desactivó correctamente el usuario "+ persons[0]);
-				} else {
-					mensajeSend(info);
+				}else if (Number(info)==3) {
+					document.getElementById('id02').style.display='none';
+					 mensajeSend("Se actualizo correctamente el usuario "+ persons[0]);
+				}else if (Number(info)==4) {
+					 mensajeSend("Se ha eliminado el usuario correctamente");
+				}else if (info!=0){
+					mensajeWarning(info);
 				}
 
 			});
 
+	}
+
+	function mensajeWarning(info){
+		$('#warningInfo').html(`<h4>`+info+`</h4>`);
+		var modalWarning = document.getElementById('id09');
+		modalWarning.style.display='block';
 	}
 	function mensajeSend(info){
 		$('#InfoUser').html(`<h4>`+info+`</h4>`);
@@ -51,6 +62,7 @@ function teacherUpdate(){
     if (bas==0){
           if(email.indexOf('.') != -1){
 						    ajaxSetting(person, 2)
+								loading();
           } else {
             $('#warningemail').html("<div id='oculto1' class='alert alert-dismissible alert-warning'><button type='button' class='close' onclick='cer();' data-dismiss='alert'>&times;</button><strong>No es un correo valido</strong></a></div>");
             return false;
@@ -69,6 +81,7 @@ function modifTeacher(){
 	var number_document = document.getElementById('number_document').value/*2*/
 	var person = new Array(number_document,email, nickname);
 	ajaxSetting(person,5);//creo las variables de session.
+			loading();
 }
 
 function main(){
@@ -78,16 +91,17 @@ function main(){
 		conter=0;
     var id_element = document.getElementById('id_element').value;
     ajaxSetting(id_element,1);
+				loading();
 		document.getElementById('id01').style.display='none';
   });
-	// var updateTeacher = document.getElementById('registratione');
-	// updateTeacher.addEventListener('click', function(){
-	// 		conter=0;
-	// 	modifTeacher();
-	// 	teacherUpdate();
-	// 	document.getElementById('id02').style.display='none';
-	//
-	// });
+	var updateTeacher = document.getElementById('registratione');
+	updateTeacher.addEventListener('click', function(){
+			conter=0;
+		modifTeacher();
+		teacherUpdate();
+
+
+	});
 
 	// var deleteElement = document.getElementById('p');
 	// deleteElement.addEventListener('click',pol);

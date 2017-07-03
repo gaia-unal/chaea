@@ -27,6 +27,6 @@ se hace .js por ROL -->
 </body>
 
 <?php
-include($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/sessionJS.php');
+include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/sessionJS.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/pie.html');
 ?>

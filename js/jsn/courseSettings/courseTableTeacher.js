@@ -11,7 +11,7 @@
                  "destroy":true, //esto es para que me refresque la tabla sin problemas
                  "ajax": {
                    "method": "POST",
-                   "url": "/chaea/funcionesphp/courseSQL/settingCourseTeacher.php"
+                   "url": "/chaea/backendPhp/courseSQL/settingCourseTeacher.php"
                  },
                  "columns": [
                    {

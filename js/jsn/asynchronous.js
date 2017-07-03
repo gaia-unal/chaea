@@ -36,7 +36,7 @@
       var attributes = JSON.stringify(person);
        $.ajax({
         type: 'POST',
-        url: 'funcionesphp/send.php',
+        url: 'backendPhp/send.php',
         data:('&attributes=' + attributes + '&action=' + action + ''),
             success: function(answer){
 

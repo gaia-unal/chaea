@@ -8,7 +8,7 @@ if(!$_SESSION){
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/head.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/nav.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
-include($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/courseSQL/courseEstudentActiv.php');
+include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/courseSQL/courseEstudentActiv.php');
 $courses="";
 $courses= consultCoruse();
 $coursesLet = count($courses);
@@ -31,10 +31,7 @@ $coursesLet = count($courses);
     <center><h1>Activación De Estudiantes En El Curso</h1></center><br>
              <div class="stepwizard">
                  <div class="stepwizard-row setup-panel">
-                     <!-- <div class="stepwizard-step">
-                         <a href="#step-1" type="button" class="btn btn-primary btn-circle" >1</a>
-                         <p>Información</p>
-                     </div> -->
+
                      <div class="stepwizard-step">
                          <a href="#step-1" type="button" class="btn btn-primary btn-circle"  >1</a>
                          <p>Cursos</p>
@@ -47,18 +44,6 @@ $coursesLet = count($courses);
              </div>
              <form role="form" name = "questionChaea" onsubmit="return false"><!--onsubmit="return onSubmit()"-->
 
-                 <!-- <div class="row setup-content" id="step-1">
-                     <div class="col-xs-12">
-                         <div class="col-md-12">
-                             <h3> Activación del Estudiantes en el Curso</h3>
-                             <div class="form-group">
-             									<p class="text-muted">En esta parte podrás activar los estudiantes
-                                 en cada uno de los cursos que hayas creado.</p>
-             								</div>
-             							  <button class="btn btn-success nextBtn  btn-lg pull-right btn-un" type="button" >siguiente</button>
-             							</div>
-                     		</div>
-                 </div> -->
                  <div class="row setup-content" id="step-1">
                         <div class="col-xs-12">
                               <div class="col-md-12">
@@ -139,6 +124,6 @@ $coursesLet = count($courses);
 </body>
 
 <?php
-  include($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/sessionJS.php');
+  include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/sessionJS.php');
   include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/pie.html');
 ?>

@@ -5,7 +5,7 @@
 				var course = JSON.stringify(course);
 				$.ajax({
 					method:"POST",
-					url: "/chaea/funcionesphp/courseSQL/crudTableCourse.php",
+					url: "/chaea/backendPhp/courseSQL/crudTableCourse.php",
 					data: {"action":action,"course":course}
 				}).done( function( info ){
 										 if(Number(info)==1){

@@ -10,7 +10,7 @@ $(document).ready(function() {
                  "destroy":true, //esto es para que me refresque la tabla sin problemas
                  "ajax": {
                    "method": "POST",
-                   "url": "/chaea/funcionesphp/courseSQL/settingCourseActiveStudent.php",
+                   "url": "/chaea/backendPhp/courseSQL/settingCourseActiveStudent.php",
                     "data":{"idCourse":idCourseJsn, "action":ac}
                  },
                  "columns": [
@@ -42,7 +42,7 @@ $(document).ready(function() {
     				var student = JSON.stringify(student);
     				$.ajax({
     					method:"POST",
-    					url: "/chaea/funcionesphp/courseSQL/settingCourseActiveStudent.php",
+    					url: "/chaea/backendPhp/courseSQL/settingCourseActiveStudent.php",
     					data: {"action":action,"student":student}
     				}).done( function( info ){
     										 if(Number(info)==1){

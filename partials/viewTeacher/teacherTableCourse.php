@@ -74,6 +74,6 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
 </body>
 
 <?php
-  include($_SERVER["DOCUMENT_ROOT"].'/chaea/funcionesphp/sessionJS.php');
+  include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/sessionJS.php');
   include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/pie.html');
 ?>

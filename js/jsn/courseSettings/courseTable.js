@@ -11,7 +11,7 @@ function loading(){
                "destroy":true, //esto es para que me refresque la tabla sin problemas
                "ajax": {
                  "method": "POST",
-                 "url": "/chaea/funcionesphp/courseSQL/settingCourse.php"
+                 "url": "/chaea/backendPhp/courseSQL/settingCourse.php"
                },
                "columns": [
                  { "data": "state_system_course",

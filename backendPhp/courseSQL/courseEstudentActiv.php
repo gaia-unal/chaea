@@ -23,9 +23,11 @@ $objDatos->connect();
                          co.id_course as idco,  co.name_course as namco
                          FROM course as co, course_teacher as ct WHERE co.state_system_course ='Activo'
                          AND ct.number_document = '".$_SESSION["document"]."'
+                         AND co.id_course = ct.id_course
                          group by co.id_course;";
                          $crud = $objDatos->executeQuery($sql);
                          return $crud;
+
      } catch (Exception $e) {
        echo 'Existe un fallo en la conexión';
 

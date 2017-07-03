@@ -8,12 +8,16 @@ nav.sidebar .navbar-nav .open .dropdown-menu {
 	float: none;
 	width: auto;
 	margin-top: 0;
+  margin: 2px -21px 0;
 	background-color: rgb(38, 38, 38);;
 	border: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
+.navbar-nava>li>a {
+    margin-right: -21px !important;
+}
 nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
     padding: 0 0px 0 0px;
 }
@@ -23,7 +27,7 @@ navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
 }
 
 nav.sidebar{
-	width: 200px;
+	width: 222px;
 	height: 100%;
     margin-left:-168px;
 	float: left;
@@ -94,7 +98,7 @@ overflow: hidden;
 	    margin: 21% auto;
 }
 /*Le da el color y tamaño a las letras de la tabla*/
-#datatable, #datatableStudent,#dataTableCourseTeacher,#dataTableCourse, #dataTableActivity {
+#datatable, #datatableStudent,#dataTableCourseTeacher,#dataTableCourse, #dataTableActivity, #dataTableCourseActiveStudent {
     background-color: rgb(78, 78, 78) !important;
     font-size: 18px !important;
     line-height: 1.42857143 !important;
@@ -150,9 +154,10 @@ select{
 }
 
 .dataTables_wrapper {
-
     transform: translateY(5%)  !important;
 }
+
+
 *, *:before, *:after {
      box-sizing: border-box !important;
 }

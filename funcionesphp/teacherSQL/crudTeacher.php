@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!$_SESSION){
-  header ("Location: ../../logingIndex.php");
+  header ("Location: /chaea/logingIndex.php");
 }else if (("teacher"!=$_SESSION["rol"])) {
-    header ("Location: ../../logingIndex.php");
+    header ("Location: /chaea/logingIndex.php");
 }
  ?>
 <?php

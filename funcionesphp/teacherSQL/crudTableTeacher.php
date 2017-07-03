@@ -1,9 +1,9 @@
 <?php session_start();
 set_time_limit(300);
 if(!$_SESSION){
-  header ("Location: ./chaea/logingIndex.php");
+  header ("Location: /chaea/logingIndex.php");
 }else if (("administrator"!=$_SESSION["rol"])) {
-    header ("Location: ./chaea/logingIndex.php");
+    header ("Location: /chaea/logingIndex.php");
 }
  ?>
 <?php

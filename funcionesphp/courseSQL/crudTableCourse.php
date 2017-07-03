@@ -69,6 +69,11 @@ switch ($action) {
    $sql = "UPDATE course SET state_system_course ='Inactivo'
            WHERE id_course ='".$id_course."';";
            $objDatos->executeQuery($sql);
+
+    $sql = "UPDATE course_student SET state_course_student ='Inactivo'
+            WHERE id_course = '".$id_course."';";
+            $objDatos->executeQuery($sql);
+
            $objDatos->closeConnect();
 
  }
@@ -84,10 +89,10 @@ switch ($action) {
 
       if($id_course==0){
         try {
-          $sql= "INSERT INTO course (name_course, state_system_course, description_course) values ('$course[0]','Inactivo','$course[1]');";
+          $sql= "INSERT INTO course (name_course, state_system_course, description_course, quotas_course) values ('$course[0]','Inactivo','$course[1]','$course[2]');";
           $objDatos->executeQuery($sql);
           $id_course = existCourse($course[0]);
-          //Se inserta en el profesor el nuevo curso.
+          //Se inserta en el profesor el nuevo curso que creo.
           $sql = "INSERT INTO course_teacher (id_course, number_document) values ('".$id_course."','".$_SESSION["document"]."');";
           $objDatos->executeQuery($sql);
           $objDatos->closeConnect();
@@ -98,7 +103,7 @@ switch ($action) {
 
 
       }else{
-              echo "2";
+              echo "2";//el curso ya existe no se puede crear
            }
 
  }
@@ -117,16 +122,26 @@ switch ($action) {
 //funcion editar un curso
   function editCourse($course){
     $id_course = existCourse($course[1]);
+    //Mirar si  existen estudiantes inscitos activados y si se disminuye el
+    //la quota $course[3] sacar erro si es menor a la cantidad disminuida
     global $objDatos;
     if($id_course>0 && $id_course!=$course[0] ){
-      echo 3;
-    }else if($id_course>0 && $id_course == $course[0]){
-      $sql ="UPDATE course SET name_course='".$course[1]."',
-      description_course='".$course[2]."'
-      WHERE id_course ='".$course[0]."';";
-      $objDatos->executeQuery($sql);
-      $objDatos->closeConnect();
-      echo 4;
+      echo 3;//0x000D
+    }else if($id_course>0 && $id_course == $course[0] && $course[3]>0){
+      $numActiStudent = numEstudentActi($course[0]);
+            if($course[3] >= $numActiStudent){
+                $sql ="UPDATE course SET name_course='".$course[1]."',
+                description_course='".$course[2]."',
+                quotas_course='".$course[3]."'
+                WHERE id_course ='".$course[0]."';";
+                $objDatos->executeQuery($sql);
+                $objDatos->closeConnect();
+                echo 4;//0x0000
+          }else{
+            echo 6;//0x000D
+          }
+    }else{
+      echo 5;//0x000D
     }
 
   }

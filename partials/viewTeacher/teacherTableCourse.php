@@ -16,7 +16,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
 <?php include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/nav/navTeacherController.php');?>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" type="text/css" href="/chaea/css/style/switch.css" >
-<link href="/chaea/css/style/varControl.css" rel="stylesheet" />
+<!-- <link href="/chaea/css/style/varControl.css" rel="stylesheet" /> -->
 <div id="particles-js"></div>
 <main class="detalle">
   <div id="table-box" >
@@ -34,7 +34,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
                 <th>id</th>
                 <th>Nombre del curso</th>
                 <th>Detalle del curso</th>
-                <th># Esudiantes inscritos</th>
+                <th>Total de Cupos</th>
+                <th># Estudiantes Activos</th>
+                <th>Cupos Disponibles</th>
+                <th># Estu. q Solicitan </th>
                 <th># Actividades creadas</th>
             </tr>
         </thead>
@@ -43,8 +46,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
     <?php
 
     include(__DIR__.'/../modal/modalDelete.php');
+    include(__DIR__.'/../modal/modalDesactivationCourse.php');
     include(__DIR__.'/../modal/modalEditCourse.php');
     include(__DIR__.'/../modal/modalAddCourse.php');
+    include(__DIR__.'/../modal/modalError.php');
     include(__DIR__.'/../modal/modalInfo.php');
     include(__DIR__.'/../modal/modalInfoCourse.php');
 
@@ -65,6 +70,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
 <script src="https://code.jquery.com/jquery-1.11.2.js" integrity="sha256-WMJwNbei5YnfOX5dfgVCS5C4waqvc+/0fV7W2uy3DyU=" crossorigin="anonymous"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 <!--Este es JSN-->
+<script src="/chaea/js/jsn/controlForm.js"></script>
 </body>
 
 <?php

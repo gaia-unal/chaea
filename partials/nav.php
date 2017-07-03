@@ -72,6 +72,7 @@ main.detalle ol li {
 
       <ul class="nav navbar-nav navbar-right btn-un ">
 				<li><a class="btn  btn-un navbar-right  dropdown-toggle " href="/chaea/contacto.php"  role="button">Contactanos</a></li>
+        <!-- Coloco el nickname del perfil -->
         <a id="perfil"></a>
         <li>
              <a href="#" class="btn  dropdown-toggle btn-un " data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i><span class="caret"></span></a>

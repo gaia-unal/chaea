@@ -46,11 +46,11 @@ if(!isset($_SESSION)) {
 		<!--tablas-->
 	  <script src="/chaea/js/jsn/questionChaea.js" charset="utf-8"></script>
 		<!-- END -->
-		<script src="/chaea/js/unal.js" type="text/javascript"></script>
+		<!-- <script src="/chaea/js/unal.js" type="text/javascript"></script> -->
 		<!-- Formularios -->
+    <!-- Para crear archivos en linea -->
     <script src="//cdn.ckeditor.com/4.7.0/basic/ckeditor.js"></script>
 
-	  <!-- <script src="js/jsn/asynchronous.js" type="text/javascript"></script> -->
 		<!--Este es JSN-->
 		<!--  Tablas CSS -->
 		 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">

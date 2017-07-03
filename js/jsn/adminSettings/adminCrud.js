@@ -17,7 +17,7 @@ function ajaxPersonAdmin() {
 				var person = JSON.stringify(person);
 				$.ajax({
 					method:"POST",
-					url: "funcionesphp/recoursSQL/crudAdmin.php ",
+					url: "funcionesphp/recoursSQL/crudAdmin.php",
 					data: {"action":action,"person":person}
 				}).done( function( info ){
 					co++;

@@ -59,3 +59,7 @@ input:checked + .slider:before {
   padding-left: 3px;font-size: 11px;
   color: #ffffff;
 }
+
+.sd {
+    transform: translateY(-7%)  !important;
+}

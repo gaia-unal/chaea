@@ -11,8 +11,6 @@
               <thead id="cap">
                   <tr>
                       <th>Estado</th>
-                      <!-- <th>Actualizar</th>
-                      <th>Borrar</th> -->
                       <th>Documento</th>
                       <th>Tipo de Documento</th>
                       <th>Nombre </th>
@@ -20,7 +18,7 @@
                       <th>Año de Nacimiento</th>
                       <th>Universidad</th>
                       <th>Programa</th>
-                      <th>Semetre</th>
+                      <th>Semestre</th>
                       <th>Email</th>
                       <th>Numero Telefónico</th>
                       <th>Nombre de Usuario</th>

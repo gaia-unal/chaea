@@ -36,13 +36,15 @@ button {
 <body id="table">
   <main class="detalle">
       <div>
+        <!--Muestra el contenido del curso  -->
             <div class="w3-container">
                     <div id="id06" class="w3-modal">
                             <div class="w3-modal-content w3-card-4 w3-animate-zoom " style="max-width:600px">
 
                                     <div class="w3-center"><br>
-                                      <span onclick="document.getElementById('id06').style.display='none';"
-                                       class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal" >&times;</span>
+                                      <span onclick="document.getElementById('id06').style.display='none';$('#id06').stop(true, true);"
+                                       class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Cerrar" >&times;
+                                     </span>
                                       <img src="/chaea/images/addCourse.png" class="img img-responsive img-circle center-block">
                                     </div>
                                       <br><div id="InfoCourse" class=" text-justify w3-container Info  text-left"></div>

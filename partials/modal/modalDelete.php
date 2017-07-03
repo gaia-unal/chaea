@@ -38,15 +38,13 @@ button {
       <div class="w3-container">
           <div id="id01" class="w3-modal">
                <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+                 <span onclick="document.getElementById('id01').style.display='none'"
+                 class="w3-button w3-red w3-xlarge w3-display-topright">&times;</span>
                     <header class="w3-container w3-red">
-                     <span onclick="document.getElementById('id01').style.display='none'"
-                     class="w3-button w3-red w3-xlarge w3-display-topright">&times;</span>
                      <h1>Eliminar</h1>
                     </header>
+                    <button class="tablink w3-bar-item w3-button" onclick="modalElim(event, 'deletElementso')"></button>
 
-                    <div class="w3-bar w3-border-bottom">
-                     <button class="tablink w3-bar-item w3-button" onclick="modalElim(event, 'deletElementso')"></button>
-                    </div>
 
                     <div id="deletElementso" class="w3-container borrar">
                      <h3> <div id="elements"> </div></h3>

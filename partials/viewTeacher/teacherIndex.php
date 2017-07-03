@@ -19,7 +19,8 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/nav/navTeacherController.php'
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/viewTeacher/profileTeacher.php');
 ?>
 <div id="particles-js"></div>
-<!-- Configura la parte de consulta AJAX para la carga de datos en el formulario se hace .js por ROL -->
+<!-- Configura la parte de consulta AJAX para la carga de datos en el formulario
+se hace .js por ROL -->
 <script src="/chaea/js/jsn/teacherSettings/teacherCrud.js"></script>
 <!-- Fin -->
 <script src="/chaea/js/jsn/controlForm.js"></script><!--Este es JSN-->

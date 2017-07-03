@@ -191,4 +191,31 @@ function existCourse($course){
         echo 'Existe un fallo en la conexión';
     }
 }
+
+function quotasCourse($idCourse){
+  $numActiStudent = numEstudentActi($idCourse);
+  global $objDatos;
+  //Consulto el # Cupos totales ofertados en el curso
+  $sql = "SELECT quotas_course as  numc FROM  course
+          WHERE  '".$idCourse."' = id_course;";
+  $numQuotas = $objDatos->executeQuery($sql);
+
+  if(intval($numQuotas[0]["numc"])!= "N/A"){
+    return (intval($numQuotas[0]["numc"]) - intval($numActiStudent));
+  }else{
+    return -1;
+  }
+
+}
+//Saca el numero de estudiantes activos en un curso X.
+function numEstudentActi($idCourse){
+  global $objDatos;
+  $sql = "SELECT count (state_course_student) as nums
+          FROM  course_student
+          WHERE 'Activo' = state_course_student and '".$idCourse."' = id_course;";
+  $numActiStudent = $objDatos->executeQuery($sql);
+  return $numActiStudent[0]["nums"];
+
+}
+
 ?>

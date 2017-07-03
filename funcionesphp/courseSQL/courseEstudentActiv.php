@@ -21,7 +21,7 @@ $objDatos->connect();
           global $objDatos;
           $sql = $sql = "SELECT description_course as dc,
                          id_course as idco, name_course as namco
-                         FROM course";
+                         FROM course WHERE state_system_course ='Activo';";
                          $crud = $objDatos->executeQuery($sql);
                          return $crud;
      } catch (Exception $e) {

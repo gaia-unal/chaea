@@ -5,7 +5,7 @@
   function loading(){
     table =   $('#dataTableCourseTeacher').DataTable( {
                  "scrollX": true,
-                 "scrollY": 300,
+                 "scrollY": 500,
                  "bDeferRender": true,
                  "sPaginationType": "full_numbers",
                  "destroy":true, //esto es para que me refresque la tabla sin problemas
@@ -43,6 +43,9 @@
                     }
 
                    },
+                   { "data": "quotas_course" },
+                   { "data": "num_est_ac" },
+                   { "data": "cup_dis" },
                    { "data": "num_est" },
                    { "data": "num_act" }
                  ],
@@ -80,6 +83,12 @@
             $('#nameEditeCourse').html('Esta editando el curso '+data.name_course);
             $('#idEditeCourse').val(data.id_course);
             $('#nameEditCourse').val(data.name_course);
+
+            if(data.quotas_course!="N/A"){
+              $('#quotas_edit_course').val("Si");
+              formEditLimit();
+              $('#limit-edit-quotas').val(data.quotas_course);
+            }
             CKEDITOR.instances['descriptionEditeCourse'].setData(data.description_course);
           	document.getElementById('id07').style.display='block';
         } catch (e) {
@@ -98,15 +107,27 @@
           try {
               if(data.state_system_course =='Inactivo'){
                 ajaxSettingCourse(data.id_course,3);
+                loading();
               }
               if (data.state_system_course =='Activo') {
-                 ajaxSettingCourse(data.id_course,4);
+                //para desactivar
+                if(data.num_est_ac>0){
+                    document.getElementById('id08').style.display='block';
+                    $('#elementsDes').html('¿Seguro que desea desactivar el curso: '+data.name_course+'?');
+                    $('#elementsDesInf').html('Recuerda que se desactivaran los usuarios que se tengan activos, y estos no podrán acceder al curso.');
+                    $('#id_element_des').val(data.id_course);
+                }else{
+                   ajaxSettingCourse(data.id_course,4);
+                   loading();
+                 }
               }
           } catch (e) {
             console.error(e);
           }
 
         });
+
+
 
       }
 

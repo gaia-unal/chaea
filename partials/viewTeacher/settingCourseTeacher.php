@@ -15,7 +15,7 @@ $objDatos->connect();
 
     //Se consulta los cursos existentes
     global $objDatos;
-    $consulta = "SELECT cour.state_system_course, cour.id_course, cour.name_course,
+    $consulta = "SELECT cour.state_system_course, cour.id_course ,cour.name_course,
                  cour.description_course, cour.quotas_course
                  FROM course as cour
                  INNER JOIN course_teacher as cote
@@ -33,16 +33,6 @@ $objDatos->connect();
                             on course_student.id_course = co.id_course
                             group by co.name_course;";
               $numest = $objDatos->executeQuery($consulta);
-
-
-              $consulta = "SELECT co.id_course , count(st.number_document) as stua
-                            FROM student as st
-                            inner join course_student as coe
-                            on st.number_document = coe.number_document and coe.state_course_student = 'Activo'
-                            inner join course as co
-                            on coe.id_course = co.id_course
-                            group by co.id_course;";
-              $numActiStudent = $objDatos->executeQuery($consulta);
 
               //saca el numero de actividades
               $consulta = "SELECT count(co.name_course) AS n2,  co.name_course  as namecor
@@ -66,28 +56,6 @@ $objDatos->connect();
                         }else{
                           $course[$i]['num_est']=0;
                         }
-
-                      }
-                      for ($j=0; $j <count($numActiStudent) ; $j++) {
-                        if($course[$i]['id_course']== $numActiStudent[$j]['id_course']){
-                          if($course[$i]['quotas_course']!="N/A"){
-                            $course[$i]['num_est_ac']= $numActiStudent[$j]['stua'];
-                            $course[$i]['cup_dis']= (intval($course[$i]['quotas_course']) - intval($numActiStudent[$j]['stua']));
-                          }else{
-                            $course[$i]['num_est_ac']= $numActiStudent[$j]['stua'];
-                            $course[$i]['cup_dis']="N/A";
-                          }
-                          break;
-                        }else{
-                          if($course[$i]['quotas_course']!="N/A"){
-                              $course[$i]['cup_dis'] = intval($course[$i]['quotas_course']);
-                              $course[$i]['num_est_ac']=0;
-                          }else{
-                            $course[$i]['cup_dis'] = "N/A";
-                            $course[$i]['num_est_ac']=0;
-                          }
-                        }
-
                       }
 
                       for ($j=0; $j <count($numacti) ; $j++) {
@@ -105,8 +73,6 @@ $objDatos->connect();
                       "name_course":"'.$course[$i]['name_course'].'",
                       "description_course":"'.$course[$i]['description_course'].'",
                       "quotas_course":"'.$course[$i]['quotas_course'].'",
-                      "num_est_ac":"'.$course[$i]['num_est_ac'].'",
-                      "cup_dis":"'.$course[$i]['cup_dis'].'",
                       "num_est":"'.$course[$i]['num_est'].'",
                       "num_act":"'.$course[$i]['num_act'].'"
                     },';

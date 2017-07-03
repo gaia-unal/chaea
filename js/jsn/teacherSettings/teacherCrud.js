@@ -4,7 +4,7 @@ var co=0;
 function ajaxPersonTeacher() {
 			$.ajax({
 				method:"POST",
-				url: "/chaea/funcionesphp/teacherSQL/crudTeacher.php"
+				url: "../../funcionesphp/teacherSQL/crudTeacher.php"
 			}).done( function( info ){
 				var techer = eval(info);
 				 adminForm(techer);
@@ -18,7 +18,7 @@ function ajaxPersonTeacher() {
 			var person = JSON.stringify(person);
 			$.ajax({
 				method:"POST",
-				url: "/chaea/funcionesphp/teacherSQL/crudTeacher.php",
+				url: "../../funcionesphp/teacherSQL/crudTeacher.php",
 				data: {"action":action,"person":person}
 			}).done( function( info ){
 						// mensajeSend(info);

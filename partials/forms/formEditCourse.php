@@ -11,6 +11,17 @@
 													</div>
 												</div>
 
+												<div class="form-group">
+												 <label for="quotas_edit_course" class=" control-label">¿Tiene Límite de Cupos?</label>
+												 <div class="has-success">
+													 <select class="form-control" id="quotas_edit_course">
+														 <option>No</option>
+														 <option>Si</option>
+													 </select>
+												 </div>
+											 </div><br>
+
+												<div id="limit-edit-course"></div>
 
 										<div class="form-group">
 											<label for="descriptionEditeCourse" class=" control-label">Descripción:</label>
@@ -29,7 +40,7 @@
 							 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 									 <div class="form-group">
 										 <div class="col-lg-10 col-lg-offset-2">
-											 <button onclick="document.getElementById('id07').style.display='none'" id='closeEditeTea' type="reset" class="btn btn-default">Cancelar</button>
+											 <button onclick="document.getElementById('id07').style.display='none'; $('#limit-edit-course').html(''); $('#infoPanel2').html('');" id='closeEditeTea' type="reset" class="btn btn-default">Cancelar</button>
 											 <button type="submit" id ="edite-Course"  class="btn btn-success">Editar</button>
 										 </div>
 									 </div>

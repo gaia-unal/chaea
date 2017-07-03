@@ -43,6 +43,7 @@ $objDatos->connect();
             for ($j=0; $j <count($numest) ; $j++) {
               if($course[$i]['name_course']== $numest[$j]['namecor']){
                 $course[$i]['num_est']= $numest[$j]['n1'];
+                break;
               }else{
                 $course[$i]['num_est']=0;
               }
@@ -51,6 +52,7 @@ $objDatos->connect();
             for ($j=0; $j <count($numacti) ; $j++) {
               if($course[$i]['name_course']== $numacti[$j]['namecor']){
                 $course[$i]['num_act']= $numacti[$j]['n2'];
+                break;
               }else{
                 $course[$i]['num_act']=0;
               }

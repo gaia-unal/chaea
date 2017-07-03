@@ -12,13 +12,12 @@ $mensaje = wordwrap($mensaje, 70, "\r\n");
 include('partials/head.php');
 include('partials/nav.php');
 ?>
-
-<br><br><br>
-</main class="detalle">
+<main class="detalle">
 
 				<p id= 'p-inicio' align='justify'>
-					Si desea contactarse con nosotros, por favor utilice la siguiente información:
-					<br><br><br>
+					<font color="green"><h1>Contacto</h1></font>
+					<!-- <h2>Si desea contactarse con nosotros, por favor utilice la siguiente información:</h2> -->
+					<br><br>
 					<div class= "titulos">Grupo de Ambientes Inteligentes Adaptativos - GAIA</div><br>
 					<br>
 					<font size="3">

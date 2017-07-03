@@ -58,8 +58,10 @@ include('partials/nav.php');
                   <div class="hard"><img src="images/cartilla/activo/A48.jpg" oncopy="return false" oncontextmenu="return false"></div>
                   </div>
                 </div>
+                <!--El tunrJs me genera problemas con la nav de la U  -->
 				<script type="text/javascript" src="http://www.turnjs.com/lib/turn.min.js"></script>
 				<script src="js/jsn/responsive.js" type="text/javascript"></script>
+        
 </div>
 </div>
 

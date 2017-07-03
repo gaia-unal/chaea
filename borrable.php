@@ -183,3 +183,22 @@ function validationRol ($person, $rol){
  </script>
 
  </html>
+
+
+ <script type="text/javascript">
+function reemplaza(formu) {
+	var b = /"/g
+	var s = formu.entrada.value.replace(b,"'")
+  alert(s);
+}
+</script>
+</head>
+
+<body>
+<form>
+Buscar comillas
+en <input type="text" name="entrada" size=20>
+ <input type="button" value="Reemplazar" onClick="reemplaza(this.form)">
+ <input type="text" name="salida" size=20>
+</form>
+</body>

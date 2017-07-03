@@ -36,6 +36,7 @@
       <?php
       include(__DIR__.'/../modal/modalDelete.php');
       include(__DIR__.'/../modal/modalInfo.php');
-      include(__DIR__.'/../modal/modalTeacherUpdate.php');?>
+      include(__DIR__.'/../modal/modalTeacherUpdate.php');
+      ?>
     </div>
 </main>

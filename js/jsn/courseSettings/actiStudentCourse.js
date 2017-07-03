@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',main);
-  var idCourse="", nameCourse="";
+idCourseJsn="";
 //Efecto del radion bouton
 function lod(){
   try{
@@ -22,15 +22,12 @@ function getDataTableCoruse(){
         //<td> de la fila
         // seleccionada
         $(this).parents("tr").find("#idCourse").each(function(){
-        idCourse=$(this).html()+"\n";
+        idCourseJsn=$(this).html()+"\n";
         });
         $(this).parents("tr").find("#nameCourse").each(function(){
         nameCourse=$(this).html()+"\n";
         });
-        console.log(idCourse);
-        // alert(nameCourse);
-        // alert(idCourse);
-        $('#nameEstudentCourse').html("Agrega los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
+        $('#nameEstudentCourse').html("Activar los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
 
   });
 }
@@ -57,9 +54,25 @@ function mensajePanel(info, option){
 }
 function main(){
   $('#next1').click(function(){
-    if(idCourse==""){
+    if(idCourseJsn==""){
       let info='Debe selecionar un curso.';
       mensajePanel(info,1);
+    }
+
+    if(idCourseJsn!=""){
+      ac=1
+      loading();//cargar tabla
+    }
+  })
+  $('#next1-1').click(function(){
+    if(idCourseJsn==""){
+      let info='Debe selecionar un curso.';
+      mensajePanel(info,1);
+    }
+
+    if(idCourseJsn!=""){
+      ac=1
+      loading();//cargar tabla
     }
   })
 

@@ -54,7 +54,7 @@ button {
                     <div class="w3-container w3-light-white w3-padding">
                       <button class="w3-btn w3-right w3-red" id="deleteElement">Eliminar</button>
                      <button class="w3-btn w3-right w3-green"
-                     onclick="document.getElementById('id01').style.display='none'">Close</button><dd>
+                     onclick="document.getElementById('id01').style.display='none'">Cancelar</button><dd>
                     </div>
                </div>
           </div>

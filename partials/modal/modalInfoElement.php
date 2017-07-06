@@ -47,7 +47,7 @@ button {
                                      </span>
                                       <img src="/chaea/images/addCourse.png" class="img img-responsive img-circle center-block">
                                     </div>
-                                      <br><div id="InfoCourse" class=" text-justify w3-container Info  text-left"></div>
+                                      <br><div id="InfoElement" class=" text-justify w3-container Info  text-left"></div>
 
                                     <div class="w3-container w3-light-white w3-padding">
                                          <button class="w3-btn w3-right w3-green"

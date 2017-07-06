@@ -19,7 +19,7 @@
         </thead>
     	</table>
     </div>
-    <?php include(__DIR__.'/../modal/modalInfoCourse.php'); ?>
+    <?php include(__DIR__.'/../modal/modalInfoElement.php'); ?>
 
   </div>
 </main>

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',main);
-idCourseJsn="";
+var idCourseJsn="", ac="";
 //Efecto del radion bouton
 function lod(){
   try{
@@ -23,11 +23,13 @@ function getDataTableCoruse(){
         // seleccionada
         $(this).parents("tr").find("#idCourse").each(function(){
         idCourseJsn=$(this).html()+"\n";
+        createCookie('idCourseJsn', idCourseJsn, 1);
         });
         $(this).parents("tr").find("#nameCourse").each(function(){
         nameCourse=$(this).html()+"\n";
         });
-        $('#nameEstudentCourse').html("Activar los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
+        $('#nameEstudentCourse').html("Activa o Desactiva los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
+        $('#nameActiCou').html("Crea, edita, elimina, activa o desactiva las actividades para el cuso: <br><div>"+nameCourse+"</div>");
 
   });
 }
@@ -52,6 +54,10 @@ function mensajePanel(info, option){
   return false;
 
 }
+
+
+
+
 function main(){
   $('#next1').click(function(){
     if(idCourseJsn==""){
@@ -60,7 +66,8 @@ function main(){
     }
 
     if(idCourseJsn!=""){
-      ac=1
+      ac="1";
+      createCookie('ac', ac, 1);
       loading();//cargar tabla
     }
   })
@@ -71,7 +78,8 @@ function main(){
     }
 
     if(idCourseJsn!=""){
-      ac=1
+      ac="1";
+      createCookie('ac', ac, 1);
       loading();//cargar tabla
     }
   })

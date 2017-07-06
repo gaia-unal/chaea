@@ -140,6 +140,19 @@ switch ($action) {
           }else{
             echo 6;//0x000D
           }
+    }elseif ($id_course==0 && $course[3]>0) {
+      $numActiStudent = numEstudentActi($course[0]);
+            if($course[3] >= $numActiStudent){
+                $sql ="UPDATE course SET name_course='".$course[1]."',
+                description_course='".$course[2]."',
+                quotas_course='".$course[3]."'
+                WHERE id_course ='".$course[0]."';";
+                $objDatos->executeQuery($sql);
+                $objDatos->closeConnect();
+                echo 4;//0x0000
+          }else{
+            echo 6;//0x000D
+          }
     }else{
       echo 5;//0x000D
     }

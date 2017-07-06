@@ -28,7 +28,7 @@ $coursesLet = count($courses);
 <div id="particles-js"></div>
 <main class="detalle">
   <div id="table-box" >
-    <center><h1>Configuración del Estudiantes En El Curso</h1></center><br>
+    <center><h1>Configuración De Las Actividades En Los Cursos</h1></center><br>
              <div class="stepwizard">
                  <div class="stepwizard-row setup-panel">
 
@@ -38,7 +38,7 @@ $coursesLet = count($courses);
                      </div>
                      <div class="stepwizard-step">
                          <a href="#step-2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                         <p>Activación</p>
+                         <p>Creación</p>
                      </div>
                  </div>
              </div>
@@ -95,8 +95,8 @@ $coursesLet = count($courses);
                     <div class="col-xs-12">
                         <div class="col-md-12">
                              <div class="form-group">
-                                 <h3><div id="nameEstudentCourse"> </div></h3>
-                                  <?php include(__DIR__.'/../viewTeacher/teacherTableActibateEstudent.php'); ?>
+                                 <h3><div id="nameActiCou"></div></h3>
+                                  <?php include(__DIR__.'/../viewTeacher/tableActiCou.php'); ?>
                              </div>
                         </div>
                         <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="next2" >atras</button>
@@ -104,8 +104,12 @@ $coursesLet = count($courses);
                  </div>
              </form>
              <?php
-             include(__DIR__.'/../modal/modalInfo.php');
-             include(__DIR__.'/../modal/modalError.php');
+               include(__DIR__.'/../modal/modalInfoElement.php');
+               include(__DIR__.'/../modal/modalDelete.php');
+               include(__DIR__.'/../modal/modalAddActiv.php');
+               include(__DIR__.'/../modal/modalEditActi.php');
+               include(__DIR__.'/../modal/modalInfo.php');
+               include(__DIR__.'/../modal/modalError.php');
              ?>
   </div>
 </main>
@@ -120,6 +124,7 @@ $coursesLet = count($courses);
 <script type="text/javascript" src="/chaea/js/jsn/courseSettings/actiStudentCourse.js"></script>
 <script type="text/javascript" src="/chaea/js/jsn/controlForm.js"></script>
 <script type="text/javascript" src="/chaea/js/cookies.js"></script>
+
 
 <!--Este es JSN-->
 </body>

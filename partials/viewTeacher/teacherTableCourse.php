@@ -51,7 +51,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
     include(__DIR__.'/../modal/modalAddCourse.php');
     include(__DIR__.'/../modal/modalError.php');
     include(__DIR__.'/../modal/modalInfo.php');
-    include(__DIR__.'/../modal/modalInfoCourse.php');
+    include(__DIR__.'/../modal/modalInfoElement.php');
 
 
     ?>

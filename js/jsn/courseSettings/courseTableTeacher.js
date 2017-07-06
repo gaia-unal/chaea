@@ -62,7 +62,7 @@
       $(tbody).on('click','#detailCoruse', function(){
         var data = table.row( $(this).parents("tr") ).data();
         try {
-          $('#InfoCourse').html(`<h5>`+data.description_course+`</h5`);
+          $('#InfoElement').html(`<h5>`+data.description_course+`</h5`);
           var modalInfo = document.getElementById('id06');
           modalInfo.style.display='block';
            $("#acept").click(function(){

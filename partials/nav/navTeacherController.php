@@ -20,6 +20,7 @@
                                       <span style="font-size:16px;" class="pull-right hidden-xs glyphicon glyphicon-user"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a id="coursesTeacher" href="teacherTableCourse.php">Configuración de Cursos  </a></li>
+                                        <li><a id="coursesTeacher" href="activityTeacherCourse.php">Configuración de Actividades  </a></li>
                                         <li class="divider"></li>
                                         <li><a id="activityTeacher" href="actiStudentCourse.php">Configuración de Estudiantes </a></li>
                                         <li class="divider"></li>

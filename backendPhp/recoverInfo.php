@@ -218,4 +218,32 @@ function numEstudentActi($idCourse){
 
 }
 
+
+
+//Miro si existe la actividad del mismo nombre y con el mismo usuario.
+function existActivity($activity){
+    try {
+            global $objDatos;
+            $sql = "SELECT act.id_activity as id
+                    FROM activity as act
+                    WHERE '".$_SESSION["document"]."' = act.number_document_teacher
+                    and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
+                    and act.id_course = '".$activity[3]."' ;";
+
+
+
+
+            $crud = $objDatos->executeQuery($sql);
+
+            if($crud[0]['id'] < 1){
+              return 0;
+            }else{
+              return $crud[0]['id'];//retornar el ID
+            }
+
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
+
 ?>

@@ -1,6 +1,11 @@
 $(document).ready(function() {
-  loading();
+  // loading();
 });
+try {
+  var idCourseJsn =  readCookie('idCourseJsn');
+  var ac =  readCookie('ac');
+
+} catch (e) {}
   function loading(){
     table =   $('#dataTableCourseActiveStudent').DataTable( {
                  "scrollX": true,

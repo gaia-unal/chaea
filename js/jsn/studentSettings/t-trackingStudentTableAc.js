@@ -1,8 +1,11 @@
 
+
   function loadingin(){
     var act =  readCookie('act');
     var idCourseJsn =  readCookie('idCourseJsn');
     var student = JSON.parse(readCookie('student'));
+    $('#nameActiNote').html("Edita las notas del estudiante:  <br><div>"+student[1]+"</div>");
+
     table =   $('#dataTableStudentTrakingAc').DataTable( {
                  "scrollX": true,
                  "scrollY": 300,

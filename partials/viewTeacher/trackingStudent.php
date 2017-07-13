@@ -113,7 +113,7 @@ $coursesLet = count($courses);
                     <div class="col-xs-12">
                         <div class="col-md-12">
                              <div class="form-group">
-                                 <h3><div id="nameActiCou"></div></h3>
+                                 <h3><div id="nameActiNote"></div></h3>
                                  <!-- voy aquí!! -->
                                   <?php include(__DIR__.'/../viewTeacher/tablesTrackingStudent/tableActiStuNote.php'); ?>
                              </div>

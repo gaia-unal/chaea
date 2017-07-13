@@ -43,19 +43,12 @@ $(document).ready(function () {
     allBackBtn.click(function(){
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
-            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a"),
-            curInputs = curStep.find("input[type='number'],input[type='url'],input[type='text'],input[type='radio']"),
+            backStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a"),
             isValid = true;
+;
 
-        $(".form-group").removeClass("has-error");
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
-                isValid = false;
-                $(curInputs[i]).closest(".form-group").addClass("has-error");
-            }
-        }
         if (isValid)
-            nextStepWizard.removeAttr('disabled').trigger('click');
+            backStepWizard.removeAttr('disabled').trigger('click');
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');

@@ -42,19 +42,22 @@ switch ($action) {
   function tableLoaderActivity($idCourse){
     //Se consulta los cursos existentes
     global $objDatos;
-    $consulta = "SELECT act.id_activity as idact,
+    $consulta = "	SELECT act.id_activity as idact,
                   act.state_system_activity as stas,
                   act.description_activity AS desa,
-                  act.name_activity AS nama,
+                  tea_act.weight as weight,
+                  act.name_activity AS name_act,
                   tyl.type_learning_description as tyle
                   FROM activity as act
                   inner join type_learning as tyl
                   on tyl.id_type_learning = act.id_type_learning
-                  inner join activity
-                  on '".$_SESSION["document"]."' = act.number_document_teacher
-                  inner join course_activity as co_act
-                  on co_act.id_course = '".$idCourse."' and co_act.id_activity = act.id_activity
-                  group by act.id_activity, act.state_system_activity, act.description_activity, act.name_activity, tyl.type_learning_description ;";
+                  inner join teacher_activity as tea_act
+                  on '".$_SESSION["document"]."'= tea_act.number_document
+                  and tea_act.id_activity = act.id_activity
+                  inner join course as co
+                  on co.id_course =  '".$idCourse."'  and co.id_course = act.id_course
+                  group by act.id_activity, act.state_system_activity, act.description_activity,
+                  act.name_activity, tyl.type_learning_description, tea_act.weight ;";
     $activity = $objDatos->executeQuery($consulta);
               $objDatos->closeConnect();
     if($activity[0]['idact']!=""){
@@ -64,8 +67,9 @@ switch ($action) {
                           "id_activity":"'.$activity[$i]['idact'].'",
                           "state_system_activity":"'.$activity[$i]["stas"].'",
                           "description_activity":"'.$activity[$i]['desa'].'",
-                          "name_activity":"'.$activity[$i]['nama'].'",
-                          "type_learning":"'.$activity[$i]['tyle'].'"
+                          "name_activity":"'.$activity[$i]['name_act'].'",
+                          "type_learning":"'.$activity[$i]['tyle'].'",
+                          "weight":"'.$activity[$i]['weight'].'"
                         },';
                   }
       }else{
@@ -82,16 +86,23 @@ switch ($action) {
        $id_activity= existActivity($activity);
        if($id_activity===0){
          try {
+              $studentCourse = studentCourse($activity[3]);
               global $objDatos;
-               $sql= "INSERT INTO activity (name_activity, id_type_learning, description_activity, id_course ,number_document_teacher, state_system_activity)
-                     values ('".$activity[0]."','".$activity[1]."','".$activity[2]."','".$activity[3]."' ,'".$_SESSION["document"]."', 'Inactivo');";
+               $sql= "INSERT INTO activity (name_activity, id_type_learning, description_activity, state_system_activity, id_course)
+                     values ('".$activity[0]."','".$activity[1]."','".$activity[2]."', 'Inactivo','".$activity[3]."');";
                $objDatos->executeQuery($sql);
                $id_activity = existActivity($activity);
-               //Se inserta en el profesor el nuevo curso que creo.
-               $sql = "INSERT INTO course_activity (id_course, id_activity) values ('".$activity[3]."','".$id_activity."');";
+
+               $sql = "INSERT INTO teacher_activity (number_document, id_activity, weight) values ('".$_SESSION["document"]."','".$id_activity."', '".$activity[4]."');";
                $objDatos->executeQuery($sql);
+
+               for($i=0; $i <count($studentCourse) ; $i++){
+                 $sql = "INSERT INTO student_activity (number_document, id_activity, activity_note) values ('".$studentCourse[$i]["id_st"]."','".$id_activity."', 0);";
+                 $objDatos->executeQuery($sql);
+               }
+
                $objDatos->closeConnect();
-           echo "1: ".$id_activity;
+           echo "1";
          } catch (Exception $e) {
            echo "No se pudo insertar el curso, por favor comuníquese con el administrador";
          }
@@ -112,7 +123,14 @@ switch ($action) {
                    SET name_activity = '".$activity[0]."',
                    id_type_learning = '".$activity[1]."',
                    description_activity = '".$activity[2]."'
-                   WHERE id_course = '".$activity[3]."' and  id_activity = '".$activity[4]."';";
+                   WHERE id_course = '".$activity[3]."'
+                   and  id_activity = '".$activity[4]."';";
+                   $objDatos->executeQuery($sql);
+
+                   $sql= "UPDATE teacher_activity
+                   SET  weight = '".$activity[5]."'
+                   WHERE number_document = '".$_SESSION["document"]."'
+                   and  id_activity = '".$activity[4]."';";
                    $objDatos->executeQuery($sql);
                echo "3";
              } catch (Exception $e) {

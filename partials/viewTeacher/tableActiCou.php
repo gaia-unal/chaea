@@ -8,13 +8,25 @@ if(!$_SESSION){
   header ("Location:/chaea/logingIndex.php");
 }
 ?>
+
+<script type="text/javascript">//<![CDATA[
+ $(window).load(function(){
+ $(document).ready(function() {
+
+ });
+
+ });//]]>
+
+ </script>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" >
 <link rel="stylesheet" type="text/css" href="/chaea/css/style/switch.css" >
-<div class="">
-  <a id="addActivity" class="btn btn-success btn-circle"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-  <br>Agregar Actividad
+<div>
+  <div class="pull-left">
+    <a id="addActivity" class="btn btn-success btn-circle"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    <br>Agregar Actividad
+  </div>
 </div>
-      <table id="dataTableActiCou">
+      <table id="dataTableActiCou" cellpadding="0" cellspacing="0" border="0" class="dataTable">
         <thead id="cap">
           <tr>
             <th><center>ID</center></th>
@@ -24,6 +36,7 @@ if(!$_SESSION){
             <th><center>Detalle de Actividad</center></th>
             <th><center>Nombre de la Actividad</center></th>
             <th><center>Estilo de Aprendizaje</center></th>
+            <th><center>Porcentaje %</center></th>
           </tr>
         </thead>
     	</table>
@@ -31,6 +44,9 @@ if(!$_SESSION){
 
 <br>
 
+<div class="pull-right">
+  <h5><div id="entire"></div></h5>
+</div>
 
 <!-- Fin de la configuracion -->
 <!-- Carga la info de la tabla -->

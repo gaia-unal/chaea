@@ -22,6 +22,12 @@
 											</div>
 										</div><br>
 
+										<div class="range-slider">
+											<label for="description_activity" class=" control-label">Porcentaje de la Actividad:</label>
+										  <input class="range-slider__range"  id="weight_edit" type="range" value="0" min="0" max="100" step="1">
+										  <span class="range-slider__value" id="weight_lo" >0</span>
+										</div>
+
 										<div class="form-group">
 											<label for="description_edit_activity" class=" control-label">Descripción:</label>
 												<div class="has-success">
@@ -34,7 +40,9 @@
 							 <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 									 <div class="form-group">
 										 <div class="col-lg-10 col-lg-offset-2">
-											 <button onclick="document.getElementById('id11').style.display='none'; 	CKEDITOR.instances['description_edit_activity'].setData(''); $('#infoPanel2').html(''); " id='closeTea' type="reset" class="btn btn-default">Cancelar</button>
+											 <button onclick="document.getElementById('id11').style.display='none';
+											 CKEDITOR.instances['description_edit_activity'].setData('');
+											 $('#infoPanel2').html('');" id='closeTea' type="reset" class="btn btn-default">Cancelar</button>
 											 <button type="submit" id ="editActivity"  class="btn btn-success">Agregar</button>
 										 </div>
 									 </div>

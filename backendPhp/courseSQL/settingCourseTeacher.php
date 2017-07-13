@@ -45,13 +45,11 @@ $objDatos->connect();
               $numActiStudent = $objDatos->executeQuery($consulta);
 
               //saca el numero de actividades
-              $consulta = "SELECT count(co.name_course) AS n2,  co.name_course  as namecor
+              $consulta = "SELECT count(co.id_course) AS n2,  co.name_course  as namecor
                             FROM activity as act
-                            inner join course_activity as coact
-                            on coact.id_activity = act.id_activity
                             inner join course as co
-                            on coact.id_course = co.id_course
-                            group by co.name_course;";
+                            on act.id_course = co.id_course
+                            group by co.id_course";
               $numacti = $objDatos->executeQuery($consulta);
 
             $objDatos->closeConnect();

@@ -19,7 +19,6 @@ $coursesLet = count($courses);
 </script>
 
 <link rel="stylesheet" type="text/css" href="/chaea/css/style/questionChaea.css" media="all">
-<link rel="stylesheet" type="text/css" href="/chaea/css/style/slider.css" >
 
 <body id="table">
 
@@ -29,17 +28,21 @@ $coursesLet = count($courses);
 <div id="particles-js"></div>
 <main class="detalle">
   <div id="table-box" >
-    <center><h1>Configuración De Las Actividades En Los Cursos</h1></center><br>
+    <center><h1>Seguimiento del Estudiante</h1></center><br>
              <div class="stepwizard">
                  <div class="stepwizard-row setup-panel">
 
                      <div class="stepwizard-step">
-                         <a href="#step-1" type="button" class="btn btn-primary btn-circle"  >1</a>
+                         <a href="#step-1" type="button" class="btn btn-primary btn-circle" >1</a>
                          <p>Cursos</p>
                      </div>
                      <div class="stepwizard-step">
-                         <a href="#step-2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                         <p>Creación</p>
+                         <a href="#step-2" id="car" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                         <p>Estudiante</p>
+                     </div>
+                     <div class="stepwizard-step">
+                         <a href="#step-3" id="car2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                         <p>Actividad/es</p>
                      </div>
                  </div>
              </div>
@@ -91,18 +94,34 @@ $coursesLet = count($courses);
                  							</div>
                              <button class="btn btn-success nextBtn btn-lg pull-right btn-un" type="button" id="next1-1" >Siguiente</button>
                         </div>
-                  </div>
+                 </div>
+
                  <div class="row setup-content" id="step-2">
                     <div class="col-xs-12">
                         <div class="col-md-12">
                              <div class="form-group">
                                  <h3><div id="nameActiCou"></div></h3>
-                                  <?php include(__DIR__.'/../viewTeacher/tableActiCou.php'); ?>
+                                  <?php include(__DIR__.'/../viewTeacher/tablesTrackingStudent/tableActivStudentSelect.php'); ?>
                              </div>
                         </div>
+                        <button class="btn btn-success nextBtn btn-lg pull-right btn-un" type="button"  id="next2-2" >Siguiente</i></button>
                         <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="next2" >atras</button>
                     </div>
-                 </div>
+                </div>
+
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                             <div class="form-group">
+                                 <h3><div id="nameActiCou"></div></h3>
+                                 <!-- voy aquí!! -->
+                                  <?php include(__DIR__.'/../viewTeacher/tablesTrackingStudent/tableActiStuNote.php'); ?>
+                             </div>
+                        </div>
+                        <button id="next3"  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" >atras</button>
+                    </div>
+                </div>
+
              </form>
              <?php
                include(__DIR__.'/../modal/modalInfoElement.php');
@@ -125,9 +144,6 @@ $coursesLet = count($courses);
 <script type="text/javascript" src="/chaea/js/jsn/courseSettings/actiStudentCourse.js"></script>
 <script type="text/javascript" src="/chaea/js/jsn/controlForm.js"></script>
 <script type="text/javascript" src="/chaea/js/cookies.js"></script>
-<script  src="/chaea/js/jsn/slider.js" charset="utf-8"></script>
-
-
 
 <!--Este es JSN-->
 </body>

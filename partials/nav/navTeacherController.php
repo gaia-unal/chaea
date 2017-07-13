@@ -24,7 +24,7 @@
                                         <li class="divider"></li>
                                         <li><a id="activityTeacher" href="actiStudentCourse.php">Configuración de Estudiantes </a></li>
                                         <li class="divider"></li>
-                                        <li><a id="studentsTeacher" href="#">Estudiantes</a></li>
+                                        <li><a id="studentsTeacher" href="trackingStudent.php">Seguimiento a Estudiantes</a></li>
                                     </ul>
                                 </li>
                             </ul>

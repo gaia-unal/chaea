@@ -57,148 +57,106 @@ function validationRol ($person, $rol){
 }
 
  ?>
- <!doctype html>
  <html>
  <head>
- <!-- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
- 	<!-- <title>jQuery simplePagination Plugin Demo Page</title> -->
- <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"> -->
- 	<style>
-       .pager {
-         list-style: none;
-         margin-top: 10px;
-         padding: 0;
-       }
 
-       .page {
-         border-radius: 3px;
-         color: black;
-         background: #eee;
-         cursor: pointer;
-         display: inline;
-         font-weight: 200;
-         margin: 10px 5px 0px 2px;
-         padding: 10px;
-         text-align: center;
-         width: 10px;
-       }
 
-       .activer {
-         background: teal;
-         color: white;
-       }
- </style>
- 	</head>
+   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+   <!-- <link rel="stylesheet" type="text/css" href="/css/result-light.css"> -->
+   <title> by ishandemon</title>
+  <script type="text/javascript">//<![CDATA[
+   $(window).load(function(){
+   $(document).ready(function() {
+       $('#example').dataTable({
 
- 	<body>
-     <!-- <div class="container" style="margin-top:50px;">
-         <h1>jQuery simplePagination Plugin Demo Page</h1>
-         <div class="jquery-script-ads" style="margin:30px auto;">
-            <script type="text/javascript">
-                 google_ad_client = "ca-pub-2783044520727903";
-                 /* jQuery_demo */
-                 google_ad_slot = "2780937993";
-                 google_ad_width = 728;
-                 google_ad_height = 90;
-                 //
-             </script>
-             <script type="text/javascript"
-                 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-             </script>
-          </div> -->
+   		"footerCallback": function ( row, data, start, end, display ) {
+         				var api = this.api(), data;
+                alert(data);
+         				// Remove the formatting to get integer data for summation
+         				var intVal = function ( i ) {
+         					return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?	i : 0;
+         				};
 
-          <!-- class="coursePage table table-inverse" -->
-         <table class="coursePage" number-per-page="2" current-page="0">
-           <thead>
-             <tr>
-               <th>Element</th>
-               <th>Value</th>
-               <th>Options</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr>
-               <td>Johan</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>2 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>3 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>4 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>5 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>6 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>7 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td> 8 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>9 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-             <tr>
-               <td>10 Name</td>
-               <td>A value</td>
-               <td> Edit</td>
-             </tr>
-           </tbody>
-         </table>
-     <!-- </div> -->
+         				// total_salary over all pages
+         				total_salary = api.column( 1 ).data().reduce( function (a, b) {
+         					return intVal(a) + intVal(b);
+         				},0 );
+
+         				// total_page_salary over this page
+         				total_page_salary = api.column( 1, { page: 'current'} ).data().reduce( function (a, b) {
+         					return intVal(a) + intVal(b);
+         				}, 0 );
+
+         				total_page_salary = parseFloat(total_page_salary);
+         				total_salary = parseFloat(total_salary);
+         				// Update footer
+         				$('#totalSalary').html(total_page_salary.toFixed(2)+"/"+total_salary.toFixed(2));
+   			}
+   	});
+   });
+
+   });//]]>
+
+   </script>
+
+
+ </head>
+
+ <body>
+     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
+     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"> </script>
+ <div class="container">
+
+     <div id="example_wrapper" class="dataTables_wrapper">
+
+         <table cellpadding="0" cellspacing="0" border="0" class="dataTable" id="example" role="grid" aria-describedby="example_info">
+             <thead>
+                 <tr >
+                   <th>Name</th>
+                   <th>Salary</th>
+                 </tr>
+             </thead>
+             <tbody>
+                <tr  class="odd">
+                      <td class="sorting_1">abc</td>
+                     <td class="sorting_1">100</td>
+                 </tr>
+                 <tr  class="even">
+                     <td class="sorting_1">abc</td>
+                     <td class="sorting_1">100</td>
+                 </tr><tr  class="odd">
+                     <td class="sorting_1">aeda</td>
+                     <td class="sorting_1">100</td>
+                 </tr><tr  class="even">
+                      <td class="sorting_1">lod</td>
+                     <td class="sorting_1">100</td>
+                 </tr><tr  class="odd">
+                      <td class="sorting_1">xyz</td>
+                     <td class="sorting_1">100</td>
+                 </tr><tr  class="even">
+                     <td class="sorting_1">xyz</td>
+                     <td class="sorting_1">100</td>
+                 </tr><tr  class="odd">
+                     <td class="sorting_1">xyz</td>
+                     <td class="sorting_1">150</td>
+                 </tr></tbody>
+             <tfoot>
+             		<tr>
+                  <td colspan="1" rowspan="1">
+                  <span style="float:right;" id="totalSalary">700.00/6400.00</span>
+                </td>
+              </tr>
+             </tfoot>
+        </table>
+
+     </div>
+ </div>
+
+
+
+
+
+
+
  </body>
-
- 	<script   src="https://code.jquery.com/jquery-1.12.4.js"></script>
- 	<script type="text/javascript" src="simplepagination.js"></script>
- 	<script type="text/javascript">
- 	$(function(){
- 		$(".coursePage").pagination();
- 	})
- </script>
-
  </html>
-
-
- <script type="text/javascript">
-function reemplaza(formu) {
-	var b = /"/g
-	var s = formu.entrada.value.replace(b,"'")
-  alert(s);
-}
-</script>
-</head>
-
-<body>
-<form>
-Buscar comillas
-en <input type="text" name="entrada" size=20>
- <input type="button" value="Reemplazar" onClick="reemplaza(this.form)">
- <input type="text" name="salida" size=20>
-</form>
-</body>

@@ -4,9 +4,11 @@ $(document).ready(function() {
 try {
   var idCourseJsn =  readCookie('idCourseJsn');
   var ac =  readCookie('ac');
-
 } catch (e) {}
+
   function loading(){
+
+
 
     table =   $('#dataTableActiCou').DataTable( {
                  "scrollX": true,
@@ -20,7 +22,12 @@ try {
                     "data":{"idCourse":idCourseJsn, "action":ac}
                  },
                  "columns": [
-                   { "data": "id_activity" },
+                   {
+                     "data": "id_activity",
+                     "render": function(state){
+                      return "<center>"+state+"<center>";
+                     }
+                   },
                    {
                      "data": "state_system_activity",
                      "searchable":false,
@@ -46,20 +53,37 @@ try {
                      "searchable":false,
                      "sortable":false,
                      "render": function(state){
-                      return "<center><button id='detailActivity' class='btn btn-success btn-circle'><i class='fa fa-file-text-o' aria-hidden='true'></i></button></div>";
+                      return "<center><button id='detailActivity' class='btn btn-success btn-circle'><i class='fa fa-file-text-o' aria-hidden='true'></i></button></div></center>";
                     }
 
                    },
                    { "data": "name_activity" },
-                   { "data": "type_learning" }
+                   {
+                     "data": "type_learning",
+                     "render": function(state){
+                      return "<center>"+state+"<center>";
+                     }
+                   },
+                   {
+                     "data": "weight",
+                     "render": function(state){
+                      return "<center>"+state+"%<center>";
+                     }
+                   }
                  ],
-                 "language": idioma_espanol
+                 "language": idioma_espanol,
+                 "footerCallback": function (data) {
+                           var api = this.api(), data;
+                           sum(api,data);
+                  }
                });
               get_edit_acti('#dataTableActiCou tbody',table);
               get_description_activity('#dataTableActiCou tbody',table);
               get_data_state('#dataTableActiCou tbody',table);
               get_data_delete('#dataTableActiCou tbody',table);
   }
+
+
 
       function mensajeSend(info){
     		$('#InfoUser').html(`<h4>`+info+`</h4>`);
@@ -76,7 +100,6 @@ try {
     		var modalWarning = document.getElementById('id09');
     		modalWarning.style.display='block';
     	}
-
       //Funcion cargar datos al modal de actividad.
       var get_edit_acti = function(tbody, table){
         $(tbody).on('click','#editActi', function(){
@@ -88,7 +111,11 @@ try {
               $('#id_edit_activ').val(data.id_activity);
               $('#name_ed_activity').html('Esta editando la actividad '+data.name_activity);
               $('#name_edit_activity').val(data.name_activity);
-
+              $('#weight_edit').val(data.weight);
+              $('#weight_lo').html(data.weight+'%');
+              let limit1 = total_salary.toFixed(0) - data.weight ;
+              let limit = 100-limit1;
+              $('#weight_edit').attr({'max':limit});
 
               if(data.type_learning=='activo'){
                 id_learning = 1;
@@ -163,34 +190,59 @@ try {
 
        });
       }
-  var idioma_espanol={
-                      "sProcessing":     "Procesando...",
-                      "sLengthMenu": 'Mostrar <select>'+
-                          '<option value="10">10</option>'+
-                          '<option value="20">20</option>'+
-                          '<option value="30">30</option>'+
-                          '<option value="40">40</option>'+
-                          '<option value="50">50</option>'+
-                          '<option value="-1">All</option>'+
-                          '</select> registros',
-                      "sZeroRecords":    "No se encontraron resultados",
-                      "sEmptyTable":     "Aún no han creado actividades.",
-                      "sInfo":           "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
-                      "sInfoEmpty":      "Mostrando del 0 al 0 de un total de 0 registros",
-                      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                      "sInfoPostFix":    "",
-                      "sSearch":         "Filtrar:",
-                      "sUrl":            "",
-                      "sInfoThousands":  ",",
-                      "sLoadingRecords": "Por favor espere - cargando...",
-                      "oPaginate": {
-                          "sFirst":    "Primero",
-                          "sLast":     "Último",
-                          "sNext":     "Siguiente",
-                          "sPrevious": "Anterior"
-                      },
-                      "oAria": {
-                          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                      }
+
+      function sum(api,data){
+              // Remove the formatting to get integer data for summation
+              var intVal = function ( i ) {
+                return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?	i : 0;
+              };
+
+              //total de todas las paginas.
+              total_salary = api.column( 7 ).data().reduce( function (a, b) {
+                return intVal(a) + intVal(b);
+              },0 );
+
+              // total por pagina, osea por cada lista en la tabla.
+              total_page_salary = api.column( 7, { page: 'current'} ).data().reduce( function (a, b) {
+                return intVal(a) + intVal(b);
+              }, 0 );
+
+              total_page_salary = parseFloat(total_page_salary);
+              total_salary = parseFloat(total_salary);
+              // Update footer
+              $('#entire').html('Porcentaje acumulado de las actividades: '+total_salary.toFixed(0)+'% / 100%');
+             //  $('#totalSalary').html(total_page_salary.toFixed(2)+"/"+total_salary.toFixed(2));
       }
+
+      var idioma_espanol={
+                          "sProcessing":     "Procesando...",
+                          "sLengthMenu": 'Mostrar <select>'+
+                              '<option value="2">2</option>'+
+                              '<option value="10">10</option>'+
+                              '<option value="20">20</option>'+
+                              '<option value="30">30</option>'+
+                              '<option value="40">40</option>'+
+                              '<option value="50">50</option>'+
+                              '<option value="-1">All</option>'+
+                              '</select> registros',
+                          "sZeroRecords":    "No se encontraron resultados",
+                          "sEmptyTable":     "Aún no han creado actividades.",
+                          "sInfo":           "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+                          "sInfoEmpty":      "Mostrando del 0 al 0 de un total de 0 registros",
+                          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                          "sInfoPostFix":    "",
+                          "sSearch":         "Filtrar:",
+                          "sUrl":            "",
+                          "sInfoThousands":  ",",
+                          "sLoadingRecords": "Por favor espere - cargando...",
+                          "oPaginate": {
+                              "sFirst":    "Primero",
+                              "sLast":     "Último",
+                              "sNext":     "Siguiente",
+                              "sPrevious": "Anterior"
+                          },
+                          "oAria": {
+                              "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                          }
+          }

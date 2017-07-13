@@ -105,3 +105,34 @@
         return false;
       }
     }
+
+    //contro5 para las notas
+    function control5(a) {
+      var band = 0;
+      tecla = (document.all) ? a.keyCode : a.which;
+
+      if (tecla == 69 || tecla == 101|| tecla == 47 || tecla == 45) {
+        alert("Porfavor solo numeros");
+        return false;
+      }
+
+      for (var i = 32; i <= 43; i++) {
+        if (tecla == i) {
+          band = 1;
+          break;
+        }
+      }
+
+      for (var i = 58; i <= 165; i++) {
+        if (tecla == i) {
+          band = 1;
+          break;
+        }
+      }
+      if (band == 1) {
+        // $('#control2').html("<div id='oculto' class='alert alert-dismissible alert-warning'><button type='button' class='close' onclick='cer();' data-dismiss='alert'>&times;</button><strong>Porfavor solo numeros</strong></a> </div>");
+        alert("Porfavor solo numeros");
+        return false;
+      }
+
+    }

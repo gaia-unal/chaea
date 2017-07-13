@@ -1,3 +1,4 @@
+
 	document.addEventListener('DOMContentLoaded',main)
 	var bas=0;
 	function ajaxSettingActivity(activity,action) {
@@ -14,8 +15,10 @@
 												$('#formularioActiv')[0].reset();
 												CKEDITOR.instances['description_activity'].setData('');
 												document.getElementById('id10').style.display='none';
+												$('#weight_edit').val(0);
+												$('#weight_lo').html(0+'%');
 										 }else if (Number(info)==2) {
-										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n debe tener otro nombre");
+										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n en este curso, debe tener otro nombre");
 										 }else if(Number(info)==3){
 											 	mensajeSend("Se actuaizo correctamente el la actividad: "+ activitys[0]);
 												document.getElementById('id11').style.display='none';
@@ -79,15 +82,14 @@
 		let description_activity = CKEDITOR.instances['description_activity'].getData(); /*2*/
 				description_activity = reemplaza(description_activity);
 	  let idCourseJsn =  readCookie('idCourseJsn');/*3*/
+		let weight = document.getElementById('weight').value; /*4*/
 
-		let activity = [name_activity,id_type_learning, description_activity, idCourseJsn];
+		let activity = [name_activity, id_type_learning, description_activity, idCourseJsn, weight ];
 		for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
-
 		if (bas==0){
-			$('#infoPanelClose').hide();
-			ajaxSettingActivity(activity,2);
-			loading();
-
+				$('#infoPanelClose').hide();
+				ajaxSettingActivity(activity,2);
+				loading();
 		}else{
 			let info='Debe ingresar todos los datos que se solicitan.';
 			mensajePanelA(info,1);
@@ -104,19 +106,18 @@
 		let id_type_edit_learning = $('#id_type_edit_learning').val();/*2*/
 		let description_edit_activity = CKEDITOR.instances['description_edit_activity'].getData();/*3*/
 				description_edit_activity = reemplaza(description_edit_activity);
-		let activity = [name_edit_activity, id_type_edit_learning, description_edit_activity, idCourseJsn, id_edit_activ];
-
-		for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
-		if (bas==0){
-			$('#infoPanelClose').hide();
-			ajaxSettingActivity(activity,3);
-			loading();
-
-		}else{
-			let info='Debe ingresar todos los datos que se solicitan.';
-			mensajePanelA(info,2);
-			bas=0;
-		}
+		let weight = document.getElementById('weight_edit').value; /*5*/
+				let activity = [name_edit_activity, id_type_edit_learning, description_edit_activity, idCourseJsn, id_edit_activ, weight];
+				for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
+				if (bas==0){
+						$('#infoPanelClose').hide();
+						ajaxSettingActivity(activity,3);
+						loading();
+				}else{
+					let info='Debe ingresar todos los datos que se solicitan.';
+					mensajePanelA(info,2);
+					bas=0;
+				}
 
 
 	}
@@ -124,9 +125,10 @@
 
 
 function main(){
-
 	//creat actividad
 	$("#addActivity").click(function(){
+		let limit = 100 - total_salary.toFixed(0);
+				$('#weight').attr({'max':limit});
 		document.getElementById('id10').style.display='block';
 	 });
 	$("#newActivity").click(function(){

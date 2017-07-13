@@ -223,16 +223,13 @@ function numEstudentActi($idCourse){
 //Miro si existe la actividad del mismo nombre y con el mismo usuario.
 function existActivity($activity){
     try {
-            global $objDatos;
-            $sql = "SELECT act.id_activity as id
-                    FROM activity as act
-                    WHERE '".$_SESSION["document"]."' = act.number_document_teacher
-                    and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
-                    and act.id_course = '".$activity[3]."' ;";
-
-
-
-
+          global $objDatos;
+          $sql = "SELECT act.id_activity as id
+                FROM activity as act, teacher as te, course_teacher as co_te, course as co
+                WHERE te.number_document= '".$_SESSION["document"]."' and te.number_document = co_te.number_document
+                and co_te.id_course = co.id_course and co.id_course = '".$activity[3]."'
+                and co.id_course = act.id_course
+                and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','');";
             $crud = $objDatos->executeQuery($sql);
 
             if($crud[0]['id'] < 1){
@@ -245,5 +242,25 @@ function existActivity($activity){
         echo 'Existe un fallo en la conexión';
     }
 }
+
+
+function studentCourse($id_course){
+  try {
+    global $objDatos;
+    $sql = "SELECT st.number_document AS id_st FROM student as st
+           inner join course_student
+           on st.number_document = course_student.number_document
+           inner join course as co
+           on course_student.id_course = co.id_course and co.id_course = '".$id_course."'
+           group by co.name_course, st.number_document ;";
+      $crud = $objDatos->executeQuery($sql);
+      return $crud;
+  } catch (Exception $e) {
+
+  }
+
+
+}
+
 
 ?>

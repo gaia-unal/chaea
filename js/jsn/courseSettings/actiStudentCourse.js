@@ -30,6 +30,7 @@ function getDataTableCoruse(){
         });
         $('#nameEstudentCourse').html("Activa o Desactiva los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
         $('#nameActiCou').html("Crea, edita, elimina, activa o desactiva las actividades para el cuso: <br><div>"+nameCourse+"</div>");
+        $('#nameActiCouNote').html("Selecciona un estudiante del curso de:  <br><div>"+nameCourse+"</div>");
 
   });
 }

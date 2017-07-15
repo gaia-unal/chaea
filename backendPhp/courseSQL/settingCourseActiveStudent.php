@@ -73,9 +73,38 @@ switch ($action) {
             AND id_course = '".$idCourse."';";
             $objDatos->executeQuery($sql);
            //  enviarEmail($number_document);
-            $objDatos->closeConnect();
-            echo 1;
+    // se debe de inscribir las actividades que tenga el curso si lo tiene
+    //en la tabla student_activiti
+    $activitysS = activityStudent($idStudent, $idCourse);
+    $activitysC = activityCourse($idCourse);
+    $idNow=0;
 
+    if($activitysS[0]['id_ac'] > 0 && $activitysC[0]['id_ac'] > 0 ){
+       for($i=0; $i <count($activitysC) ; $i++){
+
+         for($j=0; $j <count($activitysS) ; $j++){
+                 if($activitysS[$j]['id_ac']== $activitysC[$i]['id_ac'] ){
+                   $idNow=1;
+                   break;
+                 }
+         }
+         if($idNow==0){
+           //CRUD de insertar actividad en el estudiante.
+           $sql = "INSERT INTO student_activity (number_document, id_activity, activity_note) values ('".$idStudent."','".$activitysC[$i]['id_ac']."', 0);";
+           $objDatos->executeQuery($sql);
+         }
+       }
+    }else if ($activitysS[0]['id_ac'] == 0 &&  $activitysC[0]['id_ac'] > 0 ) {
+      for ($i=0; $i < count($activitysC) ; $i++) {
+        //CRUD de insertar actividad en el estudiante.
+        $sql = "INSERT INTO student_activity (number_document, id_activity, activity_note) values ('".$idStudent."','".$activitysC[$i]['id_ac']."', 0);";
+        $objDatos->executeQuery($sql);
+      }
+    }
+
+
+    $objDatos->closeConnect();
+    echo 1;
   }
 
 

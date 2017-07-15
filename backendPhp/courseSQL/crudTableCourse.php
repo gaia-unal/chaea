@@ -89,11 +89,11 @@ switch ($action) {
 
       if($id_course==0){
         try {
-          $sql= "INSERT INTO course (name_course, state_system_course, description_course, quotas_course) values ('$course[0]','Inactivo','$course[1]','$course[2]');";
+          $sql= "INSERT INTO course (name_course, state_system_course, description_course, quotas_course, number_document) values ('$course[0]','Inactivo','$course[1]','$course[2]','".$_SESSION["document"]."');";
           $objDatos->executeQuery($sql);
           $id_course = existCourse($course[0]);
           //Se inserta en el profesor el nuevo curso que creo.
-          $sql = "INSERT INTO course_teacher (id_course, number_document) values ('".$id_course."','".$_SESSION["document"]."');";
+          $sql = "INSERT INTO course_teacher (id_course, number_document,creator_course) values ('".$id_course."','".$_SESSION["document"]."', 'yes');";
           $objDatos->executeQuery($sql);
           $objDatos->closeConnect();
           echo "1";

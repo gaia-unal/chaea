@@ -3,8 +3,8 @@ if(!isset($_SESSION)) {
      session_start();
 }
 do{
-	echo key($_SESSION).": ";
-	echo "-->".current($_SESSION)."----";
+	// echo key($_SESSION).": ";
+	// echo "-->".current($_SESSION)."----";
 } while(next($_SESSION))
 
  ?>
@@ -15,7 +15,8 @@ $objDatos = new DB();
 $objDatos->connect();
 
 $person= array(0,"jsnavarroc@unal.edu.co", 2, 3, 4, 5,"jsnavarroc","1053813532");
-validationRol($person, "teacher");
+// validationRol($person, "teacher");
+activityStudent('1053845616', '33');
 
 
 function validationRol ($person, $rol){
@@ -56,107 +57,31 @@ function validationRol ($person, $rol){
 
 }
 
- ?>
- <html>
- <head>
 
 
-   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
-   <!-- <link rel="stylesheet" type="text/css" href="/css/result-light.css"> -->
-   <title> by ishandemon</title>
-  <script type="text/javascript">//<![CDATA[
-   $(window).load(function(){
-   $(document).ready(function() {
-       $('#example').dataTable({
+//saca todas las actividades que tiene ya el estudiante inscritas
+function activityStudent($idStudent, $idCourse){
+  try {
+          global $objDatos;
+          $sql = "SELECT st_ac.id_activity as id_ac
+                  FROM student_activity as st_ac, activity as ac
+                  WHERE ac.id_course = '".$idCourse."'
+                  and ac.id_activity = st_ac.id_activity
+                  and st_ac.number_document = '".$idStudent."';";
+          $crud = $objDatos->executeQuery($sql);
+          // echo $crud[0]['id_ac']+'hola';
+          if($crud[0]['id_ac'] < 1){
+            echo 0;
+          }else{
+            for ($i=0; $i < COUNT($crud[0]['id_ac']); $i++) {
+              # code...
+              echo $crud[$i]['id_ac'];
+            }
+          }
 
-   		"footerCallback": function ( row, data, start, end, display ) {
-         				var api = this.api(), data;
-                alert(data);
-         				// Remove the formatting to get integer data for summation
-         				var intVal = function ( i ) {
-         					return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?	i : 0;
-         				};
+  } catch (Exception $e) {
+      echo 'Existe un fallo en la conexión';
+  }
+}
 
-         				// total_salary over all pages
-         				total_salary = api.column( 1 ).data().reduce( function (a, b) {
-         					return intVal(a) + intVal(b);
-         				},0 );
-
-         				// total_page_salary over this page
-         				total_page_salary = api.column( 1, { page: 'current'} ).data().reduce( function (a, b) {
-         					return intVal(a) + intVal(b);
-         				}, 0 );
-
-         				total_page_salary = parseFloat(total_page_salary);
-         				total_salary = parseFloat(total_salary);
-         				// Update footer
-         				$('#totalSalary').html(total_page_salary.toFixed(2)+"/"+total_salary.toFixed(2));
-   			}
-   	});
-   });
-
-   });//]]>
-
-   </script>
-
-
- </head>
-
- <body>
-     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css">
-     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"> </script>
- <div class="container">
-
-     <div id="example_wrapper" class="dataTables_wrapper">
-
-         <table cellpadding="0" cellspacing="0" border="0" class="dataTable" id="example" role="grid" aria-describedby="example_info">
-             <thead>
-                 <tr >
-                   <th>Name</th>
-                   <th>Salary</th>
-                 </tr>
-             </thead>
-             <tbody>
-                <tr  class="odd">
-                      <td class="sorting_1">abc</td>
-                     <td class="sorting_1">100</td>
-                 </tr>
-                 <tr  class="even">
-                     <td class="sorting_1">abc</td>
-                     <td class="sorting_1">100</td>
-                 </tr><tr  class="odd">
-                     <td class="sorting_1">aeda</td>
-                     <td class="sorting_1">100</td>
-                 </tr><tr  class="even">
-                      <td class="sorting_1">lod</td>
-                     <td class="sorting_1">100</td>
-                 </tr><tr  class="odd">
-                      <td class="sorting_1">xyz</td>
-                     <td class="sorting_1">100</td>
-                 </tr><tr  class="even">
-                     <td class="sorting_1">xyz</td>
-                     <td class="sorting_1">100</td>
-                 </tr><tr  class="odd">
-                     <td class="sorting_1">xyz</td>
-                     <td class="sorting_1">150</td>
-                 </tr></tbody>
-             <tfoot>
-             		<tr>
-                  <td colspan="1" rowspan="1">
-                  <span style="float:right;" id="totalSalary">700.00/6400.00</span>
-                </td>
-              </tr>
-             </tfoot>
-        </table>
-
-     </div>
- </div>
-
-
-
-
-
-
-
- </body>
- </html>
+?>

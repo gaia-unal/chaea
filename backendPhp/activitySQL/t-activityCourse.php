@@ -96,9 +96,13 @@ switch ($action) {
                $sql = "INSERT INTO teacher_activity (number_document, id_activity, weight) values ('".$_SESSION["document"]."','".$id_activity."', '".$activity[4]."');";
                $objDatos->executeQuery($sql);
 
-               for($i=0; $i <count($studentCourse) ; $i++){
-                 $sql = "INSERT INTO student_activity (number_document, id_activity, activity_note) values ('".$studentCourse[$i]["id_st"]."','".$id_activity."', 0);";
-                 $objDatos->executeQuery($sql);
+               //si hay estudiantes ya registrados en el curso se le inscribe la actividad aquí en este
+               //punto es donde se le spuede indicar el tipo de actividad al estilo de aprendizaje
+               if($studentCourse[0]["id_st"]>0){
+                  for($i=0; $i <count($studentCourse) ; $i++){
+                    $sql = "INSERT INTO student_activity (number_document, id_activity, activity_note) values ('".$studentCourse[$i]["id_st"]."','".$id_activity."', 0);";
+                    $objDatos->executeQuery($sql);
+                  }
                }
 
                $objDatos->closeConnect();
@@ -159,6 +163,12 @@ switch ($action) {
     global $objDatos;
     $sql = "UPDATE activity SET state_system_activity ='Inactivo'
             WHERE  id_activity = '".$activity[0]."';";
+            $objDatos->executeQuery($sql);
+
+
+    $sql = "UPDATE teacher_activity SET weight ='0'
+            WHERE id_activity = '".$activity[0]."'
+            AND number_document = '".$_SESSION["document"]."'";
             $objDatos->executeQuery($sql);
            //  enviarEmail($number_document);
             $objDatos->closeConnect();

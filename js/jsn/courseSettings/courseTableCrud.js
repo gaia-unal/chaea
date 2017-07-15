@@ -16,7 +16,7 @@
 												document.getElementById('id05').style.display='none';
 
 										 }else if (Number(info)==2) {
-										 		mensajeSend("El curso: "+courses[0]+" ya existe\n debe tener otro nombre");
+										 		mensajeWarning("El curso: "+courses[0]+" ya existe\n debe tener otro nombre");
 										 }else if (Number(info)==3) {
 										 		mensajeWarning("El curso: "+courses[1]+" ya existe\n debe tener otro nombre");
 										 }else if(Number(info)==4){

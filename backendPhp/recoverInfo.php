@@ -177,8 +177,9 @@ function nameInstitution($rol){
 function existCourse($course){
     try {
       global $objDatos;
-      $sql = "SELECT id_course as id from  course
-      WHERE replace(LOWER('$course'),' ','') = replace(LOWER(name_course),' ','')";
+      $sql = "SELECT co.id_course as id from  course as co
+      WHERE replace(LOWER('".$course."'),' ','') = replace(LOWER(co.name_course),' ','')
+      and co.number_document = '".$_SESSION["document"]."';";
       $crud = $objDatos->executeQuery($sql);
 
       if($crud[0]['id'] < 1){
@@ -217,8 +218,46 @@ function numEstudentActi($idCourse){
   return $numActiStudent[0]["nums"];
 
 }
+//saca todas las actividades que tiene ya el estudiante inscritas
+function activityStudent($idStudent, $idCourse){
+  try {
+          global $objDatos;
+          $sql = "SELECT st_ac.id_activity as id_ac
+                  FROM student_activity as st_ac, activity as ac
+                  WHERE ac.id_course = '".$idCourse."'
+                  and ac.id_activity = st_ac.id_activity
+                  and st_ac.number_document = '".$idStudent."';";
+          $crud = $objDatos->executeQuery($sql);
+          // echo $crud[0]['id_ac']+'hola';
+          if($crud[0]['id_ac'] < 1){
+            return 0;
+          }else{
+            return $crud;
+          }
 
+  } catch (Exception $e) {
+      echo 'Existe un fallo en la conexión';
+  }
+}
+//saca todas las actividades que tiene el curso
+function activityCourse($idCourse){
+  try {
+          global $objDatos;
+          $sql = "SELECT ac.id_activity as id_ac
+          FROM activity as ac
+          WHERE ac.id_course='".$idCourse."';";
+          $crud = $objDatos->executeQuery($sql);
 
+          if($crud[0]['id_ac'] < 1){
+            return 0;
+          }else{
+            return $crud;
+          }
+
+  } catch (Exception $e) {
+      echo 'Existe un fallo en la conexión';
+  }
+}
 
 //Miro si existe la actividad del mismo nombre y con el mismo usuario.
 function existActivity($activity){

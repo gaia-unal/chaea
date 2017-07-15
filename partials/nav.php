@@ -60,8 +60,10 @@ main.detalle ol li {
         <li>
           <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cartillas<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/chaea/activo.php"  role="button">Activo</a></li>
-            <li><a href="/chaea/reflexivo.php"  role="button">Reflexivo</a></li>
+            <li><a href="/chaea/partials/cartilla/activo.php"  role="button">Activo</a></li>
+            <li><a href="/chaea/partials/cartilla/reflexivo.php"  role="button">Reflexivo</a></li>
+            <li><a href="/chaea/partials/cartilla/teorico.php"  role="button">Teórico</a></li>
+            <li><a href="/chaea/partials/cartilla/pragmatico.php"  role="button">Pragmático</a></li>
           </ul>
         </li>
 

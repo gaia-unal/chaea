@@ -52,7 +52,14 @@
                      "render": function(state){
                        return "<center>"+state+"<center>";
                       }
+                   },
+                   {
+                     "data": "weight",
+                     "render": function(state){
+                       return "<center>"+Math.round(state)+"%<center>";
+                      }
                    }
+
                  ],
                  "language": idioma_espan
                });

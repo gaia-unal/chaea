@@ -15,7 +15,8 @@ $objDatos->connect();
 
     //Se consulta los cursos existentes
     global $objDatos;
-    $consulta = "SELECT cour.state_system_course, cour.id_course ,cour.name_course, cour.description_course FROM course as cour";
+    $consulta = "SELECT cour.state_system_course, cour.id_course ,cour.name_course, cour.description_course
+                  FROM course as cour";
     $course = $objDatos->executeQuery($consulta);
 
 
@@ -29,12 +30,12 @@ $objDatos->connect();
     $numest = $objDatos->executeQuery($consulta);
 
     //saca el numero de actividades
-    $consulta = "SELECT count(co.name_course) AS n2,  co.name_course  as namecor FROM activity as act
-                  inner join course_activity as coact
-                  on coact.id_activity = act.id_activity
+    $consulta = "SELECT count(act.id_activity) AS n2,
+                  co.name_course as namecor
+                  FROM activity as act
                   inner join course as co
-                  on coact.id_course = co.id_course
-                  group by co.name_course;";
+                  on act.id_course = co.id_course
+                  group by  co.name_course ;";
     $numacti = $objDatos->executeQuery($consulta);
 
   $objDatos->closeConnect();

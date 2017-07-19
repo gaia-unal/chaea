@@ -20,14 +20,14 @@
                     <th>Actualizar</th>
                     <th>Borrar</th>
                     <th>Documento</th>
-                    <th>Tipo de Documento</th>
+                    <th>Tipo de documento</th>
                     <th>Nombre </th>
-                    <th>Lugar de Nacimiento</th>
-                    <th>Año de Nacimiento</th>
+                    <th>Lugar de nacimiento</th>
+                    <th>Año de nacimiento</th>
                     <th>Universidad</th>
                     <th>Email</th>
-                    <th>Numero Telefónico</th>
-                    <th>Nombre de Usuario</th>
+                    <th>Numero telefónico</th>
+                    <th>Nombre de usuario</th>
                     <th>Genero</th>
                 </tr>
             </thead>

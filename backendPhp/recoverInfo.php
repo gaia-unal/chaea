@@ -302,4 +302,28 @@ function studentCourse($id_course){
 }
 
 
+//Miro si existe la actividad del mismo nombre y con el mismo usuario.
+function existStrategy($strategy){
+    try {
+          global $objDatos;
+          $sql = "SELECT str.id_strategy as id
+                  FROM strategy as str
+                  WHERE replace(LOWER(str.description),' ','')=  replace(LOWER( '".$strategy[0]."'),' ','')  
+                  AND str.id_type_learning = '".$strategy[1]."' ;";
+            $crud = $objDatos->executeQuery($sql);
+
+            if($crud[0]['id'] < 1){
+              return 0;
+            }else{
+              return $crud[0]['id'];//retornar el ID
+            }
+
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
+
+
+
+
 ?>

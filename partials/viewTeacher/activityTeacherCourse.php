@@ -29,7 +29,7 @@ $coursesLet = count($courses);
 <div id="particles-js"></div>
 <main class="detalle">
   <div id="table-box" >
-    <center><h1>Configuración De Las Actividades En Los Cursos</h1></center><br>
+    <center><h1>Configuración de las actividades en los cursos</h1></center><br>
              <div class="stepwizard">
                  <div class="stepwizard-row setup-panel">
 
@@ -48,7 +48,7 @@ $coursesLet = count($courses);
                  <div class="row setup-content" id="step-1">
                         <div class="col-xs-12">
                               <div class="col-md-12">
-                                <h3>Selecciona un Curso</h3>
+                                <h3>Selecciona un curso</h3>
                  								<div class="form-group">
                        			             <table class="table table-striped table-hover coursePage" number-per-page="5" current-page="0">
                        			                  <thead>

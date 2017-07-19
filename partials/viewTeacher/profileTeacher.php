@@ -32,7 +32,7 @@ if(!$_SESSION){
 											<div>
 												<p>Profesor</p>
 												<!--Elemento boton q permite editar etiqueta -->
-												<p><a href="javascript:void(0)" id="btn_profile">Editar Perfil
+												<p><a href="javascript:void(0)" id="btn_profile">Editar perfil
 												<i class='fa fa-pencil-square-o' aria-hidden='true'></i></a></p>
 
 											</div>

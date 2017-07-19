@@ -17,7 +17,7 @@ if(!$_SESSION){
         <th><center>Seleccionar</center></th>
         <th><center>Documento</center></th>
         <th><center>Nombre</center></th>
-        <th><center>Nota Acumulada</center></th>
+        <th><center>Nota acumulada</center></th>
       </tr>
     </thead>
   </table>

@@ -1,7 +1,7 @@
 <main class="detalle">
 			<form class="form-horizontal" id='formulario' onsubmit="return false">
 			 <fieldset>
-			   <legend>Editar Perfil</legend>
+			   <legend>Editar perfil</legend>
 
 					    		<div class="form-group">
 										<label for="name_admin" class=" control-label">Nombre:</label>
@@ -21,18 +21,18 @@
 
 									<!--documento usuario falta para la BD  -->
 									<div class="form-group">
-										<label for="document_type_admin" class=" control-label">Tipo de Documento:</label>
+										<label for="document_type_admin" class=" control-label">Tipo de documento:</label>
 										<div class="has-success">
 											<select class="form-control" id="document_type_admin">
 												<option value="1">Cédula de ciudadanía</option>
-												<option value="2">Cédula de Extranjería.</option>
+												<option value="2">Cédula de extranjería.</option>
 												<option value="3">Tarjeta de identidad.</option>
 											</select>
 										</div>
 									</div><br>
 
 									<div class="form-group">
-									 <label for="number_document_admin"  class=" control-label" >Número de Identificación:</label>
+									 <label for="number_document_admin"  class=" control-label" >Número de identificación:</label>
 										 <div class="has-success">
 									 <input type="number" value="" class="form-control"  min="1000000" max="10000000000" required="" onKeyPress="return control2(event)" id="number_document_admin" placeholder="Ej: 52220080"></input><br>
 										</div>
@@ -50,7 +50,7 @@
 									</div><br>
 
 									<div class="form-group">
-										<label for="native_city_admin" class=" control-label">Lugar de Nacimiento:</label>
+										<label for="native_city_admin" class=" control-label">Lugar de nacimiento:</label>
 										<div class="has-success">
 											<input onKeyPress="return control1(event)" pattern=".{0}|.{4,80}" title="tiene que tener por lo menos 4 caracteres" value=""
                       required maxlength="80" class="form-control" id="native_city_admin"  placeholder="Ej: Manizales"/></input>
@@ -68,14 +68,14 @@
 											//Esto permite que funcione el el JSON de autocompletar
 									</script>
 								 <div class="form-group">
-							 		<label for="number_phone_admin" class=" control-label">Numero Telefónico:</label>
+							 		<label for="number_phone_admin" class=" control-label">Numero telefónico:</label>
 							 			<div class="has-success">
 							 					<input  type="number"  onKeyPress="return control2(event)"  min="1000000" max="100000000000" maxlength="300"
 							 					 class="form-control"  value="" required="" id="number_phone_admin" placeholder="Ej:3166954258"></input><br>
 							 		 </div>
 							 	</div>
 								<div class="form-group">
-									<label for="email_admin" class=" control-label">Correo Electronico:</label>
+									<label for="email_admin" class=" control-label">Correo electronico:</label>
 										<div class="has-success">
 												<input onKeyPress="return control3(event)" pattern=".{0}|.{8,80}" title="tiene que tener por lo menos 8 caracteres"  type="email"
 												 class="form-control"  value="" maxlength="300" required="" id="email_admin" placeholder="Ej: jagomezo@unal.edu.co"></input><br>
@@ -83,7 +83,7 @@
 								</div>
 								<div id="warningemail"></div>
 								<div class="form-group">
-									<label for="nickname_admin" class=" control-label">Nombre de Usuario:</label>
+									<label for="nickname_admin" class=" control-label">Nombre de usuario:</label>
 										<div class="has-success">
 												<input onKeyPress="return control4(event)"  pattern=".{0}|.{4,80}" title="tiene que tener por lo menos 4 caracteres"  type="text" class="form-control"  value="" maxlength="300" required="" id="nickname_admin" placeholder="Ej: jagomezo "></input><br>
 									 </div>

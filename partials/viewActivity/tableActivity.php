@@ -11,10 +11,10 @@
             <tr>
                 <th>Estado</th>
                 <th>Identificador</th>
-                <th>Nombre de la Actividad</th>
+                <th>Nombre de la actividad</th>
                 <th>Creador</th>
-                <th>Tipo de Estilo</th>
-                <th>Nombre del Curso</th>
+                <th>Tipo de estilo</th>
+                <th>Nombre del curso</th>
             </tr>
         </thead>
     	</table>

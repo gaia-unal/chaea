@@ -27,6 +27,7 @@
                                         <li><a id="courseAdm" href="#">Cursos</a></li>
                                         <li class="divider"></li>
                                         <li><a id="activityAdm" href="#">Actividades</a></li>
+                                        <li><a id="strategyAdm" href="#">Estrategias</a></li>
                                     </ul>
                                 </li>
                             </ul>

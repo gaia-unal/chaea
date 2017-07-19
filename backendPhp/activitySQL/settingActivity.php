@@ -17,10 +17,11 @@ $objDatos->connect();
     global $objDatos;
     $consulta = "SELECT act.id_activity,act.state_system_activity,act.name_activity,
                 te.name, lea.type_learning_description,co.name_course
-                FROM activity as act, teacher as te, type_learning as lea, course as co
-                WHERE act.number_document_teacher = te.number_document and
-                act.id_type_learning = lea.id_type_learning and
-                act.id_course = co.id_course;";
+                FROM activity as act, teacher as te, type_learning as lea, course as co, teacher_activity as te_act
+                WHERE te_act.number_document = te.number_document
+                and te_act.id_activity = act.id_activity
+                and act.id_type_learning = lea.id_type_learning
+                and act.id_course = co.id_course;";
     $activity = $objDatos->executeQuery($consulta);
     $objDatos->closeConnect();
     $activityTable = "";

@@ -33,9 +33,9 @@ if(!$_SESSION){
             <th><center>Estado</center></th>
             <th><center>Editar</center></th>
             <th><center>Eliminar</center></th>
-            <th><center>Detalle de Actividad</center></th>
-            <th><center>Nombre de la Actividad</center></th>
-            <th><center>Estilo de Aprendizaje</center></th>
+            <th><center>Detalle de actividad</center></th>
+            <th><center>Nombre de la actividad</center></th>
+            <th><center>Estilo de aprendizaje</center></th>
             <th><center>Porcentaje %</center></th>
           </tr>
         </thead>

@@ -34,10 +34,10 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
                 <th>id</th>
                 <th>Nombre del curso</th>
                 <th>Detalle del curso</th>
-                <th>Total de Cupos</th>
-                <th># Estudiantes Activos</th>
-                <th>Cupos Disponibles</th>
-                <th># Estu. q Solicitan </th>
+                <th>Total de cupos</th>
+                <th># Estudiantes activos</th>
+                <th>Cupos disponibles</th>
+                <th># Estu. q solicitan </th>
                 <th># Actividades creadas</th>
             </tr>
         </thead>

@@ -28,10 +28,10 @@ function getDataTableCoruse(){
         $(this).parents("tr").find("#nameCourse").each(function(){
         nameCourse=$(this).html()+"\n";
         });
-        $('#nameEstudentCourse').html("Activa o Desactiva los Estudiantes Al Curso De: <br><div>"+nameCourse+"</div>");
+        $('#nameEstudentCourse').html("Activa o desactiva los estudiantes al curso de: <br><div>"+nameCourse+"</div>");
         $('#nameActiCou').html("Crea, edita, elimina, activa o desactiva las actividades para el cuso: <br><div>"+nameCourse+"</div>");
         $('#nameActiCouNote').html("Selecciona un estudiante del curso de:  <br><div>"+nameCourse+"</div>");
-        
+
 
   });
 }

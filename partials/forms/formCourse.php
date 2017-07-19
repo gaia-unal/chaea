@@ -1,7 +1,7 @@
 <main class="detalle">
 			<form class="form-horizontal" id='formularioCourse' onsubmit="return false">
 						 <fieldset>
-				   				<legend>Agregar Curso</legend>
+				   				<legend>Agregar curso</legend>
 						    		<div class="form-group">
 											<label for="nameCourse" class=" control-label">Nombre:</label>
 												<div class="has-success">
@@ -10,7 +10,7 @@
 										</div>
 
 										<div class="form-group">
-										 <label for="quotas_course" class=" control-label">¿Tiene Límite de Cupos?</label>
+										 <label for="quotas_course" class="control-label">¿Tiene límite de cupos?</label>
 										 <div class="has-success">
 											 <select class="form-control" id="quotas_course">
 												 <option>No</option>

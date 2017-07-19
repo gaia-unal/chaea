@@ -71,7 +71,7 @@ h1[number]{
             <div class="col-md-12">
                 <h3> Paso 1</h3>
                 <div class="form-group">
-									<h2>Test de Estilos de Aprendizaje Chaea</h2>
+									<h2>Test de estilos de aprendizaje chaea</h2>
 									<p class="text-muted">El proyecto titulado "Fortalecimiento de Competencia Digital Basado en Estilos de Aprendizaje: Estrategia Evaluativa para Estudiantes de Primer Semestre", es un estudio que consiste en un proceso de diseño, elaboración y evaluación de estrategias para el seguimiento valorativo de la competencia digital en contextos universitarios, con el fin de generar nuevas propuestas metodologías para el desempeño discente. Los datos aquí suministrados serán usados de forma anónima y solo para la caracterización de la población que participa en el estudio.</p>
 								</div>
 							  <button class="btn btn-success nextBtn  btn-lg pull-right btn-un" type="button" >siguiente</button>

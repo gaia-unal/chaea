@@ -12,7 +12,7 @@
 												</div>
 
 												<div class="form-group">
-												 <label for="quotas_edit_course" class=" control-label">¿Tiene Límite de Cupos?</label>
+												 <label for="quotas_edit_course" class=" control-label">¿Tiene límite de cupos?</label>
 												 <div class="has-success">
 													 <select class="form-control" id="quotas_edit_course">
 														 <option>No</option>

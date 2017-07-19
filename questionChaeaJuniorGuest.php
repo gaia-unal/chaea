@@ -63,7 +63,7 @@ h1[number]{
             <div class="col-md-12">
                 <h3> Paso 1</h3>
                 <div class="form-group">
-									<h2>Test de Estilos de Aprendizaje Chaea Junior</h2>
+									<h2>Test de estilos de aprendizaje chaea Junior</h2>
 									<p class="text-muted">El proyecto titulado "Fortalecimiento de
 										Competencia Digital Basado en Estilos de Aprendizaje:
 										Estrategia Evaluativa para Estudiantes de Primer Semestre",

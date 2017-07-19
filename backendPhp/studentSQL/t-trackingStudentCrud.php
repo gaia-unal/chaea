@@ -45,6 +45,7 @@ switch ($action) {
                   and co.id_course = act.id_course
                   and co_st.id_course = co.id_course
                   and co_st.state_course_student = 'Activo'
+                  and act.state_system_activity = 'Activo'
                   and st.number_document = st_ac.number_document
                   and st_ac.id_activity = act.id_activity
                   and tea_ac.id_activity  = act.id_activity
@@ -80,14 +81,17 @@ switch ($action) {
     $consulta = " SELECT ac.name_activity as na_ac,
                   ac.id_activity as ac_id,
                   st_ac.activity_note as  note_ac,
-                  st_ac.activity_path as  path_ac
+                  st_ac.activity_path as  path_ac,
+                  tea_ac.weight as weight
                   FROM student_activity as st_ac
                   inner join activity as ac
-                  on st_ac.id_activity = ac.id_activity
+                  on st_ac.id_activity = ac.id_activity and ac.state_system_activity = 'Activo'
         	        inner join  course as co
                   on co.id_course = '".$idCourse."' and ac.id_course=co.id_course
                   and '".$student."'= st_ac.number_document
-                  group by ac.name_activity, st_ac.activity_note, st_ac.activity_path, ac.id_activity";
+                  inner join teacher_activity as tea_ac
+                  on tea_ac.id_activity = ac.id_activity
+                  group by ac.name_activity, st_ac.activity_note, st_ac.activity_path, ac.id_activity, tea_ac.weight";
     $tracking = $objDatos->executeQuery($consulta);
               $objDatos->closeConnect();
 
@@ -98,7 +102,8 @@ switch ($action) {
                           "na_ac":"'.$tracking[$i]['na_ac'].'",
                           "ac_id":"'.$tracking[$i]['ac_id'].'",
                           "path_ac":"'.$tracking[$i]['path_ac'].'",
-                          "note_ac":"'.$tracking[$i]["note_ac"].'"
+                          "note_ac":"'.$tracking[$i]["note_ac"].'",
+                          "weight":"'.$tracking[$i]["weight"].'"
                         },';
                   }
       }else{

@@ -11,7 +11,7 @@
 										</div>
 
 										<div class="form-group">
-											<label for="id_type_edit_learning" class=" control-label">Estilo de Aprendizaje:</label>
+											<label for="id_type_edit_learning" class=" control-label">Estilo de aprendizaje:</label>
 											<div class="has-success">
 												<select class="form-control" id="id_type_edit_learning">
 													<option value="1">Activo</option>
@@ -23,7 +23,7 @@
 										</div><br>
 
 										<div class="range-slider">
-											<label for="description_activity" class=" control-label">Porcentaje de la Actividad:</label>
+											<label for="description_activity" class=" control-label">Porcentaje de la actividad:</label>
 										  <input class="range-slider__range"  id="weight_edit" type="range" value="0" min="0" max="100" step="1">
 										  <span class="range-slider__value" id="weight_lo" >0</span>
 										</div>

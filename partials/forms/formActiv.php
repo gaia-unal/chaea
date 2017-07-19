@@ -1,7 +1,7 @@
 <main class="detalle">
 			<form class="form-horizontal" id='formularioActiv' onsubmit="return false">
 						 <fieldset>
-				   				<legend>Agregar Actividad</legend>
+				   				<legend>Agregar actividad</legend>
 						    		<div class="form-group">
 											<label for="name_activity" class=" control-label">Nombre:</label>
 												<div class="has-success">
@@ -10,7 +10,7 @@
 										</div>
 
 										<div class="form-group">
-											<label for="id_type_learning" class=" control-label">Estilo de Aprendizaje:</label>
+											<label for="id_type_learning" class=" control-label">Estilo de aprendizaje:</label>
 											<div class="has-success">
 												<select class="form-control" id="id_type_learning">
 													<option value="1">Activo</option>
@@ -22,7 +22,7 @@
 										</div>
 
 										<div class="range-slider">
-											<label for="description_activity" class=" control-label">Porcentaje de la Actividad:</label>
+											<label for="description_activity" class=" control-label">Porcentaje de la actividad:</label>
 										  <input class="range-slider__range"  id="weight" type="range" value="0" min="0" max="100" step="1">
 										  <span class="range-slider__value">0</span>
 										</div>

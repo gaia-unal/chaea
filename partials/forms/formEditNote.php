@@ -2,7 +2,7 @@
 			<form class="form-horizontal" id='formEditNote' onsubmit="return false">
 						 <fieldset>
 							 <input type="hidden" id="idEditeNote" value="">
-				   				<legend>Editar Nota</legend>
+				   				<legend>Editar nota</legend>
 						    		<div class="form-group">
 											<label for="note_edit_activity" class=" control-label">Nota:</label>
 												<div class="has-success">

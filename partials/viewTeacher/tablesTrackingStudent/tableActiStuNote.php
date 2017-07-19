@@ -20,6 +20,7 @@ if(!$_SESSION){
           <th><center>Archivo</center></th>
           <th><center>Editar Nota</center></th>
           <th><center>Nota</center></th>
+          <th><center>Porcentaje</center></th>
         </tr>
       </thead>
     </table>

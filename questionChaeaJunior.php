@@ -39,24 +39,28 @@ h1[number]{
 			    <div class="stepwizard-row setup-panel">
 
 			        <div class="stepwizard-step">
-			            <a href="#step-1" type="button"  class="btn btn-primary btn-circle" >1</a>
+			            <a href="#step-1" type="button"  class="btn btn-primary btn-circle cerr1" >1</a>
 			            <p>Paso 1</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-2" type="button" class="btn btn-default btn-circle cerr" >2</a>
+			            <a href="#step-2" type="button" class="btn btn-default btn-circle cerr2" >2</a>
 			            <p>Paso 2</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+			            <a href="#step-3" type="button" class="btn btn-default btn-circle cerr3" disabled="disabled">3</a>
 			            <p>Paso 3</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+			            <a href="#step-4" type="button" class="btn btn-default btn-circle cerr4" disabled="disabled">4</a>
 			            <p>Paso 4</p>
 			        </div>
-							<div class="stepwizard-step">
-			            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+			        <div class="stepwizard-step">
+			            <a href="#step-5" type="button" class="btn btn-default btn-circle cerr5" disabled="disabled">5</a>
 			            <p>Paso 5</p>
+			        </div>
+							<div class="stepwizard-step">
+			            <a href="#step-6" type="button" class="btn btn-default btn-circle cerr6" disabled="disabled">6</a>
+			            <p>Paso 6</p>
 			        </div>
 			    </div>
 			</div>
@@ -75,6 +79,7 @@ h1[number]{
 			        	</div>
 			    </div>
 
+				
 
 					<div class="row setup-content" id="step-2">
 							<div class="col-xs-12">
@@ -166,10 +171,21 @@ h1[number]{
 			        </div>
 			    </div>
 
-			    <div class="row setup-content" id="step-5">
+					<div class="row setup-content" id="step-5">
+							<div class="col-xs-12">
+								<div class="form-group">
+													 <h3> Paso 5 </h3>
+													 <?php include('/partials/viewStudent/studentTableCourse.php'); ?>
+											 </div>
+											 <button class="btn btn-success nextBtn btn-lg pull-right  btn-un" id="next3"  type="button" >Siguiente</button>
+
+							</div>
+					</div>
+
+			    <div class="row setup-content" id="step-6">
 			        <div class="col-xs-12">
 			            <div class="col-md-12">
-			                <h3> Paso 5 </h3>
+			                <h3> Paso 6 </h3>
 											<div id="ans">
 												<h1 id="answerh1">Resultados del Test Chaea</h1>
 													<h3>Activo</h3><h1 id="result1"></h1>
@@ -177,7 +193,7 @@ h1[number]{
 													<h3>Teorico</h3><h1 id="result3"></h1>
 													<h3>Pragmático</h3><h1 id="result4"></h1>
 											</div>
-			                <button class="btn btn-success btn-lg pull-right" id="next3" type="submit">¡Enviar!</button>
+			                <button class="btn btn-success btn-lg pull-right" id="next4" type="submit">¡Enviar!</button>
 			            </div>
 			        </div>
 			    </div>
@@ -187,10 +203,11 @@ h1[number]{
 	</div>
 	<script src="js/jsn/controlForm.js" type="text/javascript"></script><!--Este es JSN-->
 	<script src="js/jsn/tableJunior.js" charset="utf-8"></script><!--este es JSN-->
-	<!-- Formularios -->
-	<!-- <script src="js/jsn/asynchronous.js" type="text/javascript"></script> -->
-	<!--Este es JSN-->
-	<?php include_once("analyticstracking.php"); ?>
+
+	<?php
+		include('/partials/modal/modalInfo.php');
+		include("analyticstracking.php");
+ 	?>
 </body>
 </main>
 

@@ -71,7 +71,6 @@ div#blanco {
 							   url: 'backendPhp/send.php',
 								 data:{"attributes": attributes, "action":1},
 							   success: function(answer){
-
 									 if(answer==1){
 										 $('#answer').html("<div class='alert alert-dismissible alert-danger' id = 'oculto'><button type='button' class='close' onclick='cer()'  data-dismiss='alert'>&times;</button><strong>Ops! a ocurrido un error,</strong> el usuario no existe<a href='registration.php' class='alert-link'> puede registrarse. </a> </div>");
 									 }else if (answer==2) {
@@ -86,6 +85,7 @@ div#blanco {
 										 location.href = '/chaea/partials/viewTeacher/teacherIndex.php';
 									 }else if (answer==6) {
 										 $('#answer').html("<div class='alert alert-dismissible alert-success' id = 'oculto'><button type='button' class='close' onclick='cer()'  data-dismiss='alert'>&times;</button><strong>Se registró correctamente como Estudiante</strong></a> </div>");
+										 location.href = '/chaea/partials/viewStudent/studentIndex.php';
 									 }else{
 										 $('#answer').html("<div class='alert alert-dismissible alert-info' id = 'oculto'><button type='button' class='close' onclick='cer()'  data-dismiss='alert'>&times;</button><strong>Ops! a ocurrido un error,</strong> no ingreso los datos<a href='registration.php' class='alert-link'> puede registrarse. </a> </div>");
 									 }

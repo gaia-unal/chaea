@@ -3,6 +3,38 @@
     background-color: #222222;
 
 }
+/*Mensajes de Ayuda*/
+label {
+  display: inline-block;
+  width: 15em;
+}
+
+.stepwizard-step p {
+    margin-top: 10px !important;
+    transform: translatey(-12%) translatex(1%) !important;
+}
+
+
+.ui-tooltip {
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 7px black;
+}
+
+.ui-tooltip.danger {
+  background-color: #356a1d;
+  color: #FFFFFF;
+  border: 1px solid #356a1d;
+  padding: 15px;
+  border-right: 5px solid black;
+  /*border-top: 5px solid green;*/
+
+}
+
+/*
+*Fin de mensajes de ayuda
+*
+*/
 nav.sidebar .navbar-nav .open .dropdown-menu {
 	position: static;
 	float: none;
@@ -88,6 +120,23 @@ color: rgb(255, 255, 255)
 		ord-wrap: break-word;
 		margin-top: -24%; /*-241px;*/
 }
+#table-boxi {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 126%;
+    margin: 0 auto;
+    border: 1px solid black;
+    background: #222222;
+    min-height: initial;
+    padding: 46px;
+    z-index: 1;
+    opacity: 0.9;
+    display: block;
+    box-shadow: 0 0 10px rgba(12, 221, 33, 1);
+		ord-wrap: break-word;
+		margin-top: -3%; /*-241px;*/
+}
 
 
 #contenedor{
@@ -100,7 +149,8 @@ overflow: hidden;
 /*Le da el color y tamaño a las letras de la tabla*/
 #datatable, #datatableStudent,#dataTableCourseTeacher,#dataTableCourse, #dataTableActivity,
 #dataTableCourseActiveStudent, #dataTableActiCou, #dataTableStudentTraking, #dataTableStudentTrakingAc,
-#dataTableStrategy{
+#dataTableStrategy, #dataTableCouStu, #dataTableCouStuIns, #dataTableCouStuDelete,
+#dataTableActiCouStudent{
     background-color: rgb(78, 78, 78) !important;
     font-size: 18px !important;
     line-height: 1.42857143 !important;
@@ -112,7 +162,7 @@ blockquote {
     margin: 0 0 21px;
     font-size: 18.75px;
     border-left: 5px solid #e6e6e6;
-    color: whitesmoke !important !important;
+    color: whitesmoke !important;
 }
 
 

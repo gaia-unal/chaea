@@ -3,9 +3,12 @@ if(!isset($_SESSION)) {
      session_start();
 }
 do{
-	// echo key($_SESSION).": ";
-	// echo "-->".current($_SESSION)."----";
-} while(next($_SESSION))
+	echo key($_SESSION).": ";
+	echo "-->".current($_SESSION)."----";
+} while(next($_SESSION));
+
+
+var_dump($_SESSION['style']);
 
  ?>
 
@@ -16,7 +19,45 @@ $objDatos->connect();
 
 $person= array(0,"jsnavarroc@unal.edu.co", 2, 3, 4, 5,"jsnavarroc","1053813532");
 // validationRol($person, "teacher");
-activityStudent('1053845616', '33');
+// activityStudent('1053845616', '33');
+$courses = courseInscriptionStudent();
+echo "<br> Valor: ".count($courses);
+
+// studentStyle();
+function studentStyle(){
+  $V2 = array(); $a=0;
+    global $objDatos;
+    $sql = "SELECT activo as ac, reflexivo as re, teorico as te, pragmatico as pa
+            FROM student_style_point
+            WHERE number_student = ".$_SESSION['document'].";";
+    $crud = $objDatos->executeQuery($sql);
+    $V = array("ac"=>$crud[0]['ac'],"re"=>$crud[0]['re'],"te"=>$crud[0]['te'],"pa"=>$crud[0]['pa']);
+    arsort($V);
+    foreach ($V as $key => $val) {
+      if($a<=$val){
+            $a=$val;
+            $V2[$key]=$val;
+            echo $key ." = " . $val . "<br>";
+          }
+      }
+      $_SESSION['style']=$V2;
+}
+function courseInscriptionStudent(){
+    global $objDatos;
+    $consulta = " SELECT co.id_course as idco,
+                  co.description_course as dc,
+                  co.name_course as namco,
+                  co_st.number_document
+                  From course  as co
+                  Left Outer Join course_student as co_st
+                  ON  co.id_course = co_st.id_course
+                  where co.state_system_course = 'Activo'
+                  AND co_st.number_document = '".$_SESSION["document"]."'
+                  order by co.id_course;";
+    $course = $objDatos->executeQuery($consulta);
+              $objDatos->closeConnect();
+              return $course;
+  }
 
 
 function validationRol ($person, $rol){
@@ -56,7 +97,6 @@ function validationRol ($person, $rol){
   return $crud;
 
 }
-
 
 
 //saca todas las actividades que tiene ya el estudiante inscritas

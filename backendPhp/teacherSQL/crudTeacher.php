@@ -65,6 +65,8 @@ switch ($action) {
                 WHERE number_document= '".$_SESSION['document']."';";
                   $objDatos->executeQuery($sql);
                     $_SESSION['document']= $person[7];
+                    $_SESSION['name']= $person[0];
+                    $_SESSION['nickname'] = $person[6];
                 $objDatos->closeConnect();
                 echo "Se actualizo correctamente";
 

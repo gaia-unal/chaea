@@ -13,7 +13,8 @@ if(!isset($_SESSION)) {
 		<title>Universidad Nacional de Colombia: GAIA - Grupo de Ambientes Inteligentes Adaptativos</title>
 		<meta name="revisit-after" content="1 hour">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=2.5, user-scalable=yes">
-    <link rel="stylesheet" type="text/css" href="/chaea/css/materialbutton.css" media="all">
+    <!-- Lo del boton -->
+    <!-- <link rel="stylesheet" type="text/css" href="/chaea/css/materialbutton.css" media="all"> -->
 
 		<link rel="stylesheet" type="text/css" href="/chaea/css/style/login.css" media="all">
 		<link rel="stylesheet" type="text/css" href="/chaea/css/bootstrap.min.css" media="all">

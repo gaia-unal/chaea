@@ -38,7 +38,7 @@ include('partials/nav.php');
 				</p>
 </main>
 <?php
-  include_once("analyticstracking.php");
+  include("analyticstracking.php");
 include('backendPhp/sessionJS.php');
 	include('partials/pie.html');
 ?>

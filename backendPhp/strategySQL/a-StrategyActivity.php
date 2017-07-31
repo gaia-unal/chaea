@@ -80,7 +80,7 @@ switch ($action) {
 
 
        }else{
-               echo "2";//el curso ya existe no se puede crear
+               echo "2";
             }
 
   }

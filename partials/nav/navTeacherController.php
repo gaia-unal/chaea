@@ -1,5 +1,6 @@
 <link href="/chaea/css/style/varControl.css" rel="stylesheet" />
 
+
 <div class="bodysa">
           <div class="col-md-2">
                     <nav class="navbar navbar-inverse sidebar sidebarti" role="navigation">

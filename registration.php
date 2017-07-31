@@ -4,11 +4,11 @@ if(!$_SESSION){
 session_destroy();
 }else{
 	if (("administrator"==$_SESSION["rol"])) {
-	    header ("Location: /./chaea/adminIndex.php");
+	    header ("Location: /chaea/adminIndex.php");
 	}else if("teacher"==$_SESSION["rol"]){
-			// header ("Location: /./chaea/adminIndex.php");
+			header ("Location: /chaea/partials/viewTeacher/teacherIndex.php");
 	}else{
-		// header ("Location: /./chaea/adminIndex.php");s
+		  header ("Location: /chaea/partials/viewStudent/studentIndex.php");
 	}
 }
 

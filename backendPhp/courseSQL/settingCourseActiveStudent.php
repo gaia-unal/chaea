@@ -43,7 +43,7 @@ switch ($action) {
                   co.name_course  as namecor
             	    FROM student as st
             	    inner join course_student as coe
-            	    on st.number_document = coe.number_document and st.state_system = 'Activo'
+            	    on st.number_document = coe.number_document
             	    inner join course as co
             	    on coe.id_course = co.id_course and '".$idCourse."' = co.id_course ;";
     $course = $objDatos->executeQuery($consulta);
@@ -68,6 +68,8 @@ switch ($action) {
 
   function studentActiveCourse($idStudent, $idCourse){
     global $objDatos;
+    studentActiveSystem($idStudent);
+
     $sql = "UPDATE course_student SET state_course_student ='Activo'
             WHERE number_document ='".$idStudent."'
             AND id_course = '".$idCourse."';";

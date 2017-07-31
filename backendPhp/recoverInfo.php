@@ -308,7 +308,7 @@ function existStrategy($strategy){
           global $objDatos;
           $sql = "SELECT str.id_strategy as id
                   FROM strategy as str
-                  WHERE replace(LOWER(str.description),' ','')=  replace(LOWER( '".$strategy[0]."'),' ','')  
+                  WHERE replace(LOWER(str.description),' ','')=  replace(LOWER( '".$strategy[0]."'),' ','')
                   AND str.id_type_learning = '".$strategy[1]."' ;";
             $crud = $objDatos->executeQuery($sql);
 
@@ -323,7 +323,63 @@ function existStrategy($strategy){
     }
 }
 
+//funcion que activa estudiante si esta Inactivo
+
+function  studentActiveSystem($idStudent){
+    try {
+          global $objDatos;
+          $sql = "UPDATE student SET state_system ='Activo'
+                  WHERE number_document ='".$idStudent."'
+                  AND state_system = 'Inactivo';";
+            $crud = $objDatos->executeQuery($sql);
+            //ENVIAR EMAIL!!
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
+
+//sacar estilos de aprendizaje
+function studentStyle(){
+    $V2 = array(); $a=0;
+    global $objDatos;
+    $sql = "SELECT activo as ac, reflexivo as re, teorico as te, pragmatico as pa
+            FROM student_style_point
+            WHERE number_student = '".$_SESSION["document"]."';";
+    $crud = $objDatos->executeQuery($sql);
+    $V = array("ac"=>$crud[0]['ac'],"re"=>$crud[0]['re'],"te"=>$crud[0]['te'],"pa"=>$crud[0]['pa']);
+    arsort($V);
+    foreach ($V as $key => $val) {
+      if($a<=$val){
+            $a=$val;
+            $V2[$key]=$val;
+          }
+      }
 
 
+      $_SESSION['style']=$V2;
+}
 
+function extencion($ex){
+  $extencion = array("doc", "pdf", "docx","jpg", "gif", "png","xlsx");
+  for ($i=0; $i < count($extencion); $i++) {
+    if($ex==$extencion[$i]){
+      return 1;
+    }
+  }
+}
+
+
+function  urlActivity(){
+    try {
+          $url='chaea'.$_SESSION["urlFiles"];
+          global $objDatos;
+          $sql = "UPDATE student_activity SET activity_path ='".$url."'
+                  WHERE id_activity ='".$_SESSION["id_activity"]."'
+                  AND number_document  = '".$_SESSION["document"]."';";
+            $crud = $objDatos->executeQuery($sql);
+
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
 ?>

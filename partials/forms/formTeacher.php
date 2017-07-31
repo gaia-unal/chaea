@@ -1,3 +1,10 @@
+<?php
+  include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/send.php');
+	$nameUniversity="";
+	$nameUniversity=university();
+	$program="";
+	$program=program();
+?>
 <main class="detalle">
 			<form class="form-horizontal" id='formulario' onsubmit="return false">
 			 <fieldset>

@@ -10,6 +10,8 @@ function session(){
       $('#perfil').replaceWith('  <li><a class="btn  btn-un navbar-right  dropdown-toggle " href="/chaea/adminIndex.php"  role="button">'+nickname+'</a></li>');
   }else if (role=='teacher') {
     $('#perfil').replaceWith('  <li><a class="btn  btn-un navbar-right  dropdown-toggle " href="/chaea/partials/viewTeacher/teacherIndex.php"  role="button">'+nickname+'</a></li>');
+  }else if (role=='student') {
+    $('#perfil').replaceWith('  <li><a class="btn  btn-un navbar-right  dropdown-toggle " href="/chaea/partials/viewStudent/studentIndex.php"  role="button">'+nickname+'</a></li>');
   }
 }
 }

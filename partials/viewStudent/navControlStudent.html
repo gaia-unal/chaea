@@ -1,0 +1,37 @@
+<!-- Configura el efecto del panel de edición del usuario y funcionalidades del boton -->
+<link rel="stylesheet" href="/chaea/css/perfilusuario.css"/>
+
+<!-- Fin  -->
+<link rel="stylesheet" href="/chaea/css/style/materialbutton.css"/>
+<link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery.ui.tooltip.min.css" rel="stylesheet"/>
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-xs-4 leftButton">
+        <div class="material-button-anim">
+          <ul class="list-inline" id="options">
+            <li class="option">
+              <button title="Notas" data-severity="danger" class="tips material-button option1" type="button" >
+                <span class="fa fa-phone" aria-hidden="true"></span>
+              </button>
+            </li>
+            <!-- La opcion se carga desde el Javascript PerfilUsuario-->
+            <li class="option" id='opt2'></li>
+            <li class="option" id='opt3'></li>
+            <li class="option" id='opt4'></li>
+
+
+          </ul>
+          <button  title="Opciones" data-severity="danger" class="tips material-button material-button-toggle"  type="button">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+  </div>
+  <h4 class="leftTextButon">Opciones</h4>
+</div>
+<script src="/chaea/js/jsn/studentSettings/s-inscriptionCourse.js" charset="utf-8"></script>
+<script src="/chaea/js/perfilusuario.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>

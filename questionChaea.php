@@ -14,7 +14,6 @@
 	color: #000000;
 }
 
-
 h1[number]{
 	color: #ffffff !important;
 	font-size: 43px !important;
@@ -39,32 +38,36 @@ h1[number]{
 			    <div class="stepwizard-row setup-panel">
 
 			        <div class="stepwizard-step">
-			            <a href="#step-1" type="button"  class="btn btn-primary btn-circle" >1</a>
+			            <a href="#step-1" type="button"  class="btn btn-primary btn-circle  cerr1" >1</a>
 			            <p>Paso 1</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-2" type="button" class="btn btn-default btn-circle cerr" >2</a>
+			            <a href="#step-2" type="button" class="btn btn-default btn-circle cerr2" >2</a>
 			            <p>Paso 2</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+			            <a href="#step-3" type="button" class="btn btn-default btn-circle cerr3" disabled="disabled">3</a>
 			            <p>Paso 3</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+			            <a href="#step-4" type="button" class="btn btn-default btn-circle cerr4" disabled="disabled">4</a>
 			            <p>Paso 4</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+			            <a href="#step-5" type="button" class="btn btn-default btn-circle cerr5" disabled="disabled">5</a>
 			            <p>Paso 5</p>
 			        </div>
 			        <div class="stepwizard-step">
-			            <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">6</a>
+			            <a href="#step-6" type="button" class="btn btn-default btn-circle cerr6" disabled="disabled">6</a>
 			            <p>Paso 6</p>
 			        </div>
 							<div class="stepwizard-step">
-			            <a href="#step-7" type="button" class="btn btn-default btn-circle" disabled="disabled">7</a>
+			            <a href="#step-7" type="button" class="btn btn-default btn-circle cerr7" disabled="disabled">7</a>
 			            <p>Paso 7</p>
+			        </div>
+							<div class="stepwizard-step">
+			            <a href="#step-8" type="button" class="btn btn-default btn-circle" disabled="disabled">8</a>
+			            <p>Paso 8</p>
 			        </div>
 			    </div>
 			</div>
@@ -74,14 +77,17 @@ h1[number]{
 			        <div class="col-xs-12">
 			            <div class="col-md-12">
 			                <h3> Paso 1</h3>
+
 			                <div class="form-group">
 												<h2>Test de estilos de aprendizaje chaea</h2>
 												<p class="text-muted">El proyecto titulado "Fortalecimiento de Competencia Digital Basado en Estilos de Aprendizaje: Estrategia Evaluativa para Estudiantes de Primer Semestre", es un estudio que consiste en un proceso de diseño, elaboración y evaluación de estrategias para el seguimiento valorativo de la competencia digital en contextos universitarios, con el fin de generar nuevas propuestas metodologías para el desempeño discente. Los datos aquí suministrados serán usados de forma anónima y solo para la caracterización de la población que participa en el estudio. Sus datos solo serán vistos por los investigadores vinculados al proyecto.</p>
 											</div>
-										  <button class="btn btn-success nextBtn  btn-lg pull-right btn-un" type="button" >siguiente</button>
+										  <button class="btn btn-success nextBtn  btn-lg pull-right btn-un" id="nexti" type="button" >siguiente</button>
 									</div>
 			        	</div>
 			    </div>
+
+
 					<div class="row setup-content" id="step-2">
 							<div class="col-xs-12">
 									<div class="col-md-12">
@@ -232,8 +238,19 @@ h1[number]{
 			    </div>
 			    <div class="row setup-content" id="step-7">
 			        <div class="col-xs-12">
+								<div class="form-group">
+													 <h3>Paso7</h3>
+													 <!-- voy aquí!! -->
+													 <?php include('/partials/viewStudent/studentTableCourse.php'); ?>
+											 </div>
+											 <button class="btn btn-success nextBtn btn-lg pull-right  btn-un" id="next5"  type="button" >Siguiente</button>
+
+			        </div>
+			    </div>
+			    <div class="row setup-content" id="step-8">
+			        <div class="col-xs-12">
 			            <div class="col-md-12">
-			                <h3> Paso 7</h3>
+			                <h3> Paso 8</h3>
 											<div id="ans">
 												<h1 id="answerh1">Resultados del Test Chaea</h1>
 													<h3>Activo</h3><h1 id="result1"></h1>
@@ -241,20 +258,23 @@ h1[number]{
 													<h3>Teorico</h3><h1 id="result3"></h1>
 													<h3>Pragmático</h3><h1 id="result4"></h1>
 											</div>
-			                <button class="btn btn-success btn-lg pull-right" id="next5" type="submit">¡Enviar!</button>
+			                <button class="btn btn-success btn-lg pull-right" id="next6" type="submit">¡Enviar!</button>
 			            </div>
 			        </div>
 			    </div>
 
 			</form>
+
 		</div>
 	</div>
+
 	<script src="js/jsn/controlForm.js" type="text/javascript"></script><!--Este es JSN-->
 	<script src="js/jsn/tabla.js" charset="utf-8"></script><!--este es JSN-->
-	<!-- Formularios -->
-	<!-- <script src="js/jsn/asynchronous.js" type="text/javascript"></script> -->
-	<!--Este es JSN-->
-	<?php include_once("analyticstracking.php"); ?>
+
+	<?php
+		include('/partials/modal/modalInfo.php');
+		include("analyticstracking.php");
+ 	?>
 </body>
 </main>
 

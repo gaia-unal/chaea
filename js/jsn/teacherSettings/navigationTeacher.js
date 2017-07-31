@@ -17,7 +17,7 @@ activityTeacher.addEventListener('click', function(){
 
 var studentsTeacher = document.getElementById('studentsTeacher')
 studentsTeacher.addEventListener('click', function(){
-   location.href = 'studentsTeacher.php?';
+   location.href = 'studentsTeacher.php';
 })
 
 }

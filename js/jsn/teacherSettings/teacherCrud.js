@@ -46,16 +46,16 @@ function ajaxPersonTeacher() {
 function adminForm(techer){
 
 //esta función me permite crear un vector que son los atributos de la persona y luego llama la función ajaxpost
-	var name = document.getElementById('name').value = techer[0].name /*0*/
-  var email = document.getElementById('email').value = techer[0].email /*1*/
-  var birthdate = document.getElementById('birthdate').value = techer[0].birthdate/*3*/
-  var gender = document.getElementById('gender').value = techer[0].gender /*4*/
-  var native_city = document.getElementById('native_city').value = techer[0].name_birthplace /*5*/
-  var number_phone = document.getElementById('number_phone').value = techer[0].number_phone /*6*/
-  var nickname = document.getElementById('nickname').value = techer[0].nickname /*7*/
-  var number_document = document.getElementById('number_document').value = techer[0].number_document/*8*/
-  var document_type = document.getElementById('document_type').value = techer[0].id_type_document/*9*/
-  var university = document.getElementById('university').value = techer[0].name_university/*10*/
+	 document.getElementById('name').value = techer[0].name /*0*/
+   document.getElementById('email').value = techer[0].email /*1*/
+   document.getElementById('birthdate').value = techer[0].birthdate/*3*/
+   document.getElementById('gender').value = techer[0].gender /*4*/
+   document.getElementById('native_city').value = techer[0].name_birthplace /*5*/
+   document.getElementById('number_phone').value = techer[0].number_phone /*6*/
+   document.getElementById('nickname').value = techer[0].nickname /*7*/
+   document.getElementById('number_document').value = techer[0].number_document/*8*/
+   document.getElementById('document_type').value = techer[0].id_type_document/*9*/
+   document.getElementById('university').value = techer[0].name_university/*10*/
 
  }
 

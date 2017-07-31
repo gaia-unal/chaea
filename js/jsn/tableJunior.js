@@ -5,28 +5,48 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
 }catch(e){}
   // esta funcion es el ajax que me permite tener mas control al momento de enviar
   //los datos al la BD este es compatible con cualquier navegador
-  function ajaxas(student_style_point,reply, action) {
+  function ajaxas(coursesIs,student_style_point,reply, action) {
 
     var replys = JSON.stringify(reply);
     var student_style_point = JSON.stringify(student_style_point);
-
+    var coursesIs = JSON.stringify(coursesIs);
      $.ajax({
       type: 'POST',
       url: 'backendPhp/send.php',
-      data:{"replys": replys, "action":action, "student_style_point":student_style_point},
+      data:{"replys": replys, "action":action, "student_style_point":student_style_point,"coursesIs":coursesIs},
           success: function(answer){
             //en caso de existir una falla al registrar estudiante descomentar
             //la linea de abajo y hacer el registro de nuvo para ver que error ocurre
-             alert(answer);
             if(Number(answer)==2){
-              alert('Se registro correctamente')
+              mensajeSend('Se registro correctamente')
+
+            }else{
+              mensajeWarning('Exisite un error porfavor comunicar al administrador error --> '+answer)
             }
-            return false;// se esta registrando.
 
           },
 
       });
     }
+
+    function mensajeWarning(info){
+    		$('#warningInfo').html(`<h4>`+info+`</h4>`);
+    		var modalWarning = document.getElementById('id09');
+    		modalWarning.style.display='block';
+    		$("#acep").click(function(){
+    			 $("#id09").stop(true, true);
+    		 });
+    	}
+
+      function mensajeSend(info){
+        $('#InfoUser').html(`<h4>`+info+`</h4>`);
+        var modalInfo = document.getElementById('id04');
+        modalInfo.style.display='block';
+         $("#id04").fadeOut(9000);
+         $("#acep").click(function(){
+            $("#id04").stop(true, true);
+          });
+      }
 
   //Funciones de Control de confirmar politicas.
     function Name(){
@@ -227,7 +247,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
 
   //Esta funcion cuenta cuantas respuestas de estilo de aprendizaje
   //respondio el usuario y las almasena en BD
-  function resultTable(){
+  function resultTable(coursesIs){
       activo = [3, 6, 9, 17, 26, 27, 29, 30, 39, 41];//20
       reflexivo = [5, 7, 11, 13, 20, 22, 24, 28, 38, 42, 44];//20
       teorico = [2, 4, 8, 12, 14, 23, 31, 32, 35, 37, 43];//20
@@ -266,7 +286,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
         //esto se ejecuta siempre y cuando la cookie exista en php...
         var student_style_point = new Array(a, t, r, p);
           if(person.document>0){
-            ajaxas(student_style_point, answers,4);
+            ajaxas(coursesIs,student_style_point, answers,4)
           }
       } catch (e) {
         alert("Erro en >> "+e)
@@ -366,6 +386,13 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+  function desactivar(){
+      $('.cerr1').attr('disabled','disabled');
+      $('.cerr3').attr('disabled','disabled');
+      $('.cerr4').attr('disabled','disabled');
+      $('.cerr5').attr('disabled','disabled');
+  }
+
   function main(){
     var loading = load();
             lod();
@@ -379,27 +406,34 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
                         });
                   var nextButton0 = document.getElementById('next0');
                   nextButton0.addEventListener('click', function (){
-                    $('.cerr').attr('disabled','disabled');
+                    $('.cerr2').attr('disabled','disabled');
                   });
-                  var nextButton3 = document.getElementById('next3');
-                  nextButton3.addEventListener('click', function (){
-                    eliminarCookie('student',' ',0);
-                    registationThen();
+
+                  $( '#next4' ).click(function() {
+                    var coursesIs = inscriptionCourse();
+                    if(conter==0){
+                      eliminarCookie('student',' ',0);
+                      registationThen();
+                    }
                   });
 
                 }
           try {
 
-
-            var nextButton1 = document.getElementById('next1');
-            nextButton1.addEventListener('click', function (){controlQuestion(0,20,1);});
-            var nextButton2 = document.getElementById('next2');
-            nextButton2.addEventListener('click', function (){
+            $( '#next1' ).click(function() {
+              controlQuestion(0,20,1);
+            });
+            $( '#next2' ).click(function() {
               conter = controlQuestion(20,40,2);
+            });
+            $( '#next3' ).click(function() {
+              var coursesIs = inscriptionCourse();
               if(conter==0){
-                resultTable();//tabla de resultados
+                   desactivar();
+                   resultTable(coursesIs);//tabla de resultados
               }
             });
+
           } catch (e) {
             console.log('e2');
           }

@@ -57,13 +57,11 @@
 
 
 
-	function main(){
+function main(){
 		$("#next3").click(function(){
 		loading();
 		});
-		// $("#car").click(function(){
-		// loading();
-		// });
+
 		$("#car2").click(function(){
 		loadingin();
 		});
@@ -78,8 +76,4 @@
 		});
 
 		//creat actividad
-
-
-
-
 	}

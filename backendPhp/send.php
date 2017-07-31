@@ -8,6 +8,7 @@
    $attributes = json_decode(array_key_exists("attributes", $_POST) ? $_POST["attributes"] : null);
    $replys = json_decode(array_key_exists("replys", $_POST) ? $_POST["replys"] : null);
    $student_style_point =json_decode(array_key_exists("student_style_point", $_POST) ? $_POST["student_style_point"] : null);
+   $coursesIs = json_decode(array_key_exists("coursesIs", $_POST) ? $_POST["coursesIs"] : null);
    $confirm=0;
 
     //llamdo de funcion para validar el usuario
@@ -54,8 +55,9 @@
         //con esta pregunta miro si el usuario biene de la parte de un registro
         if(isset($_COOKIE["attributes"])){
           $attributes = unserialize(base64_decode($_COOKIE["attributes"]));
-          echo  register($attributes);//imprime 1
-          echo  registerReply($replys, $attributes[12],$student_style_point);//imprime 2
+            register($attributes);//imprime 1
+            registerReply($replys, $attributes[12],$student_style_point);//imprime 2
+          echo  registerCourses($coursesIs, $attributes[12]);
           setcookie('attributes', base64_encode(serialize($attributes)),time()-(60*60),"questionChaea.php");// se cierra el cookie cuando se registra todo.
         } else {
           echo "La cookie no existe";
@@ -66,8 +68,9 @@
         //con esta pregunta miro si el usuario biene de la parte de un registro
         if(isset($_COOKIE["attributes"])){
           $attributes = unserialize(base64_decode($_COOKIE["attributes"]));
-          echo  register($attributes);//imprime 1
-          echo  registerReplyJunior($replys, $attributes[12],$student_style_point);//imprime 2
+            register($attributes);//imprime 1
+            registerReplyJunior($replys, $attributes[12],$student_style_point);//imprime 2
+          echo  registerCourses($coursesIs, $attributes[12]);
           setcookie('attributes', base64_encode(serialize($attributes)),time()-(60*60),"questionChaea.php");// se cierra el cookie cuando se registra todo.
         } else {
           echo "La cookie no existe";
@@ -78,6 +81,23 @@
 
 
 <?php
+
+    //Funcion que permite almacenar los cursos a los que se inscribio al usuario.
+    function registerCourses($coursesIs, $document){
+      try {
+        global $objDatos;
+
+        for ($i=0; $i <sizeof($coursesIs) ; $i++) {
+          $sql ="INSERT INTO course_student (id_course, number_document, state_course_student)
+          values ('". $coursesIs[$i]->id_course."','".$document."','Inactivo')";
+          $objDatos->executeQuery($sql);
+        }
+        return 2;
+
+      } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+      }
+    }
 
   //Funcion que permite almacenar las respues que del test Chaea
   function registerReply($replys, $document, $student_style_point){
@@ -93,7 +113,7 @@
       $sql ="INSERT INTO student_style_point (activo, reflexivo, teorico, pragmatico, number_student)
       values ('$student_style_point[0]','$student_style_point[1]','$student_style_point[2]','$student_style_point[3]','$document')";
       $objDatos->executeQuery($sql);
-      return 2;
+
 
     } catch (Exception $e) {
       echo 'Existe un fallo en la conexión';
@@ -113,7 +133,7 @@
       $sql ="INSERT INTO student_style_point (activo, reflexivo, teorico, pragmatico, number_student)
       values ('$student_style_point[0]','$student_style_point[1]','$student_style_point[2]','$student_style_point[3]','$document')";
       $objDatos->executeQuery($sql);
-      return 2;
+
 
     } catch (Exception $e) {
       echo 'Existe un fallo en la conexión';
@@ -195,15 +215,22 @@
               $_SESSION['nickname'] = $nickname;
               $_SESSION['document'] = $crud[0]['t1'];
               $_SESSION['rol'] = $rolTable;
+              if("student"==$_SESSION['rol']) {
+                studentStyle();
+              }
+
                 if("administrator"==$_SESSION['rol'] ){
                   return 4;//todo esta OK para admin
                 }else{
                   $_SESSION['name_institution']= nameInstitution($_SESSION['rol']);
                   $objDatos->closeConnect();
                 }
+
                 if ("teacher"==$_SESSION['rol']) {
                   return 5;//todo esta OK para teacher
-                } else {
+                }
+                if("student"==$_SESSION['rol']) {
+
                   return 6;//todo esta OK para student
                 }
 
@@ -215,6 +242,8 @@
       echo 'Existe un fallo en la conexión';
     }
   }
+
+
   // fin de validacion
   //=============================================================================
 
@@ -263,7 +292,6 @@
                 values ('$attributes[12]','$attributes[0]','$attributes[1]',MD5('$attributes[3]'),'$attributes[4]','$attributes[9]',
                 '$attributes[11]','Inactivo','$idBirthplace', '$idUniversity','$attributes[13]','$attributes[8]','$idProgram', '$attributes[5]')";
                 $objDatos->executeQuery($sql);
-                echo "1";
               }
 
       } catch (Exception $e) {
@@ -333,7 +361,6 @@
       echo 'Existe un fallo en la conexión';
     }
   }
-
   //fin de pregustas
 
 

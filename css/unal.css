@@ -715,12 +715,23 @@ main.detalle .rightside p.bodytext {
   text-align: left
 }
 
+.dropdown-menu{
+  background-color: #222222 !important;
+}
+
+.dropdown-menu>li>a:hover{
+  background-color: #50992e !important;
+}
+.dropdown-menu>li>a {
+    color: #f0f0f0!important;
+}
+
 main.detalle ol li, main.detalle ul li {
-  border-bottom: 1px dotted #969696;
-  font-size: 1.3em;
+  /*border-bottom: 1px dotted #969696;*/
+  /*font-size: 1.3em;
   line-height: 1.5em;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 10px;*/
+  /*padding-top: 10px;*/
   text-align: left
 }
 

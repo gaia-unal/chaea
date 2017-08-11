@@ -138,7 +138,7 @@ h1[number]{
 
                   </tbody>
                 </table>
-                <button class="btn btn-success nextBtn btn-lg pull-right  btn-un" type="button" id="next2" >Siguiente</button>
+                <button class="btn btn-success nextBtn btn-lg pull-right  btn-un" type="button" id="nexti2" >Siguiente</button>
             </div>
         </div>
     </div>

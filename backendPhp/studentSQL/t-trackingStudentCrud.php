@@ -91,7 +91,8 @@ switch ($action) {
                   and '".$student."'= st_ac.number_document
                   inner join teacher_activity as tea_ac
                   on tea_ac.id_activity = ac.id_activity
-                  group by ac.name_activity, st_ac.activity_note, st_ac.activity_path, ac.id_activity, tea_ac.weight";
+                  group by ac.name_activity, st_ac.activity_note, st_ac.activity_path, ac.id_activity, tea_ac.weight
+                  order by ac_id";
     $tracking = $objDatos->executeQuery($consulta);
               $objDatos->closeConnect();
 

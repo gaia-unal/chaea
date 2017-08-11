@@ -3,10 +3,17 @@
 						 <fieldset>
 				   				<div id="topTitle"><legend><div id="name_ed_activity"></div></legend></div>
 									<input type="hidden" id="id_edit_activ" value="">
-						    		<div class="form-group">
+
+										<div class="form-group">
+											<label for="thematic_edit_activity" class=" control-label">Tematica:</label>
+												<div class="has-success">
+													<input id="thematic_edit_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Programación"></input><br>
+											 </div>
+										</div>
+										<div class="form-group">
 											<label for="name_edit_activity" class=" control-label">Nombre:</label>
 												<div class="has-success">
-													<input id="name_edit_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Analitica Web"></input><br>
+													<input id="name_edit_activity" type="text" disabled="disabled" class="form-control"></input><br>
 											 </div>
 										</div>
 
@@ -21,6 +28,11 @@
 												</select>
 											</div>
 										</div><br>
+
+
+										<!-- se enlistan las estrategias sustituyendo la etiqueda di -->
+										<div id="strategisti_edit"></div>
+
 
 										<div class="range-slider">
 											<label for="description_activity" class=" control-label">Porcentaje de la actividad:</label>

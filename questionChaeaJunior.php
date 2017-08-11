@@ -79,7 +79,7 @@ h1[number]{
 			        	</div>
 			    </div>
 
-				
+
 
 					<div class="row setup-content" id="step-2">
 							<div class="col-xs-12">

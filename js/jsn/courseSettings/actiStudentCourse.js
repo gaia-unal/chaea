@@ -17,10 +17,6 @@ function lod(){
 function getDataTableCoruse(){
   $(".radij").click(function(){
 
-        //Obtenemos todos los
-        //valores contenidos en los
-        //<td> de la fila
-        // seleccionada
         $(this).parents("tr").find("#idCourse").each(function(){
         idCourseJsn=$(this).html()+"\n";
         createCookie('idCourseJsn', idCourseJsn, 1);
@@ -31,6 +27,7 @@ function getDataTableCoruse(){
         $('#nameEstudentCourse').html("Activa o desactiva los estudiantes al curso de: <br><div>"+nameCourse+"</div>");
         $('#nameActiCou').html("Crea, edita, elimina, activa o desactiva las actividades para el cuso: <br><div>"+nameCourse+"</div>");
         $('#nameActiCouNote').html("Selecciona un estudiante del curso de:  <br><div>"+nameCourse+"</div>");
+        $('#nameCouNote').html("Notas de la actividades del curos de:  <br><div>"+nameCourse+"</div>");
 
 
   });

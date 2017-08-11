@@ -86,6 +86,7 @@ $coursesLet = count($courses);
                        			                     ?>
                        			                  </tbody>
                        			                </table>
+
                                 </div>
                                 <div id="erroCourse"></div>
                  							</div>
@@ -103,6 +104,8 @@ $coursesLet = count($courses);
                         <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="next2" >atras</button>
                     </div>
                  </div>
+                   <input type="hidden" id="total_salary" name="total_salary" value="">
+
              </form>
              <?php
                include(__DIR__.'/../modal/modalInfoElement.php');

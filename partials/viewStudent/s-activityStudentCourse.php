@@ -10,7 +10,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/nav.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/analyticstracking.php');
 include($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/courseSQL/s-course.php');
 $courses="";
-$courses= courseInscriptionStudentNumber();
+$courses= courseInscriptionStudentActi();
 $coursesLet = count($courses);
 ?>
 <!-- No lo tenia  -->
@@ -88,7 +88,7 @@ $coursesLet = count($courses);
                                                             echo  "<tr required='required' class =".$color[0].">".
                                                                       "<td id='nameCourse'></td>".
                                                                       "<td></td>".
-                                                                      "<td id='idCourse'><h4><center>No se han activadado cursos...</center></h4></td>".
+                                                                      "<td id='idCourse'><h4><center>No se han activado aun los cursos...</center></h4></td>".
                                                                       "<td></td>".
                                                                    "</tr>".
                                                                    "<script>
@@ -137,7 +137,7 @@ $coursesLet = count($courses);
 <!-- Este tiene las funcionalidades CRUD de la tabla -->
 <script type="text/javascript" src="/chaea/js/cookies.js"></script>
 <script src="/chaea/js/jsn/courseSettings/s-CourseCrudIns.js" charset="utf-8"></script>
-<script src="/chaea/js/jsn/activitySettings/s-tableAct.js" charset="utf-8"></script>
+
 <script type="text/javascript" src="/chaea/js/jsn/courseSettings/courActiUpload.js"></script>
 <script  src="/chaea/js/jsn/slider.js" charset="utf-8"></script>
 <!--Este es JSN-->

@@ -4,12 +4,13 @@
 	function ajaxSettingActivity(activity,action) {
 				var activitys = activity;
 				var activity = JSON.stringify(activity);
-				$.ajax({
+			let info = $.ajax({
 					method:"POST",
 					url: "/chaea/backendPhp/activitySQL/t-activityCourse.php",
 					data: {"action":action,"activity":activity}
 
 				}).done( function( info ){
+					var response = JSON.parse(info);
 										 if(Number(info)==1){
 											  mensajeSend("Se registro correctamente la actividad: "+ activitys[0]);
 												$('#formularioActiv')[0].reset();
@@ -18,7 +19,7 @@
 												$('#weight_edit').val(0);
 												$('#weight_lo').html(0+'%');
 										 }else if (Number(info)==2) {
-										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n en este curso, debe tener otro nombre");
+										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n en este curso para el mismo estilo de aprendizaje, debe tener otro nombre");
 										 }else if(Number(info)==3){
 											 	mensajeSend("Se actuaizo correctamente el la actividad: "+ activitys[0]);
 												document.getElementById('id11').style.display='none';
@@ -26,13 +27,32 @@
 											 	mensajeSend("Se desactivo correctamente el la actividad: "+ activitys[1]);
 
 										 }else if(Number(info)==5){
-											 	mensajeSend("Se activo correctamente el la actividad: "+ activitys[1]);
+											 mensajeSend("Se activo correctamente el la actividad: "+ activitys[1]);
+										 }else if(Number(info)==6){
+											 mensajeWarning(`El valor porcentual de esta actividad "`+activitys[0]+`" debe ser igual a la actividad "`+activitys[0]+`"  ya creada previamente para otro
+												 estilo de aprendizaje.
+												 Si lo que desea es cambiar el valor porcentual de esta actividad debe modificar primero el valor
+												 porcentual de la actividad "`+activitys[0]+`" que  creó previamente.`);
 
+										 }else if(response[1]==7){
+											$('#total_salary').val(response[0]);
+											 $('#entire').html('Porcentaje acumulado de las actividades: '+response[0]+'% / 100%');
+
+										 }else if(response[1]==8){
+											  mensajeWarning('El valor porcentual de esta nueva actividad "'+activitys[0]+'" no puede superar el: '+response[0]+'%');
+
+										 }else if(response[1]==9){
+											 strategis(response[0], activitys)
+
+										 }else if(response[1]==10){
+											 if(response[0]>0){
+											 $('#id_strategis_edit').val(response[0]);
+										 	}
 										 }else {
 											 mensajeSend(info);
 										 }
-
 				});
+
 
 	}
 
@@ -53,6 +73,34 @@
 			 $("#id04").stop(true, true);
 		 });
 	}
+	function strategis(strategis, option){
+		var lista =`<div class="form-group">
+											<label for="id_strategis" class=" control-label">Estrategia:</label>
+											<div class="has-success">
+											<select class="form-control" id="id_strategis">`;
+		for (var i = 0; i < strategis.length; i++) {
+			lista = lista + `<option value="`+strategis[i].str_id+`">`+strategis[i].str_des+`</option>`;
+		}
+		lista = lista +`</select>
+											</div>
+										</div>`;
+
+		$('#strategisti').html(lista);
+
+		var lista =`<div class="form-group">
+			<label for="id_strategis_edit" class=" control-label">Estrategia:</label>
+			<div class="has-success">
+					<select class="form-control" id="id_strategis_edit">`;
+					for (var i = 0; i < strategis.length; i++) {
+						lista = lista + `<option value="`+strategis[i].str_id+`">`+strategis[i].str_des+`</option>`;
+					}
+					lista = lista +`</select>
+				</div>
+		</div>`;
+		$('#strategisti_edit').html(lista);
+
+	}
+
 	function mensajePanelA(info, option){
 		switch (option) {
 			case 1:
@@ -83,9 +131,12 @@
 				description_activity = reemplaza(description_activity);
 	  let idCourseJsn =  readCookie('idCourseJsn');/*3*/
 		let weight = document.getElementById('weight').value; /*4*/
-
-		let activity = [name_activity, id_type_learning, description_activity, idCourseJsn, weight ];
+		let weight_now = $('#total_salary').val();/*5*/
+		let thematic = document.getElementById('thematic_activity').value; /*6*/
+		let strategis = document.getElementById('id_strategis').value; /*7*/
+		let activity = [name_activity, id_type_learning, description_activity, idCourseJsn, weight, weight_now, thematic, strategis ];
 		for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
+		if(id_type_learning==0){bas++;}
 		if (bas==0){
 				$('#infoPanelClose').hide();
 				ajaxSettingActivity(activity,2);
@@ -109,6 +160,7 @@
 		let weight = document.getElementById('weight_edit').value; /*5*/
 				let activity = [name_edit_activity, id_type_edit_learning, description_edit_activity, idCourseJsn, id_edit_activ, weight];
 				for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
+				if(id_type_learning==0){bas++;}
 				if (bas==0){
 						$('#infoPanelClose').hide();
 						ajaxSettingActivity(activity,3);
@@ -123,13 +175,30 @@
 	}
 	//fin editar.
 
+	function estrategyActivity(){
+		$( "#id_type_learning" ).change(function() {
+		   //ajax que carga las estrategias.
+			 let id_type_learning = $('#id_type_learning').val();
+			 ajaxSettingActivity(id_type_learning, 8);//voy aquí
+
+		});
+		$( "#id_type_edit_learning" ).change(function() {
+		   //ajax que carga las estrategias.
+			 let id_type_edit_learning = $('#id_type_edit_learning').val();
+			 ajaxSettingActivity(id_type_edit_learning, 8);//voy aquí
+
+		});
+	}
 
 function main(){
 	//creat actividad
+	let total_salary = $('#total_salary').val();
 	$("#addActivity").click(function(){
-		let limit = 100 - total_salary.toFixed(0);
-				$('#weight').attr({'max':limit});
+		let limit = 100 - total_salary;
+				// $('#weight').attr({'max':limit});
+
 		document.getElementById('id10').style.display='block';
+		estrategyActivity();
 	 });
 	$("#newActivity").click(function(){
 		createNewActi();

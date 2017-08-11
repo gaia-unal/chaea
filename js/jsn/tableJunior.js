@@ -433,6 +433,12 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
                    resultTable(coursesIs);//tabla de resultados
               }
             });
+            $( '#nexti2' ).click(function() {
+                   conter = controlQuestion(20,40,2);
+                   if(conter==0){
+                        resultTable(null);//tabla de resultados
+                   }
+            });
 
           } catch (e) {
             console.log('e2');

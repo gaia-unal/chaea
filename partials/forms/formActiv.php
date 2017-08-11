@@ -3,6 +3,12 @@
 						 <fieldset>
 				   				<legend>Agregar actividad</legend>
 						    		<div class="form-group">
+											<label for="thematic_activity" class=" control-label">Tematica:</label>
+												<div class="has-success">
+													<input id="thematic_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Analitica Web"></input><br>
+											 </div>
+										</div>
+						    		<div class="form-group">
 											<label for="name_activity" class=" control-label">Nombre:</label>
 												<div class="has-success">
 													<input id="name_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Analitica Web"></input><br>
@@ -13,6 +19,7 @@
 											<label for="id_type_learning" class=" control-label">Estilo de aprendizaje:</label>
 											<div class="has-success">
 												<select class="form-control" id="id_type_learning">
+													<option value="0"></option>
 													<option value="1">Activo</option>
 													<option value="2">Reflexivo</option>
 													<option value="3">Teórico</option>
@@ -20,6 +27,9 @@
 												</select>
 											</div>
 										</div>
+
+										<!-- se enlistan las estrategias sustituyendo la etiqueda di -->
+										<div id="strategisti"></div>
 
 										<div class="range-slider">
 											<label for="description_activity" class=" control-label">Porcentaje de la actividad:</label>

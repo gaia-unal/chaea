@@ -1,7 +1,7 @@
 <?php session_start();
 if(!$_SESSION){
   header ("Location: /chaea/logingIndex.php");
-}else if (("teacher"!=$_SESSION["rol"])) {
+}else if (("student"!=$_SESSION["rol"])) {
     header ("Location: /chaea/logingIndex.php");
 }
 ?>

@@ -59,7 +59,10 @@ try {
                        "sortable":false,
                       "render": function(state){
                           if(state!=''){
-                            return "<center><a target='_blank' href='/"+state+"'><button type='button' name='button' class='btn btn-success' ><i class='fa fa-angle-double-down fa-2x' aria-hidden='true'></i></center></a>";
+                            return `<center>
+                                          <button type='button' id='listActi' class='btn btn-success' >
+                                          <i class='fa fa-folder-open fa-2x' aria-hidden='true'></i>
+                                    </center>`;
                           }else{
                            return  "<center>Sin subida<center>";
                           }
@@ -80,9 +83,19 @@ try {
                });
               get_description_activity('#dataTableActiCouStudent tbody',table);
               get_upload_activity('#dataTableActiCouStudent tbody',table);
+              get_enlist_activitis('#dataTableActiCouStudent tbody',table);
   }
 
-
+  function ajaxUrlArchi(path_ac) {
+      var path_ac = JSON.stringify(path_ac);
+      $.ajax({
+       method:"POST",
+       url: "/chaea/backendPhp/courseSQL/s-course.php",
+        data: {"courses":path_ac, "action":11}
+     }).then( function( info ){
+        location.href = '/chaea/partials/viewStudent/ListarFile.php';
+     });
+  }
 
 
 
@@ -117,7 +130,17 @@ try {
        });
       }
 
+      var get_enlist_activitis = function(tbody, table){
+        $(tbody).on('click','#listActi', function(){
+          try {
+              var data = table.row( $(this).parents("tr") ).data();
+              let path_ac = '/'+data.path_ac;
+              ajaxUrlArchi(path_ac);
+          } catch (e) {
+          }
 
+       });
+      }
 
       var idioma_espanol={
                           "sProcessing":     "Procesando...",

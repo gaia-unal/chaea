@@ -263,18 +263,47 @@ function activityCourse($idCourse){
 function existActivity($activity){
     try {
           global $objDatos;
-          $sql = "SELECT act.id_activity as id
+          $sql = "SELECT act.id_activity as id, act.id_type_learning as act_lear
                 FROM activity as act, teacher as te, course_teacher as co_te, course as co
-                WHERE te.number_document= '".$_SESSION["document"]."' and te.number_document = co_te.number_document
-                and co_te.id_course = co.id_course and co.id_course = '".$activity[3]."'
+                WHERE te.number_document= '".$_SESSION["document"]."'
+                and te.number_document = co_te.number_document
+                and co_te.id_course = co.id_course
+                and co.id_course = '".$activity[3]."'
                 and co.id_course = act.id_course
-                and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','');";
+                and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
+                group by  id, act_lear ;";
             $crud = $objDatos->executeQuery($sql);
 
             if($crud[0]['id'] < 1){
               return 0;
             }else{
-              return $crud[0]['id'];//retornar el ID
+              return $crud;//retornar el ID
+            }
+
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
+//Miro si existe la actividad del mismo nombre y con el mismo usuario.
+function loadingNewActivity($activity){
+    try {
+          global $objDatos;
+          $sql = "SELECT act.id_activity as id, act.id_type_learning as act_lear
+                FROM activity as act, teacher as te, course_teacher as co_te, course as co
+                WHERE te.number_document= '".$_SESSION["document"]."'
+                and te.number_document = co_te.number_document
+                and co_te.id_course = co.id_course
+                and id_type_learning = '".$activity[1]."'
+                and co.id_course = '".$activity[3]."'
+                and co.id_course = act.id_course
+                and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
+                group by  id, act_lear ;";
+            $crud = $objDatos->executeQuery($sql);
+
+            if($crud[0]['id'] < 1){
+              return 0;
+            }else{
+              return $crud;//retornar el ID
             }
 
     } catch (Exception $e) {
@@ -282,18 +311,58 @@ function existActivity($activity){
     }
 }
 
+function weightActivity($activity, $act_lear ,$id_activity){
+  global $objDatos;
+  $sql =" SELECT   te_ac.weight as te_we
+          FROM activity as act, teacher as te, course_teacher as co_te, course as co, teacher_activity as te_ac
+          WHERE te.number_document= '".$_SESSION["document"]."'
+          and te.number_document = co_te.number_document
+          and act.id_type_learning = '".$act_lear."'
+          and co_te.id_course = co.id_course
+          and co.id_course = '".$activity[3]."'
+          and co.id_course = act.id_course
+          and te_ac.id_activity = '".$id_activity."'
+          and te_ac.number_document = te.number_document
+          and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
+          group by  te_we;";
+          $we = $objDatos->executeQuery($sql);
+          return $we[0]['te_we'];//retornar el porcenta
+}
 
 function studentCourse($id_course){
   try {
     global $objDatos;
-    $sql = "SELECT st.number_document AS id_st FROM student as st
-           inner join course_student
-           on st.number_document = course_student.number_document
-           inner join course as co
-           on course_student.id_course = co.id_course and co.id_course = '".$id_course."'
-           group by co.name_course, st.number_document ;";
-      $crud = $objDatos->executeQuery($sql);
-      return $crud;
+    $consulta = " SELECT st.number_document AS id_st, st_sty.activo as ac,
+                  st_sty.reflexivo as re, st_sty.teorico as te, st_sty.pragmatico as pa
+                  FROM student as st
+                  inner join course_student
+                  on st.number_document = course_student.number_document
+                  inner join course as co
+                  on course_student.id_course = co.id_course
+                  and co.id_course = '".$id_course."'
+                  inner join student_style_point as st_sty
+                  on st_sty.number_student = st.number_document
+                  group by id_st,ac, re, te, pa
+                  order by id_st;";
+    $crud = $objDatos->executeQuery($consulta);
+      for ($i=0; $i < COUNT($crud) ; $i++) {
+        $a=0;
+        $V[$i] = array("ac"=>$crud[$i]['ac'],"re"=>$crud[$i]['re'],"te"=>$crud[$i]['te'],"pa"=>$crud[$i]['pa']);
+        arsort($V[$i]);//ordena el vector
+        foreach ($V[$i] as $key => $val) {
+          if($a<=$val){
+            $a=$val;
+            $V2[$i][$key]=$val;
+          }
+        }
+      }
+
+    for ($i=0; $i < COUNT($crud); $i++) {
+      $V2[$i]['id_st']=$crud[$i]['id_st'];
+      foreach ($V2[$i] as $key => $val) {
+      }
+    }
+    return $V2;
   } catch (Exception $e) {
 
   }
@@ -360,7 +429,7 @@ function studentStyle(){
 }
 
 function extencion($ex){
-  $extencion = array("doc", "pdf", "docx","jpg", "gif", "png","xlsx");
+  $extencion = array("doc", "pdf", "docx","jpg", "gif", "png","xlsx","zip");
   for ($i=0; $i < count($extencion); $i++) {
     if($ex==$extencion[$i]){
       return 1;

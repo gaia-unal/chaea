@@ -420,7 +420,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
             $( '#next2' ).click(function() {
               controlQuestion(20,40,2);
             });
-            $( '#next3' ).click(function() {
+            $( '#nexti3' ).click(function() {
               controlQuestion(40,60,3);
             });
             $( '#next4' ).click(function() {
@@ -432,6 +432,12 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
               if(conter==0){
                    desactivar();
                    resultTable(coursesIs);//tabla de resultados
+              }
+            });
+            $( '#nexti4' ).click(function() {
+              conter = controlQuestion(60,80,4);
+              if(conter==0){
+                   resultTable(null);//tabla de resultados
               }
             });
 

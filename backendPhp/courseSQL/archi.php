@@ -22,11 +22,13 @@ if(!$_SESSION){
 
 
     //nombre de la carpeta raiz
+    $vowels = array(":", "'\'", "'/'" , "*", "?", "<", ">", "|");
     $error=0;
     $url = $_SESSION["urlFiles"];
+    $url = str_replace($vowels, "", $url);
+    $error=extencion($ex);
     $url= __DIR__."/../../".$url;
     $url = preg_replace('[\s+]',"", $url);
-    $error=extencion($ex);
 
 
 

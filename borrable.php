@@ -8,40 +8,194 @@ do{
 } while(next($_SESSION));
 
 
-var_dump($_SESSION['style']);
+// var_dump($_SESSION['style']);
 
  ?>
 
+<script>
+var act = [''];
+var band=0;
+var c1 = ['A','B','C','D','A','B'];
+var c2 = ['1','2','3','4','5','6'];
+
+for (var i = 0; i < c1.length; i++) {
+  for (var j = 0; j < act.length; j++) {
+    if (act[j]==c1[i]) {
+      band=1;
+    }
+  }
+  if(band!=1){
+    if(act[0]==''){
+      act[0]=c1[i];
+    }else{act.push(c1[i]);}
+  }
+}
+console.log(act);
+
+</script>
 <?php
 require_once("/backendPhp/conexion.php");
 $objDatos = new DB();
 $objDatos->connect();
 
-$person= array(0,"jsnavarroc@unal.edu.co", 2, 3, 4, 5,"jsnavarroc","1053813532");
+// $person= array(0,"jsnavarroc@unal.edu.co", 2, 3, 4, 5,"jsnavarroc","1053813532");
 // validationRol($person, "teacher");
 // activityStudent('1053845616', '33');
-$courses = courseInscriptionStudent();
-echo "<br> Valor: ".count($courses);
-
+// $courses = courseInscriptionStudent();
+// echo "<br> Valor: ".count($courses);
+// UrlActivity();
 // studentStyle();
+
+sumPoceActivity(2);
+function sumPoceActivity($id_course){
+            global $objDatos;
+                  $consulta = "	SELECT  tea_act.weight as weight,
+                                act.name_activity AS name_act,
+                                tyl.id_type_learning as ty
+                                FROM activity as act
+                                inner join type_learning as tyl
+                                on tyl.id_type_learning = act.id_type_learning
+                                inner join teacher_activity as tea_act
+                                on '".$_SESSION["document"]."'= tea_act.number_document
+                                and tea_act.id_activity = act.id_activity
+                                inner join course as co
+                                on co.id_course =  '".$id_course."'   and co.id_course = act.id_course
+                                group by weight,  name_act, ty
+                                order by name_act;";
+                            $activity = $objDatos->executeQuery($consulta);
+                            $objDatos->closeConnect();
+                $act = [''];
+                $total= 0;
+
+                for ($i = 0; $i < count($activity); $i++) {
+                  $band=0;
+                    for ( $j = 0; $j < count($act); $j++) {
+                      echo '<br>'.($act[$j].'=='.$activity[$i]['name_act']).'<br>';
+                      if ($act[$j]==$activity[$i]['name_act']) {
+                        $band=1;
+                      }
+                    }
+                    if($band!=1){
+                        if($act[0]==''){
+                          $act[0]=$activity[$i]['name_act'];
+                          $total=$total + $activity[$i]['weight'];
+                          echo '<br>'.$act[0].'<br>';
+                        }else{
+                          array_push($act,$activity[$i]['name_act']);
+                          echo '<br>'.$activity[$i]['name_act'].'<br>';
+                          $total=$total + $activity[$i]['weight'];
+                        }
+
+                    }
+              }//fin for
+                // var_dump($activity);
+            echo $total;
+
+    }
+
+
+
+
+
 function studentStyle(){
-  $V2 = array(); $a=0;
-    global $objDatos;
-    $sql = "SELECT activo as ac, reflexivo as re, teorico as te, pragmatico as pa
-            FROM student_style_point
-            WHERE number_student = ".$_SESSION['document'].";";
-    $crud = $objDatos->executeQuery($sql);
-    $V = array("ac"=>$crud[0]['ac'],"re"=>$crud[0]['re'],"te"=>$crud[0]['te'],"pa"=>$crud[0]['pa']);
-    arsort($V);
-    foreach ($V as $key => $val) {
-      if($a<=$val){
-            $a=$val;
-            $V2[$key]=$val;
-            echo $key ." = " . $val . "<br>";
-          }
+
+  global $objDatos;
+  $consulta = " SELECT st.number_document AS id_st, st_sty.activo as ac,
+                st_sty.reflexivo as re, st_sty.teorico as te, st_sty.pragmatico as pa
+                FROM student as st
+                inner join course_student
+                on st.number_document = course_student.number_document
+                inner join course as co
+                on course_student.id_course = co.id_course
+                and co.id_course = '2'
+                inner join student_style_point as st_sty
+                on st_sty.number_student = st.number_document
+                group by id_st,ac, re, te, pa
+                order by id_st;";
+  $crud = $objDatos->executeQuery($consulta);
+            $objDatos->closeConnect();
+    for ($i=0; $i < COUNT($crud) ; $i++) {
+      $a=0;
+      # code...
+      $V[$i] = array("ac"=>$crud[$i]['ac'],"re"=>$crud[$i]['re'],"te"=>$crud[$i]['te'],"pa"=>$crud[$i]['pa']);
+      arsort($V[$i]);//ordena el vector
+echo '<br><br>';
+      foreach ($V[$i] as $key => $val) {
+        echo '<br>|'.$key.'|<-->|'.$val.'|';
+        if($a<=$val){
+          $a=$val;
+          $V2[$i][$key]=$val;
+        }
       }
-      $_SESSION['style']=$V2;
+      echo '<br><br>';
+    }
+
+  for ($i=0; $i < COUNT($crud); $i++) {
+    $V2[$i]['id_st']=$crud[$i]['id_st'];
+    echo "<br><br>".$i."<br><br> ";
+    foreach ($V2[$i] as $key => $val) {
+      echo  '<dd>'.$key.'-->'.$V2[$i][$key];
+    }
+    echo "<br><br>";
+  }
+
 }
+
+
+function UrlActivity(){
+  global $objDatos;
+  $consulta = "  SELECT activity_path as url
+            FROM student_activity as st_act
+	          WHERE number_document = '910436652'
+	          and id_activity = '3';";
+  $url = $objDatos->executeQuery($consulta);
+            $objDatos->closeConnect();
+            $url1='/'.$url[0]['url'];
+            $url = $_SERVER['DOCUMENT_ROOT'].'/'.$url[0]['url'];
+            listFiles($url, $url1);
+}
+
+//Creamos Nuestra Función
+  function listFiles($directorio, $url1){ //La función recibira como parametro un directorio
+    if (is_dir($directorio)) { //Comprovamos que sea un directorio Valido
+      if ($dir = opendir($directorio)) {//Abrimos el directorio
+
+        echo '<ul>'; //Abrimos una lista HTML para mostrar los archivos
+
+        while (($archivo = readdir($dir)) !== false){ //Comenzamos a leer archivo por archivo
+
+          if ($archivo != '.' && $archivo != '..'){//Omitimos los archivos del sistema . y ..
+
+            $nuevaRuta = $directorio.$archivo.'/';//Creamos unaruta con la ruta anterior y el nombre del archivo actual
+
+            echo '<li>'; //Abrimos un elemento de lista
+
+              if (is_dir($nuevaRuta)) { //Si la ruta que creamos es un directorio entonces:
+                echo '<b>'.$nuevaRuta.'</b>'; //Imprimimos la ruta completa resaltandola en negrita
+                  listFiles($nuevaRuta);//Volvemos a llamar a este metodo para que explore ese directorio.
+
+              } else { //si no es un directorio:
+                echo $url1.$archivo.'<br>';
+                echo 'Archivo: <a href="'.$url1.$archivo.'">'.$archivo.'</a><b><br>'; //simplemente imprimimos el nombre del archivo actual
+              }
+
+            '</li>'; //Cerramos el item actual y se inicia la llamada al siguiente archivo
+
+          }
+
+        }//finaliza While
+        echo '</ul>';//Se cierra la lista
+
+        closedir($dir);//Se cierra el archivo
+      }
+    }else{//Finaliza el If de la linea 12, si no es un directorio valido, muestra el siguiente mensaje
+      echo 'No Existe el directorio';
+    }
+  }//Fin de la Función
+
+  //Llamamos a la función y le pasamos el nombre de nuestro directorio.
+  // listFiles("./files/");
+
 function courseInscriptionStudent(){
     global $objDatos;
     $consulta = " SELECT co.id_course as idco,

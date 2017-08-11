@@ -57,7 +57,9 @@ try {
                     }
 
                    },
+                   { "data": "thematic" },
                    { "data": "name_activity" },
+                   { "data": "strategy" },
                    {
                      "data": "type_learning",
                      "render": function(state){
@@ -71,16 +73,17 @@ try {
                      }
                    }
                  ],
-                 "language": idioma_espanol,
-                 "footerCallback": function (data) {
-                           var api = this.api(), data;
-                           sum(api,data);
-                  }
+                 "language": idioma_espanol
                });
+              sum(idCourseJsn);
               get_edit_acti('#dataTableActiCou tbody',table);
               get_description_activity('#dataTableActiCou tbody',table);
               get_data_state('#dataTableActiCou tbody',table);
               get_data_delete('#dataTableActiCou tbody',table);
+  }
+
+  function sum(id_course){
+     let total = ajaxSettingActivity(id_course,7);//total de lo que de.
   }
 
 
@@ -111,9 +114,11 @@ try {
               $('#id_edit_activ').val(data.id_activity);
               $('#name_ed_activity').html('Esta editando la actividad '+data.name_activity);
               $('#name_edit_activity').val(data.name_activity);
+              $('#thematic_edit_activity').val(data.thematic);
               $('#weight_edit').val(data.weight);
               $('#weight_lo').html(data.weight+'%');
-              let limit1 = total_salary.toFixed(0) - data.weight ;
+              let total_salary = $('#total_salary').val();
+              let limit1 = total_salary- data.weight ;
               let limit = 100-limit1;
               $('#weight_edit').attr({'max':limit});
 
@@ -127,6 +132,12 @@ try {
                 id_learning = 4;
               }
               $('#id_type_edit_learning').val(id_learning);
+              ajaxSettingActivity(id_learning, 8);
+              //cargar la estrategia.
+              let activity = [data.strategy, id_learning];
+              ajaxSettingActivity(activity, 9);
+
+              estrategyActivity();//carga las estrategias dependiendo del estilo que tome.
 
               CKEDITOR.instances['description_edit_activity'].setData(data.description_activity);
             	document.getElementById('id11').style.display='block';
@@ -191,28 +202,8 @@ try {
        });
       }
 
-      function sum(api,data){
-              // Remove the formatting to get integer data for summation
-              var intVal = function ( i ) {
-                return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?	i : 0;
-              };
 
-              //total de todas las paginas.
-              total_salary = api.column( 7 ).data().reduce( function (a, b) {
-                return intVal(a) + intVal(b);
-              },0 );
 
-              // total por pagina, osea por cada lista en la tabla.
-              total_page_salary = api.column( 7, { page: 'current'} ).data().reduce( function (a, b) {
-                return intVal(a) + intVal(b);
-              }, 0 );
-
-              total_page_salary = parseFloat(total_page_salary);
-              total_salary = parseFloat(total_salary);
-              // Update footer
-              $('#entire').html('Porcentaje acumulado de las actividades: '+total_salary.toFixed(0)+'% / 100%');
-             //  $('#totalSalary').html(total_page_salary.toFixed(2)+"/"+total_salary.toFixed(2));
-      }
 
       var idioma_espanol={
                           "sProcessing":     "Procesando...",

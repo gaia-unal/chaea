@@ -21,11 +21,6 @@ include('partials/nav.php');
     <td>aospinah@unal.edu.co</td>
   </tr>
   <tr>
-    <td>Johan Sebastian Navarro Cano</td>
-    <td>Universidad Nacional de Colombia</td>
-    <td>jsnavarroc@unal.edu.co</td>
-  </tr>
-  <tr>
     <td>Alfonso Ríos Sánchez</td>
     <td></td>
     <td>alriosan@gmail.com </td>
@@ -54,6 +49,11 @@ include('partials/nav.php');
     <td>Jaime Buitrago Alba</td>
     <td>Universidad Nacional de Colombia</td>
     <td>jbuitragoa@unal.edu.co</td>
+  </tr>
+  <tr>
+    <td>Johan Sebastian Navarro Cano</td>
+    <td>Universidad Nacional de Colombia</td>
+    <td>jsnavarroc@unal.edu.co</td>
   </tr>
    <tr>
     <td>Lina María Cuartas</td>

@@ -36,32 +36,32 @@ var get_data_state =function(tbody, table){
 
             }
 
-            if(courses_inscription.length>0){
-							document.getElementById('next3').disabled=false;
-                document.getElementById('next5').disabled=false;
-            }
+							if(courses_inscription.length>0){
+									//Se mira si el Item con el ID Existe.
+		             	if ( $("#next3").length ) {
+						 				  document.getElementById('next3').disabled=false;
+					 				}
+					 				if ( $("#next5").length ) {
+					                 	document.getElementById('next5').disabled=false;
+					 				}
+	           }
       } catch (e) {
         // console.error(e);
       }
 
     });
 
-
     $( "#next5" ).mouseenter(function() {
       if(courses_inscription.length<=0){
           mensajeWarning("Tiene que inscribir al menos un curso");
           document.getElementById('next5').disabled=true;
-      }else{
-        document.getElementById('next5').disabled=false;
-      }
+				}
     });
 
     $( "#next3" ).mouseenter(function() {
       if(courses_inscription.length<=0){
           mensajeWarning("Tiene que inscribir al menos un curso");
           document.getElementById('next3').disabled=true;
-      }else{
-        document.getElementById('next3').disabled=false;
       }
     });
 

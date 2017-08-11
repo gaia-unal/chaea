@@ -37,6 +37,6 @@ if(!$_SESSION){
 <div class="pull-right">
   <h5><div id="entire"></div></h5>
 </div>
-
+<script src="/chaea/js/jsn/activitySettings/s-tableAct.js" charset="utf-8"></script>
 
 </body>

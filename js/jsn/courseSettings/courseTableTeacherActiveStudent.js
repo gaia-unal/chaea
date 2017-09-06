@@ -3,10 +3,8 @@ $(document).ready(function() {
 });
 try {
   var idCourseJsn =  readCookie('idCourseJsn');
-  var ac =  readCookie('ac');
-
 } catch (e) {}
-  function loading(){
+  function loadingStudent(){
     table =   $('#dataTableCourseActiveStudent').DataTable( {
                  "scrollX": true,
                  "scrollY": 300,
@@ -16,7 +14,7 @@ try {
                  "ajax": {
                    "method": "POST",
                    "url": "/chaea/backendPhp/courseSQL/settingCourseActiveStudent.php",
-                    "data":{"idCourse":idCourseJsn, "action":ac}
+                    "data":{"idCourse":idCourseJsn, "action":1}
                  },
                  "columns": [
                    {
@@ -29,9 +27,24 @@ try {
                        }else{return '<center><label value="Inactivo" class="switch"><input type="checkbox"><div class="slider round"></div></label></center>'}
                      }
                    },
-                   { "data": "idStudent" },
-                   { "data": "nameStudente" },
-                   { "data": "namecor" }
+                   {
+                      "data": "idStudent",
+                      "render": function(state){
+                       return "<center>"+state+"<center>";
+                      }
+                    },
+                   {
+                     "data": "nameStudente",
+                     "render": function(state){
+                      return "<center>"+state+"<center>";
+                     }
+                   },
+                   {
+                     "data": "namecor",
+                     "render": function(state){
+                      return "<center>"+state+"<center>";
+                     }
+                   }
                  ],
                  "language": idioma_espanol
                });

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',main);
-var idCourseJsn="", ac="";
+var idCourseJsn="";
 //Efecto del radion bouton
 function lod(){
   try{
@@ -13,10 +13,13 @@ function lod(){
 
 }
 
+
+
+
 //Capturar el id de la tabla
 function getDataTableCoruse(){
   $(".radij").click(function(){
-
+        //Crea una cookie del curso tanto del ID como del nombre.
         $(this).parents("tr").find("#idCourse").each(function(){
         idCourseJsn=$(this).html()+"\n";
         createCookie('idCourseJsn', idCourseJsn, 1);
@@ -25,9 +28,10 @@ function getDataTableCoruse(){
         nameCourse=$(this).html()+"\n";
         });
         $('#nameEstudentCourse').html("Activa o desactiva los estudiantes al curso de: <br><div>"+nameCourse+"</div>");
-        $('#nameActiCou').html("Crea, edita, elimina, activa o desactiva las actividades para el cuso: <br><div>"+nameCourse+"</div>");
+        $('#nameCou').html("Crea, edita, elimina, activa o desactiva las tematicas para el cuso: <br><div>"+nameCourse+"</div>");
         $('#nameActiCouNote').html("Selecciona un estudiante del curso de:  <br><div>"+nameCourse+"</div>");
         $('#nameCouNote').html("Notas de la actividades del curos de:  <br><div>"+nameCourse+"</div>");
+        $('#nameThema').html("Selecciona la tematica del curso de:  <br><div>"+nameCourse+"</div>");
 
 
   });
@@ -65,10 +69,13 @@ function main(){
     }
 
     if(idCourseJsn!=""){
-      ac="1";
-      createCookie('ac', ac, 1);
-      loading();//cargar tabla
+      try {
+        loadingThematic();//cargar tabla de tematicas
+      } catch (e) {
+
+      }
     }
+
   })
   $('#next1-1').click(function(){
     if(idCourseJsn==""){
@@ -77,11 +84,31 @@ function main(){
     }
 
     if(idCourseJsn!=""){
-      ac="1";
-      createCookie('ac', ac, 1);
-      loading();//cargar tabla
+      try {
+        loadingStudents();//Este carga la  tabla de los estudiantes para calificar
+      } catch (e) {}
+      try {
+        loadingStudent();
+      } catch (e) {}
+      try {
+        loadingThematic();//cargar tabla de tematicas
+      } catch (e) {}
     }
   })
+  $('#next2').click(function(){
+    try {
+      if(idCourseJsn!=""){
+        loading();//cargar tabla
+      }
+    } catch (e) {console.log(e);}
+  });
+  $('#next2-1').click(function(){
+    if(idCourseJsn!=""){
+      loading();//cargar tabla
+    }
+  });
+
+
 
   paginationCourse();
   getDataTableCoruse();

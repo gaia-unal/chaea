@@ -38,7 +38,7 @@ if(!$_SESSION){
 <!-- Carga el funcionamiento de tabla -->
 <!-- Este tiene las funcionalidades CRUD de la tabla -->
 <!--este es JSN-->
-<script src="/chaea/js/jsn/studentSettings/t-trackingStudentTableCrud.js" charset="utf-8"></script>
+<!-- <script src="/chaea/js/jsn/studentSettings/t-trackingStudentTableCrud.js" charset="utf-8"></script> -->
 
 
 

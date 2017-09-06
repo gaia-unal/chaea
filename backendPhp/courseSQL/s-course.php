@@ -1,13 +1,11 @@
 <?php
-
-?>
-<?php
 require_once($_SERVER["DOCUMENT_ROOT"].'/chaea/backendPhp/conexion.php');
 
 $objDatos = new DB();
 $objDatos->connect();
 $action = json_decode(array_key_exists("action", $_POST) ? $_POST["action"] : null);
 $course = json_decode(array_key_exists("courses", $_POST) ? $_POST["courses"] : null);
+
 if($action!=1){
   if(!isset($_SESSION)) {
        session_start();
@@ -104,7 +102,8 @@ switch ($action) {
                       co.description_course as dc,
                       co.name_course as namco
                       FROM course  as co
-                      WHERE co.state_system_course = 'Activo' and NOT co.id_course IN (SELECT co_st.id_course
+                      WHERE co.state_system_course = 'Activo' and NOT co.id_course
+                      IN (SELECT co_st.id_course
                       FROM course_student as co_st
                       WHERE co_st.number_document = '".$_SESSION["document"]."')
                       order by co.id_course; ";

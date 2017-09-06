@@ -3,6 +3,7 @@ var idCourseJsn="", ac="", nameCourse;
 
 //Capturar el id de la tabla
 function getDataTableCoruse(){
+  //Se crea Cookie donde esta el Id del curso al dar click en el radian boton. 
   $(".radij").click(function(){
         $(this).parents("tr").find("#idCourse").each(function(){
           idCourseJsn=$(this).html()+"\n";

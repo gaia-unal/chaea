@@ -1,3 +1,4 @@
+//Coloca la enumeración de los elementos en las tablas creadas. 
 (function($) {
     $.fn.pagination = function() {
         $(this).each(function() {

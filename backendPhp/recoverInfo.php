@@ -259,51 +259,79 @@ function activityCourse($idCourse){
   }
 }
 
+//Miro si existe la tematica del mismo nombre y con el mismo usuario.
+function existThematic($thematic){
+    try {
+          global $objDatos;
+          $sql = "SELECT them.id_thematic as id_thematic
+                  FROM thematic as them, teacher as te, course_teacher as co_te, course as co
+                  WHERE te.number_document = '".$_SESSION["document"]."'
+                  and te.number_document = co_te.number_document
+                  and co_te.id_course = co.id_course
+                  and co.id_course = '".$thematic[1]."'
+                  and co.id_course = them.id_course
+                  and  replace(LOWER('".$thematic[0]."'),' ','') = replace(LOWER(them.description),' ','')
+                  group by id_thematic;";
+            $crud = $objDatos->executeQuery($sql);
+
+            if($crud[0]['id_thematic'] < 1){
+              return 0;
+            }else{
+              return $crud[0]['id_thematic'];//retornar el ID
+            }
+
+    } catch (Exception $e) {
+        echo 'Existe un fallo en la conexión';
+    }
+}
 //Miro si existe la actividad del mismo nombre y con el mismo usuario.
 function existActivity($activity){
     try {
           global $objDatos;
-          $sql = "SELECT act.id_activity as id, act.id_type_learning as act_lear
+          $sql = "SELECT act.id_activity as id_activity, act.id_type_learning as act_lear, act.id_performance as id_per
                 FROM activity as act, teacher as te, course_teacher as co_te, course as co
                 WHERE te.number_document= '".$_SESSION["document"]."'
                 and te.number_document = co_te.number_document
                 and co_te.id_course = co.id_course
                 and co.id_course = '".$activity[3]."'
                 and co.id_course = act.id_course
-                and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
-                group by  id, act_lear ;";
+                and replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
+                and act.id_type_learning = '".$activity[1]."'
+                and id_performance = '".$activity[7]."'
+                group by  id_activity, act_lear, id_per
+                order by id_activity;";
             $crud = $objDatos->executeQuery($sql);
 
-            if($crud[0]['id'] < 1){
+            if($crud[0]['id_activity'] < 1){
               return 0;
             }else{
-              return $crud;//retornar el ID
+              return $crud[0]['id_activity'];//retornar el ID
             }
 
     } catch (Exception $e) {
         echo 'Existe un fallo en la conexión';
     }
 }
+
 //Miro si existe la actividad del mismo nombre y con el mismo usuario.
-function loadingNewActivity($activity){
+function existActivityBase($activity){
     try {
           global $objDatos;
-          $sql = "SELECT act.id_activity as id, act.id_type_learning as act_lear
+          $sql = "SELECT act.id_activity as id_activity, act.id_type_learning as act_lear
                 FROM activity as act, teacher as te, course_teacher as co_te, course as co
                 WHERE te.number_document= '".$_SESSION["document"]."'
                 and te.number_document = co_te.number_document
                 and co_te.id_course = co.id_course
-                and id_type_learning = '".$activity[1]."'
                 and co.id_course = '".$activity[3]."'
                 and co.id_course = act.id_course
                 and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
-                group by  id, act_lear ;";
+                group by  id_activity, act_lear ;";
             $crud = $objDatos->executeQuery($sql);
 
-            if($crud[0]['id'] < 1){
+            if($crud[0]['id_activity'] < 1){
               return 0;
             }else{
-              return $crud;//retornar el ID
+              return $crud[0]['id_activity'];//retornar el ID
             }
 
     } catch (Exception $e) {
@@ -311,18 +339,13 @@ function loadingNewActivity($activity){
     }
 }
 
-function weightActivity($activity, $act_lear ,$id_activity){
+
+function weightActivity($activity ,$id_activity){
   global $objDatos;
   $sql =" SELECT   te_ac.weight as te_we
-          FROM activity as act, teacher as te, course_teacher as co_te, course as co, teacher_activity as te_ac
-          WHERE te.number_document= '".$_SESSION["document"]."'
-          and te.number_document = co_te.number_document
-          and act.id_type_learning = '".$act_lear."'
-          and co_te.id_course = co.id_course
-          and co.id_course = '".$activity[3]."'
-          and co.id_course = act.id_course
+          FROM activity as act, teacher_activity as te_ac
+          WHERE te_ac.number_document= '".$_SESSION["document"]."'
           and te_ac.id_activity = '".$id_activity."'
-          and te_ac.number_document = te.number_document
           and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ','')
           group by  te_we;";
           $we = $objDatos->executeQuery($sql);

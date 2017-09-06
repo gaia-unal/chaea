@@ -19,7 +19,7 @@
 												$('#weight_edit').val(0);
 												$('#weight_lo').html(0+'%');
 										 }else if (Number(info)==2) {
-										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n en este curso para el mismo estilo de aprendizaje, debe tener otro nombre");
+										 		mensajeWarning("La actividad: \""+activitys[0]+"\" ya existe\n en este curso con las mismas características ");
 										 }else if(Number(info)==3){
 											 	mensajeSend("Se actuaizo correctamente el la actividad: "+ activitys[0]);
 												document.getElementById('id11').style.display='none';
@@ -35,7 +35,7 @@
 												 porcentual de la actividad "`+activitys[0]+`" que  creó previamente.`);
 
 										 }else if(response[1]==7){
-											$('#total_salary').val(response[0]);
+											$('#total_percent').val(response[0]);
 											 $('#entire').html('Porcentaje acumulado de las actividades: '+response[0]+'% / 100%');
 
 										 }else if(response[1]==8){
@@ -44,10 +44,15 @@
 										 }else if(response[1]==9){
 											 strategis(response[0], activitys)
 
+										 }else if(response[1]==11){
+											 strategisedit(response[0], activitys)
+
 										 }else if(response[1]==10){
 											 if(response[0]>0){
 											 $('#id_strategis_edit').val(response[0]);
 										 	}
+										 }else if(Number(info)==12){
+											  mensajeSend("Se ha eliminado correctamente el la actividad");
 										 }else {
 											 mensajeSend(info);
 										 }
@@ -74,8 +79,9 @@
 		 });
 	}
 	function strategis(strategis, option){
+		//Este es para cuando crea la actividad
 		var lista =`<div class="form-group">
-											<label for="id_strategis" class=" control-label">Estrategia:</label>
+											<label for="id_strategis" class="">Estrategia:</label>
 											<div class="has-success">
 											<select class="form-control" id="id_strategis">`;
 		for (var i = 0; i < strategis.length; i++) {
@@ -87,8 +93,12 @@
 
 		$('#strategisti').html(lista);
 
+	}
+	function strategisedit(strategis, option){
+
+		//Este es para cuando edita la actividad
 		var lista =`<div class="form-group">
-			<label for="id_strategis_edit" class=" control-label">Estrategia:</label>
+			<label for="id_strategis_edit" class="">Estrategia:</label>
 			<div class="has-success">
 					<select class="form-control" id="id_strategis_edit">`;
 					for (var i = 0; i < strategis.length; i++) {
@@ -131,12 +141,13 @@
 				description_activity = reemplaza(description_activity);
 	  let idCourseJsn =  readCookie('idCourseJsn');/*3*/
 		let weight = document.getElementById('weight').value; /*4*/
-		let weight_now = $('#total_salary').val();/*5*/
-		let thematic = document.getElementById('thematic_activity').value; /*6*/
-		let strategis = document.getElementById('id_strategis').value; /*7*/
-		let activity = [name_activity, id_type_learning, description_activity, idCourseJsn, weight, weight_now, thematic, strategis ];
+		let weight_now = $('#total_percent').val();/*5*/
+		let strategis = document.getElementById('id_strategis').value; /*6*/
+		let id_level_performance = document.getElementById('id_level_performance').value; /*7*/
+		var thematicJsn =  readCookie('thematicJsn');/*8*/
+		let activity = [name_activity, id_type_learning, description_activity, idCourseJsn, weight, weight_now,  strategis, id_level_performance, thematicJsn ];
 		for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
-		if(id_type_learning==0){bas++;}
+		if(id_type_learning == 0 || id_level_performance == 0 ){bas++;}
 		if (bas==0){
 				$('#infoPanelClose').hide();
 				ajaxSettingActivity(activity,2);
@@ -152,24 +163,29 @@
 	//Funcion que toma los datos del formulario de edición de la actividad
 	function editThisActivity(){
 
-		let id_edit_activ = $('#id_edit_activ').val();/*0*/
-		let name_edit_activity = $('#name_edit_activity').val();/*1*/
-		let id_type_edit_learning = $('#id_type_edit_learning').val();/*2*/
-		let description_edit_activity = CKEDITOR.instances['description_edit_activity'].getData();/*3*/
-				description_edit_activity = reemplaza(description_edit_activity);
-		let weight = document.getElementById('weight_edit').value; /*5*/
-				let activity = [name_edit_activity, id_type_edit_learning, description_edit_activity, idCourseJsn, id_edit_activ, weight];
-				for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
-				if(id_type_learning==0){bas++;}
-				if (bas==0){
-						$('#infoPanelClose').hide();
-						ajaxSettingActivity(activity,3);
-						loading();
-				}else{
-					let info='Debe ingresar todos los datos que se solicitan.';
-					mensajePanelA(info,2);
-					bas=0;
-				}
+			let id_edit_activ = $('#id_edit_activ').val();/*8*/
+			let name_edit_activity = $('#name_edit_activity').val();/*0*/
+			let id_type_edit_learning = $('#id_type_edit_learning').val();/*1*/
+			let description_edit_activity = CKEDITOR.instances['description_edit_activity'].getData();/*2*/
+					description_edit_activity = reemplaza(description_edit_activity);
+			let idCourseJsn =  readCookie('idCourseJsn');/*3*/
+			let weight = document.getElementById('weight_edit').value; /*4*/
+			let strategis = document.getElementById('id_strategis_edit').value; /*5*/
+			var thematicJsn =  readCookie('thematicJsn');/*6*/
+			let id_level_performance = document.getElementById('id_level_edit_performance').value; /*7*/
+			let activity = [name_edit_activity, id_type_edit_learning, description_edit_activity, idCourseJsn, weight,  strategis, thematicJsn, id_level_performance, id_edit_activ ];
+
+			for (let	 i in activity){if((activity[i]=="") ) {bas++;}}
+			if(id_type_learning==0){bas++;}
+			if (bas==0){
+					$('#infoPanelClose').hide();
+					ajaxSettingActivity(activity,3);
+					loading();
+			}else{
+				let info='Debe ingresar todos los datos que se solicitan.';
+				mensajePanelA(info,2);
+				bas=0;
+			}
 
 
 	}
@@ -185,16 +201,16 @@
 		$( "#id_type_edit_learning" ).change(function() {
 		   //ajax que carga las estrategias.
 			 let id_type_edit_learning = $('#id_type_edit_learning').val();
-			 ajaxSettingActivity(id_type_edit_learning, 8);//voy aquí
+			 ajaxSettingActivity(id_type_edit_learning, 10);
 
 		});
 	}
 
 function main(){
 	//creat actividad
-	let total_salary = $('#total_salary').val();
+	let total_percent = $('#total_percent').val();
 	$("#addActivity").click(function(){
-		let limit = 100 - total_salary;
+		let limit = 100 - total_percent;
 				// $('#weight').attr({'max':limit});
 
 		document.getElementById('id10').style.display='block';

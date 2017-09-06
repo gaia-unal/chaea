@@ -41,7 +41,11 @@ if(!$_SESSION){
                          <p>Estudiante</p>
                      </div>
                      <div class="stepwizard-step">
-                         <a href="#step-3" id="car2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                         <a href="#step-3" type="button" id="next2" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                         <p>Tematicas</p>
+                     </div>
+                     <div class="stepwizard-step">
+                         <a href="#step-4" id="car2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">4</a>
                          <p>Actividad/es</p>
                      </div>
                  </div>
@@ -113,12 +117,26 @@ if(!$_SESSION){
                     <div class="col-xs-12">
                         <div class="col-md-12">
                              <div class="form-group">
+                                 <h3><div id="nameThema"></div></h3>
+                                 <!-- voy aquí!! -->
+                                  <?php include(__DIR__.'/../viewTeacher/tablesTrackingStudent/t-tableThematic.php'); ?>
+                             </div>
+                        </div>
+                        <button class="btn btn-success nextBtn btn-lg pull-right btn-un" type="button"  id="next3-1" >Siguiente</i></button>
+                        <button id="next3"  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" >atras</button>
+                    </div>
+                </div>
+
+                <div class="row setup-content" id="step-4">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                             <div class="form-group">
                                  <h3><div id="nameActiNote"></div></h3>
                                  <!-- voy aquí!! -->
                                   <?php include(__DIR__.'/../viewTeacher/tablesTrackingStudent/tableActiStuNote.php'); ?>
                              </div>
                         </div>
-                        <button id="next3"  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" >atras</button>
+                        <button id="next4"  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" >atras</button>
                     </div>
                 </div>
 

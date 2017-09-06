@@ -39,7 +39,11 @@ $coursesLet = count($courses);
                      </div>
                      <div class="stepwizard-step">
                          <a href="#step-2" type="button" id="next1" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                         <p>Creación</p>
+                         <p>Tematicas</p>
+                     </div>
+                     <div class="stepwizard-step">
+                         <a href="#step-3" type="button" id="next2-1" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                         <p>Actividades</p>
                      </div>
                  </div>
              </div>
@@ -97,21 +101,43 @@ $coursesLet = count($courses);
                     <div class="col-xs-12">
                         <div class="col-md-12">
                              <div class="form-group">
-                                 <h3><div id="nameActiCou"></div></h3>
+                                 <h3><div id="nameCou"></div></h3>
+                                  <?php include(__DIR__.'/../viewTeacher/tableThematic.php'); ?>
+                             </div>
+                        </div>
+                        <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="nexti2" >atras</button>
+                        <button class="btn btn-success nextBtn btn-lg pull-right btn-un" type="button" id="next2" >Siguiente</button>
+
+                    </div>
+                 </div>
+                 <div class="row setup-content" id="step-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                             <div class="form-group">
+                                 <h3><div id="nameTheCou"></div></h3>
                                   <?php include(__DIR__.'/../viewTeacher/tableActiCou.php'); ?>
                              </div>
                         </div>
-                        <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="next2" >atras</button>
+                        <button  class="btn btn-success backBtn btn-lg pull-left  btn-un" type="button" id="next3" >atras</button>
                     </div>
                  </div>
-                   <input type="hidden" id="total_salary" name="total_salary" value="">
+                   <input type="hidden" id="total_percent" name="total_percent" value="">
 
              </form>
              <?php
+                //================================================
+               //Modales de crear actividades.
+              //==================================================
                include(__DIR__.'/../modal/modalInfoElement.php');
                include(__DIR__.'/../modal/modalDelete.php');
                include(__DIR__.'/../modal/modalAddActiv.php');
                include(__DIR__.'/../modal/modalEditActi.php');
+                //================================================
+               //Modales de crear tematica.
+              //==================================================
+               include(__DIR__.'/../modal/modalAddThematic.php');
+               include(__DIR__.'/../modal/modalEditThematic.php');
+              //==================================================
                include(__DIR__.'/../modal/modalInfo.php');
                include(__DIR__.'/../modal/modalError.php');
              ?>

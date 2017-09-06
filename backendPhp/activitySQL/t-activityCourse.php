@@ -14,13 +14,16 @@ $objDatos->connect();
 
 $action = json_decode(array_key_exists("action", $_POST) ? $_POST["action"] : null);
 $idCourse = json_decode(array_key_exists("idCourse", $_POST) ? $_POST["idCourse"] : null);
+$thematic = json_decode(array_key_exists("thematic", $_POST) ? $_POST["thematic"] : null);
 $activity = json_decode(array_key_exists("activity", $_POST) ? $_POST["activity"] : null);
 
 switch ($action) {
   case 1:
-    tableLoaderActivity($idCourse);
+    //carga todas las actividades.
+    tableLoaderActivity($idCourse, $thematic);
     break;
   case 2:
+  //crea las actividades
     newActivity($activity);
     break;
   case 3:
@@ -44,11 +47,14 @@ switch ($action) {
   case 9:
     estrategyId($activity);
     break;
+  case 10:
+    estrategyActivityEdit($activity);
+  break;
   }
 ?>
 <?php
   //Cargar las actividades que creo el usuario X para  X curso.
-  function tableLoaderActivity($idCourse){
+  function tableLoaderActivity($idCourse, $thematic){
     global $objDatos;
     $consulta = "	SELECT act.id_activity as idact,
                   act.state_system_activity as stas,
@@ -56,8 +62,8 @@ switch ($action) {
                   tea_act.weight as weight,
                   act.name_activity AS name_act,
                   tyl.type_learning_description as tyle,
-                  act.thematic as thematic,
-                  str.description as strategy
+                  str.description as strategy,
+                  perfor.description as performance
                   FROM activity as act
                   inner join type_learning as tyl
                   on tyl.id_type_learning = act.id_type_learning
@@ -68,8 +74,14 @@ switch ($action) {
                   on co.id_course =  '".$idCourse."'  and co.id_course = act.id_course
                   inner join strategy as str
                   on str.id_strategy = act.strategy
+                  inner join thematic as the
+                  on the.id_thematic = '".$thematic."' and act.id_thematic = the.id_thematic
+                  inner join performance as perfor
+                  on perfor.id_performance = act.id_performance
                   group by act.id_activity, act.state_system_activity, act.description_activity,
-                  act.name_activity, tyl.type_learning_description, tea_act.weight, str.description;";
+                  act.name_activity, tyl.type_learning_description, tea_act.weight, str.description,
+                  performance
+                  order by idact;";
     $activity = $objDatos->executeQuery($consulta);
               $objDatos->closeConnect();
     if($activity[0]['idact']!=""){
@@ -78,12 +90,12 @@ switch ($action) {
                     $activityTable.='{
                           "id_activity":"'.$activity[$i]['idact'].'",
                           "state_system_activity":"'.$activity[$i]["stas"].'",
-                          "thematic":"'.$activity[$i]['thematic'].'",
                           "description_activity":"'.$activity[$i]['desa'].'",
                           "name_activity":"'.$activity[$i]['name_act'].'",
                           "strategy":"'.$activity[$i]['strategy'].'",
                           "type_learning":"'.$activity[$i]['tyle'].'",
-                          "weight":"'.$activity[$i]['weight'].'"
+                          "weight":"'.$activity[$i]['weight'].'",
+                          "performance":"'.$activity[$i]['performance'].'"
                         },';
                   }
       }else{
@@ -97,37 +109,43 @@ switch ($action) {
 
   //Función para crear una nueva actividad
   function newActivity($activity){
-       $info_activity= existActivity($activity);
-       $id_activity = $info_activity[0]['id'];
-       $act_lear = $info_activity[0]['act_lear'];
+    //mira si existe la actidad en su totalidad
+       $id_activity = existActivity($activity);
+       if($id_activity===0){
 
-       if($info_activity===0){
-         try {
-              $weight= $activity[4]+ $activity[5];
-              if($weight<=100){
-                 activityStudentNow($activity);
-                 echo "1";
-               }else{
-                  $tope = 100 - $activity[5];
-                  $data = array($tope ,8);
-                  echo json_encode($data);
-               }
-         } catch (Exception $e) {
-           echo "No se pudo insertar el curso, por favor comuníquese con el administrador";
-         }
-       }else if($id_activity>0 && $act_lear!= $activity[1]){
+              $id_activity =  existActivityBase($activity);
 
-          $weight = weightActivity($activity, $act_lear, $id_activity);
-          if($activity[4]==$weight){
-                try {
-                  activityStudentNow($activity);
-                  echo "1";
-                } catch (Exception $e) {
-                  echo "No se pudo insertar el curso, por favor comuníquese con el administrador";
+               if($id_activity===0){//Es una actividad nueva la crea desde cero
+                     try {
+                          $weight= $activity[4] + $activity[5];
+                          if($weight<=100){
+                             activityStudentNow($activity);
+                             echo "1";
+                           }else{
+                              $tope = 100 - $activity[5];
+                              $data = array($tope ,8);
+                              echo json_encode($data);
+                           }
+
+
+                     } catch (Exception $e) {
+                       echo "No se pudo insertar el curso, por favor comuníquese con el administrador";
+                     }
+
+             }else if($id_activity>0){
+                $weight = weightActivity($activity, $id_activity);
+                if($activity[4]==$weight){
+                      try {
+                        activityStudentNow($activity);
+                        echo "1";
+                      } catch (Exception $e) {
+                        echo "No se pudo insertar el curso, por favor comuníquese con el administrador";
+                      }
+                }else{
+                  echo '6';//el porcentaje tiene que ser el mismo.
                 }
-          }else{
-            echo '6';//el porcentaje tiene que ser el mismo.
-          }
+             }
+
        }else{
                echo "2";//la actividad ya existe no se puede crear
        }
@@ -137,11 +155,10 @@ switch ($action) {
 
   function activityStudentNow($activity){
     global $objDatos;
-     $sql= "INSERT INTO activity (name_activity, id_type_learning, description_activity, state_system_activity, id_course, thematic, strategis)
-           values ('".$activity[0]."','".$activity[1]."','".$activity[2]."', 'Inactivo','".$activity[3]."','".$activity[6]."','".$activity[7]."');";
+     $sql= "INSERT INTO activity (name_activity, id_type_learning, description_activity, state_system_activity, id_course, id_thematic, strategy, id_performance)
+           values ('".$activity[0]."','".$activity[1]."','".$activity[2]."', 'Inactivo','".$activity[3]."','".$activity[8]."','".$activity[6]."','".$activity[7]."');";
      $objDatos->executeQuery($sql);
-     $info_activity= loadingNewActivity($activity);
-     $id_activity = $info_activity[0]['id'];
+     $id_activity= existActivity($activity);
      $sql = "INSERT INTO teacher_activity (number_document, id_activity, weight) values ('".$_SESSION["document"]."','".$id_activity."', '".$activity[4]."');";
      $objDatos->executeQuery($sql);
 
@@ -185,15 +202,20 @@ switch ($action) {
                    $sql= "UPDATE activity
                    SET name_activity = '".$activity[0]."',
                    id_type_learning = '".$activity[1]."',
-                   description_activity = '".$activity[2]."'
+                   description_activity = '".$activity[2]."',
+                   strategy = '".$activity[5]."',
+                   id_performance = '".$activity[7]."'
                    WHERE id_course = '".$activity[3]."'
                    and  id_activity = '".$activity[4]."';";
                    $objDatos->executeQuery($sql);
 
                    $sql= "UPDATE teacher_activity
-                   SET  weight = '".$activity[5]."'
+                   SET  weight = '".$activity[4]."'
                    WHERE number_document = '".$_SESSION["document"]."'
-                   and  id_activity = '".$activity[4]."';";
+                   AND id_activity IN (	SELECT act.id_activity  as idact FROM activity as act
+	                                      inner join course as co
+                                        on co.id_course =  '".$activity[3]."'  and co.id_course = act.id_course
+                                        and  replace(LOWER('".$activity[0]."'),' ','') = replace(LOWER(act.name_activity),' ',''));";
                    $objDatos->executeQuery($sql);
                echo "3";
              } catch (Exception $e) {
@@ -204,13 +226,12 @@ switch ($action) {
   function editActi($activity){
        $id_activity= existActivity($activity);
 
-       if($id_activity>0 && $id_activity == $activity[4] ){
-
+       if($id_activity==$activity[8]){
          editActivity($activity);
        }elseif ($id_activity==0) {
          editActivity($activity);
        }else{
-         echo "2";//la actividad ya existe no se puede crear
+         echo 2;//la actividad ya existe no se puede crear
        }
 
 
@@ -249,22 +270,22 @@ switch ($action) {
     $consulta = "DELETE FROM activity WHERE id_activity = '".$activity."'";
     $objDatos->executeQuery($consulta);
     $objDatos->closeConnect();
-    echo "Se ha eliminado la actividad correctamente";
+    echo "12";
   }
 
-  function sumPoceActivity($id_course){
+  function sumPoceActivity($activity){
     global $objDatos;
         $consulta = "	SELECT  tea_act.weight as weight,
                       act.name_activity AS name_act,
                       tyl.id_type_learning as ty
                       FROM activity as act
                       inner join type_learning as tyl
-                      on tyl.id_type_learning = act.id_type_learning
+                      on tyl.id_type_learning = act.id_type_learning and id_thematic ='".$activity[1]."'
                       inner join teacher_activity as tea_act
                       on '".$_SESSION["document"]."'= tea_act.number_document
                       and tea_act.id_activity = act.id_activity
                       inner join course as co
-                      on co.id_course =  '".$id_course."'   and co.id_course = act.id_course
+                      on co.id_course =  '".$activity[0]."'   and co.id_course = act.id_course
                       group by weight,  name_act, ty
                       order by name_act;";
                   $activity = $objDatos->executeQuery($consulta);
@@ -305,6 +326,19 @@ switch ($action) {
         $objDatos->closeConnect();
 
         $data = array($activity, 9);
+        echo json_encode($data);
+
+  }
+  function estrategyActivityEdit($id_type_learning){
+      global $objDatos;
+        $consulta = "	SELECT  str.description as str_des, str.id_strategy as str_id
+                      FROM strategy as str
+                      WHERE id_type_learning = '".$id_type_learning."'
+                      ORDER BY str_id;";
+        $activity = $objDatos->executeQuery($consulta);
+        $objDatos->closeConnect();
+
+        $data = array($activity, 11);
         echo json_encode($data);
 
   }

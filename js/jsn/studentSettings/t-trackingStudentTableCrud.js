@@ -59,19 +59,20 @@
 
 function main(){
 		$("#next3").click(function(){
-		loading();
+		loading();//carga la lista de estudiantes del curso
+		});
+		$("#next2").click(function(){
+		loadingiTematic();//carga la lista de las tematicas
 		});
 
 		$("#car2").click(function(){
-		loadingin();
+		loadingin();// carga la tabla de archivos de actividades
 		});
 
-		$("#next2-2").click(function(){
-			let act = 2;
+		$("#next3-1").click(function(){
 			var student = JSON.parse(readCookie('student'));
 			if(student[0]!=''){
-			createCookie('act', act, 1);
-			loadingin();
+			loadingin();// carga la tabla de archivos de actividades
 			}
 		});
 

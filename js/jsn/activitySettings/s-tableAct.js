@@ -61,7 +61,8 @@ try {
                           if(state!=''){
                             return `<center>
                                           <button type='button' id='listActi' class='btn btn-success' >
-                                          <i class='fa fa-folder-open fa-2x' aria-hidden='true'></i>
+                                            <i class='fa fa-folder-open fa-2x' aria-hidden='true'></i>
+                                          </button>
                                     </center>`;
                           }else{
                            return  "<center>Sin subida<center>";

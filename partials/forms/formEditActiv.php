@@ -5,20 +5,14 @@
 									<input type="hidden" id="id_edit_activ" value="">
 
 										<div class="form-group">
-											<label for="thematic_edit_activity" class=" control-label">Tematica:</label>
-												<div class="has-success">
-													<input id="thematic_edit_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Programación"></input><br>
-											 </div>
-										</div>
-										<div class="form-group">
-											<label for="name_edit_activity" class=" control-label">Nombre:</label>
+											<label for="name_edit_activity" class="">Nombre:</label>
 												<div class="has-success">
 													<input id="name_edit_activity" type="text" disabled="disabled" class="form-control"></input><br>
 											 </div>
 										</div>
 
 										<div class="form-group">
-											<label for="id_type_edit_learning" class=" control-label">Estilo de aprendizaje:</label>
+											<label for="id_type_edit_learning" class="">Estilo de aprendizaje:</label>
 											<div class="has-success">
 												<select class="form-control" id="id_type_edit_learning">
 													<option value="1">Activo</option>
@@ -33,9 +27,22 @@
 										<!-- se enlistan las estrategias sustituyendo la etiqueda di -->
 										<div id="strategisti_edit"></div>
 
+										<!-- se enlistan los niveles de desempeño -->
+										<div class="form-group">
+											<label for="id_level_edit_performance">Nivel de Desempeño:</label>
+											<div class="has-success">
+												<select class="form-control" id="id_level_edit_performance">
+													<option value="0"></option>
+													<option value="1">Explorador</option>
+													<option value="2">Integrador</option>
+													<option value="3">Innovador</option>
+												</select>
+											</div>
+										</div>
+
 
 										<div class="range-slider">
-											<label for="description_activity" class=" control-label">Porcentaje de la actividad:</label>
+											<label for="description_activity" class="">Porcentaje de la actividad:</label>
 										  <input class="range-slider__range"  id="weight_edit" type="range" value="0" min="0" max="100" step="1">
 										  <span class="range-slider__value" id="weight_lo" >0</span>
 										</div>
@@ -55,7 +62,7 @@
 											 <button onclick="document.getElementById('id11').style.display='none';
 											 CKEDITOR.instances['description_edit_activity'].setData('');
 											 $('#infoPanel2').html('');" id='closeTea' type="reset" class="btn btn-default">Cancelar</button>
-											 <button type="submit" id ="editActivity"  class="btn btn-success">Agregar</button>
+											 <button type="submit" id ="editActivity"  class="btn btn-success">Actualizar</button>
 										 </div>
 									 </div>
 							 </div>

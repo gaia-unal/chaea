@@ -40,7 +40,7 @@ $coursesLet = count($courses);
 <div id="particles-js"></div>
 <main class="detalle">
   <div id="table-boxi" >
-    <center><h1>Configuración de las actividades en los cursos</h1></center><br>
+    <center><h1>Desarrollo de las actividades en los cursos</h1></center><br>
 
              <div class="stepwizard">
                  <div class="stepwizard-row setup-panel">
@@ -136,12 +136,13 @@ $coursesLet = count($courses);
 
 <!-- Este tiene las funcionalidades CRUD de la tabla -->
 <script type="text/javascript" src="/chaea/js/cookies.js"></script>
-<script src="/chaea/js/jsn/courseSettings/s-CourseCrudIns.js" charset="utf-8"></script>
+<!-- <script src="/chaea/js/jsn/courseSettings/s-CourseCrudIns.js" charset="utf-8"></script> -->
 
 <script type="text/javascript" src="/chaea/js/jsn/courseSettings/courActiUpload.js"></script>
 <script  src="/chaea/js/jsn/slider.js" charset="utf-8"></script>
 <!--Este es JSN-->
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<!-- Este controla toda la parte de ingreso de datos a los campos. -->
 <script src="/chaea/js/jsn/controlForm.js"></script>
 
 <!-- Carga la info de la tabla -->

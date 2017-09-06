@@ -150,7 +150,7 @@ overflow: hidden;
 #datatable, #datatableStudent,#dataTableCourseTeacher,#dataTableCourse, #dataTableActivity,
 #dataTableCourseActiveStudent, #dataTableActiCou, #dataTableStudentTraking, #dataTableStudentTrakingAc,
 #dataTableStrategy, #dataTableCouStu, #dataTableCouStuIns, #dataTableCouStuDelete,
-#dataTableActiCouStudent{
+#dataTableActiCouStudent, #dataTableThematic, #dataTableStudentTrakingThema{
     background-color: rgb(78, 78, 78) !important;
     font-size: 18px !important;
     line-height: 1.42857143 !important;

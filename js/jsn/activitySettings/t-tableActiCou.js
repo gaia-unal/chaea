@@ -1,14 +1,13 @@
 $(document).ready(function() {
   //loading();
 });
-try {
-  var idCourseJsn =  readCookie('idCourseJsn');
-  var ac =  readCookie('ac');
-} catch (e) {}
+
 
   function loading(){
-
-
+    try {
+      var thematicJsn =  readCookie('thematicJsn');
+      var idCourseJsn =  readCookie('idCourseJsn');
+    } catch (e) {}
 
     table =   $('#dataTableActiCou').DataTable( {
                  "scrollX": true,
@@ -19,7 +18,7 @@ try {
                  "ajax": {
                    "method": "POST",
                    "url": "/chaea/backendPhp/activitySQL/t-activityCourse.php",
-                    "data":{"idCourse":idCourseJsn, "action":ac}
+                   "data":{"idCourse":idCourseJsn, "thematic":thematicJsn, "action":1}
                  },
                  "columns": [
                    {
@@ -57,9 +56,14 @@ try {
                     }
 
                    },
-                   { "data": "thematic" },
                    { "data": "name_activity" },
                    { "data": "strategy" },
+                   {
+                     "data": "performance",
+                     "render": function(state){
+                      return "<center>"+state+"<center>";
+                    }
+                   },
                    {
                      "data": "type_learning",
                      "render": function(state){
@@ -75,15 +79,16 @@ try {
                  ],
                  "language": idioma_espanol
                });
-              sum(idCourseJsn);
+              sum(idCourseJsn, thematicJsn);
               get_edit_acti('#dataTableActiCou tbody',table);
               get_description_activity('#dataTableActiCou tbody',table);
               get_data_state('#dataTableActiCou tbody',table);
               get_data_delete('#dataTableActiCou tbody',table);
   }
 
-  function sum(id_course){
-     let total = ajaxSettingActivity(id_course,7);//total de lo que de.
+  function sum(id_course, id_thematic){
+     let activity = [id_course, id_thematic];
+     let total = ajaxSettingActivity(activity,7);
   }
 
 
@@ -109,18 +114,19 @@ try {
           try {
               let data = table.row( $(this).parents("tr") ).data();
               let id_learning;
+              let id_performance;
 
 
               $('#id_edit_activ').val(data.id_activity);
               $('#name_ed_activity').html('Esta editando la actividad '+data.name_activity);
               $('#name_edit_activity').val(data.name_activity);
-              $('#thematic_edit_activity').val(data.thematic);
               $('#weight_edit').val(data.weight);
               $('#weight_lo').html(data.weight+'%');
-              let total_salary = $('#total_salary').val();
-              let limit1 = total_salary- data.weight ;
+              let total_percent = $('#total_percent').val();
+              let limit1 = total_percent- data.weight ;
               let limit = 100-limit1;
               $('#weight_edit').attr({'max':limit});
+
 
               if(data.type_learning=='activo'){
                 id_learning = 1;
@@ -131,8 +137,17 @@ try {
               }else if (data.type_learning=='pragmático') {
                 id_learning = 4;
               }
+
+              if(data.performance =='Explorador'){
+                id_performance = 1;
+              }else if (data.performance =='Integrador') {
+                id_performance = 2;
+              }else if (data.performance =='Innovador') {
+                id_performance = 3;
+              }
+              $('#id_level_edit_performance').val(id_performance);
               $('#id_type_edit_learning').val(id_learning);
-              ajaxSettingActivity(id_learning, 8);
+              ajaxSettingActivity(id_learning, 10);
               //cargar la estrategia.
               let activity = [data.strategy, id_learning];
               ajaxSettingActivity(activity, 9);
@@ -217,7 +232,7 @@ try {
                               '<option value="-1">All</option>'+
                               '</select> registros',
                           "sZeroRecords":    "No se encontraron resultados",
-                          "sEmptyTable":     "Aún no han creado actividades.",
+                          "sEmptyTable":     "Aún no han creado Temáticas.",
                           "sInfo":           "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
                           "sInfoEmpty":      "Mostrando del 0 al 0 de un total de 0 registros",
                           "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",

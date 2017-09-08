@@ -103,12 +103,12 @@ try {
                   if (data.state =='Inactivo'){
                      let student = [data.idStudent, data.nameStudente, idCourseJsn];
                      ajaxSettingActiveCourse(student,2);
-                     loading();
+                     loadingStudent();
                   }
                   if (data.state =='Activo') {
                      let student = [data.idStudent, data.nameStudente, idCourseJsn];
                      ajaxSettingActiveCourse(student,3);
-                     loading();
+                     loadingStudent();
                   }
             } catch (e) {
               console.error(e);

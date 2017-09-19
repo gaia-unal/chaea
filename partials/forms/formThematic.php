@@ -5,7 +5,7 @@
 						    		<div class="form-group">
 											<label for="thematic_activity" class=" control-label">Temática:</label>
 												<div class="has-success">
-													<input id="thematic_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control1(event)" placeholder="Ej: Analitica Web"></input><br>
+													<input id="thematic_activity" type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required  onKeyPress="return control4(event)" placeholder="Ej: Analitica Web"></input><br>
 											 </div>
 										</div>
 

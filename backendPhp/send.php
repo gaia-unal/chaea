@@ -255,6 +255,7 @@
   //el estudiante.
   function register($attributes){
       try {
+
           global $objDatos;
 
           $idUniversity = existUniversity($attributes[2]);
@@ -287,6 +288,7 @@
               echo "1";
             }else{
               //Estudiante
+
               $sql ="INSERT INTO student (number_document, name, email, password, birthdate, number_phone,
                 nickname, state_system, id_birthplace, id_university, id_type_document, semester, id_program, gender)
                 values ('$attributes[12]','$attributes[0]','$attributes[1]',MD5('$attributes[3]'),'$attributes[4]','$attributes[9]',

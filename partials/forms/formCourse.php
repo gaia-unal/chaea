@@ -5,7 +5,7 @@
 						    		<div class="form-group">
 											<label for="nameCourse" class=" control-label">Nombre:</label>
 												<div class="has-success">
-													<input type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required id="nameCourse" onKeyPress="return control1(event)" placeholder="Ej: Analitica Web"></input><br>
+													<input type="textarea" class="form-control" value="" pattern=".{0}|.{5,60}" title="tiene que tener por lo menos 12 caracteres"  maxlength="60" required id="nameCourse" onKeyPress="return control4(event)" placeholder="Ej: Analitica Web"></input><br>
 											 </div>
 										</div>
 

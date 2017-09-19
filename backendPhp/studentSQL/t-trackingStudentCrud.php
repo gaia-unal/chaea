@@ -43,8 +43,8 @@ switch ($action) {
   function tableLoaderTracking($idCourse){
     //Se consulta los cursos existentes
     global $objDatos;
-    $consulta = "	SELECT id_st, st_name, SUM(note_st) as note_st FROM
-                	(SELECT st_ac.number_document as id_st,
+    $consulta = "	SELECT id_st, st_name, SUM(note_st)/count(distinct  id_the) as note_st  FROM
+                	(SELECT act.id_thematic as id_the, st_ac.number_document as id_st,
                 	st.name as st_name,st_ac.activity_note, tea_ac.weight,
                 	st_ac.activity_note *(tea_ac.weight / 100) as note_st
                 	FROM student as st, student_activity as st_ac,  activity as act,
@@ -58,7 +58,7 @@ switch ($action) {
                 	and st.number_document = st_ac.number_document
                 	and st_ac.id_activity = act.id_activity
                 	and tea_ac.id_activity  = act.id_activity
-                	group by st_ac.number_document, st.name, st_ac.activity_note, tea_ac.weight) AS notas
+                	group by st_ac.number_document, st.name, st_ac.activity_note, tea_ac.weight, id_the) AS notas
                   GROUP BY id_st, st_name;";
               $tracking = $objDatos->executeQuery($consulta);
               $objDatos->closeConnect();

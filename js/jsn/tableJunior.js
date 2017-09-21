@@ -5,7 +5,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
 }catch(e){}
   // esta funcion es el ajax que me permite tener mas control al momento de enviar
   //los datos al la BD este es compatible con cualquier navegador
-  function ajaxas(coursesIs,student_style_point,reply, action) {
+  function ajaxasJ(coursesIs,student_style_point,reply, action) {
 
     var replys = JSON.stringify(reply);
     var student_style_point = JSON.stringify(student_style_point);
@@ -286,7 +286,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
         //esto se ejecuta siempre y cuando la cookie exista en php...
         var student_style_point = new Array(a, t, r, p);
           if(person.document>0){
-            ajaxas(coursesIs,student_style_point, answers,4)
+            ajaxasJ(coursesIs,student_style_point, answers,4)
           }
       } catch (e) {
         alert("Erro en >> "+e)

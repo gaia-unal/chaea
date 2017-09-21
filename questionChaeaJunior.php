@@ -210,7 +210,14 @@ h1[number]{
  	?>
 </body>
 </main>
-
+<!-- Carga la info de la tabla -->
+<script src="/chaea/js/jsn/courseSettings/s-tableCourse.js" charset="utf-8"></script>
+<!-- Este tiene las funcionalidades CRUD de la tabla -->
+<script src="/chaea/js/jsn/courseSettings/s-CourseCrud.js" charset="utf-8"></script>
+<!-- FIN CRUD -->
+<script src="https://code.jquery.com/jquery-1.11.2.js" integrity="sha256-WMJwNbei5YnfOX5dfgVCS5C4waqvc+/0fV7W2uy3DyU=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<!--Este es JSN-->
 <?php
   include('partials/pie.html');
 ?>

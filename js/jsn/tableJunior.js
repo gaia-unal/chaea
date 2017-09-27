@@ -12,7 +12,7 @@ var person = readCookie('student');person = JSON.parse(person);namep = person.na
     var coursesIs = JSON.stringify(coursesIs);
      $.ajax({
       type: 'POST',
-      url: '/chaea/backendPhp/backendPhp/send.php',
+      url: '/chaea/backendPhp/send.php',
       data:{"replys": replys, "action":action, "student_style_point":student_style_point,"coursesIs":coursesIs},
           success: function(answer){
             //en caso de existir una falla al registrar estudiante descomentar

@@ -12,7 +12,7 @@ include($_SERVER["DOCUMENT_ROOT"].'/chaea/partials/nav.php');
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/2.jpg"> </div>
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/3.jpg"> </div>
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/44.jpg"> </div>
-                  <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/a5.jpg"> </div>
+                  <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/5.jpg"> </div>
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/6.jpg"> </div>
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/7.jpg"> </div>
                   <div class="page"> <img class="imagencartilla" src="/chaea/images/cartilla/activo/8.jpg"> </div>

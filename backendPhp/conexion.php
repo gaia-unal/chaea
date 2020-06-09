@@ -23,7 +23,7 @@ class DB {
     const PORT      = "5432";
     const DATA_BASE = "chaea";
     const USER      = "postgres";
-    const PASSWORD  = "root";
+    const PASSWORD  = "%froac$";
 
     public function __construct(){
       #connect();
